@@ -7,11 +7,15 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
 
+import Logo from '../../assets/clintlogos/Logo.png';
+
 const Navbar: React.FC = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [activeLink, setActiveLink] = useState('/');
     const location = useLocation();
+
+    const isHome = location.pathname === '/';
 
     useEffect(() => {
         const handleScroll = () => {
@@ -82,72 +86,56 @@ const Navbar: React.FC = () => {
         }
     };
 
+    const getNavbarBg = () => {
+        if (isHome) {
+            return isScrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4';
+        }
+        return 'bg-white shadow-md py-2';
+    };
+
+    const getLinkColor = (path: string) => {
+        if (activeLink === path) return 'text-orange-500';
+        if (isHome && !isScrolled) return 'text-white hover:text-orange-400';
+        return 'text-gray-700 hover:text-blue-800';
+    };
+
     return (
         <>
-            <motion.nav
-                initial={{ opacity: 0, y: -50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, type: 'spring', stiffness: 100 }}
-                className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-                        ? 'bg-white py-2 shadow-md'
-                        : 'bg-white py-4'
-                    }`}
+            <nav
+                className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${getNavbarBg()}`}
             >
-                <div className="container mx-auto px-4 lg:px-8 flex justify-between items-center">
-                    <motion.div
-                        initial={{ rotate: -5, scale: 0.9 }}
-                        animate={{ rotate: 0, scale: 1 }}
-                        transition={{ duration: 0.5, delay: 0.2, type: 'spring' }}
-                        whileHover={{ scale: 1.05, rotate: 2 }}
-                    >
-                        <Link to="/" className="text-2xl lg:text-3xl font-bold flex items-center">
-                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-800 to-indigo-800">
-                                Civic Techno
-                            </span>
-                            <span className="ml-2 text-orange-500">Services</span>
+                <div className="container mx-auto px-4 lg:px-8 relative flex justify-between items-center">
+                    <div>
+                        <Link to="/" className="flex items-center">
+                            <img
+                                src={Logo}
+                                alt="Civic Techno Services"
+                                className="h-12 lg:h-16 w-auto object-contain"
+                            />
                         </Link>
-                    </motion.div>
+                    </div>
 
-                    {/* Right side container for nav items and button */}
-                    <div className="flex items-center">
-                        {/* Desktop Navigation */}
-                        <motion.ul
-                            className="hidden md:flex space-x-1 lg:space-x-2 mr-4"
-                            variants={containerVariants}
-                            initial="hidden"
-                            animate="visible"
-                        >
-                            {navLinks.map((link) => (
-                                <motion.li
-                                    key={link.path}
-                                    variants={itemVariants}
-                                    whileHover={{ scale: 1.1 }}
-                                    whileTap={{ scale: 0.95 }}
+                    {/* Centered Desktop Navigation */}
+                    <ul className="hidden md:flex space-x-1 lg:space-x-6 absolute left-1/2 transform -translate-x-1/2">
+                        {navLinks.map((link) => (
+                            <li key={link.path}>
+                                <Link
+                                    to={link.path}
+                                    className={`relative px-2 py-2 font-medium transition-all duration-300 whitespace-nowrap ${getLinkColor(link.path)}`}
                                 >
-                                    <Link
-                                        to={link.path}
-                                        className={`relative px-3 lg:px-4 py-2 text-gray-700 font-medium transition-all duration-300 ${activeLink === link.path
-                                                ? 'text-orange-500'
-                                                : 'hover:text-blue-800'
-                                            }`}
-                                    >
-                                        {link.label}
-                                        <motion.span
-                                            className={`absolute bottom-0 left-0 h-0.5 bg-orange-500 ${activeLink === link.path ? 'w-full' : 'w-0'
-                                                } transition-all duration-300`}
-                                            whileHover={{ width: '100%' }}
-                                        />
-                                    </Link>
-                                </motion.li>
-                            ))}
-                        </motion.ul>
+                                    {link.label}
+                                    <span
+                                        className={`absolute bottom-0 left-0 h-0.5 bg-orange-500 ${activeLink === link.path ? 'w-full' : 'w-0'
+                                            } transition-all duration-300`}
+                                    />
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
 
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.5, delay: 0.4 }}
-                            className="hidden md:block"
-                        >
+                    {/* Right side: Button and Mobile Menu */}
+                    <div className="flex items-center space-x-4">
+                        <div className="hidden md:block">
                             <Button
                                 variant="contained"
                                 component={Link}
@@ -156,20 +144,20 @@ const Navbar: React.FC = () => {
                             >
                                 Get in Touch
                             </Button>
-                        </motion.div>
+                        </div>
 
                         {/* Mobile Menu Button */}
                         <div className="md:hidden">
                             <IconButton
                                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                                className="text-gray-700"
+                                className={`transition-colors duration-300 ${isHome && !isScrolled ? 'text-white' : 'text-gray-700'}`}
                             >
                                 {mobileMenuOpen ? <CloseIcon /> : <MenuIcon />}
                             </IconButton>
                         </div>
                     </div>
                 </div>
-            </motion.nav>
+            </nav>
 
             {/* Mobile Menu */}
             <AnimatePresence>
@@ -198,32 +186,21 @@ const Navbar: React.FC = () => {
                                 </IconButton>
                             </div>
                             <ul className="p-4 space-y-3">
-                                {navLinks.map((link, index) => (
-                                    <motion.li
-                                        key={link.path}
-                                        initial={{ opacity: 0, x: 50 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        transition={{ delay: index * 0.1 }}
-                                        whileHover={{ x: 10 }}
-                                    >
+                                {navLinks.map((link) => (
+                                    <li key={link.path}>
                                         <Link
                                             to={link.path}
                                             className={`block py-2 px-4 rounded-lg text-gray-700 font-medium transition-all duration-300 ${activeLink === link.path
-                                                    ? 'bg-gray-100 text-orange-500'
-                                                    : 'hover:bg-gray-100 hover:text-blue-800'
+                                                ? 'bg-gray-100 text-orange-500'
+                                                : 'hover:bg-gray-100 hover:text-blue-800'
                                                 }`}
                                             onClick={() => setMobileMenuOpen(false)}
                                         >
                                             {link.label}
                                         </Link>
-                                    </motion.li>
+                                    </li>
                                 ))}
-                                <motion.div
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    transition={{ delay: 0.6 }}
-                                    className="pt-4"
-                                >
+                                <div className="pt-4">
                                     <Button
                                         variant="contained"
                                         component={Link}
@@ -233,15 +210,15 @@ const Navbar: React.FC = () => {
                                     >
                                         Get in Touch
                                     </Button>
-                                </motion.div>
+                                </div>
                             </ul>
                         </motion.div>
                     </motion.div>
                 )}
             </AnimatePresence>
 
-            {/* Add padding to account for fixed navbar */}
-            <div className="h-16 md:h-20"></div>
+            {/* Add padding to account for fixed navbar only when NOT on home page */}
+            {!isHome && <div className="h-16 md:h-20"></div>}
         </>
     );
 };

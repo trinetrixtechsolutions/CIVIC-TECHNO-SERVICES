@@ -1,80 +1,17 @@
 // src/pages/Projects.tsx
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { Link } from 'react-router-dom';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
+import { projects } from '../data/projects';
+import { Button } from '@mui/material';
 
 const Projects: React.FC = () => {
     const { ref, inView } = useInView({
         triggerOnce: true,
         threshold: 0.1
     });
-
-    const projects = [
-        {
-            name: "Maruti Suzuki Battery Plant",
-            client: "Maruti Suzuki",
-            location: "Gujarat",
-            value: "446 Lakhs",
-            description: "Complete turnkey MEP solution for the battery manufacturing facility including electrical infrastructure, HVAC systems, and automation."
-        },
-        {
-            name: "National Dairy Development Board",
-            client: "NDDB",
-            location: "Odisha",
-            value: "465 Lakhs",
-            description: "Comprehensive electrical and HVAC infrastructure for the dairy development board facility with specialized equipment installation."
-        },
-        {
-            name: "IIT Guwahati Testing Lab",
-            client: "IIT Guwahati",
-            location: "Assam",
-            value: "145 Lakhs",
-            description: "Specialized electrical infrastructure for advanced testing laboratory with precision power requirements and safety systems."
-        },
-        {
-            name: "Nizams Institute of Medical Sciences",
-            client: "NIMS",
-            location: "Hyderabad",
-            value: "35 Lakhs",
-            description: "Critical electrical infrastructure for medical facility with UPS systems, specialized medical equipment power solutions, and safety systems."
-        },
-        {
-            name: "Lodha Bellezza Towers",
-            client: "Lodha Group",
-            location: "Hyderabad",
-            value: "90 Lakhs",
-            description: "Complete MEP solution for residential towers including electrical infrastructure, HVAC systems, fire safety, and building management systems."
-        },
-        {
-            name: "Mylan Labs Expansion",
-            client: "Mylan",
-            location: "Zambia",
-            value: "135 Lakhs",
-            description: "International project for pharmaceutical facility expansion with cleanroom electrical solutions and specialized HVAC systems."
-        },
-        {
-            name: "National Institute of Animal Biotechnology",
-            client: "NIAB",
-            location: "Hyderabad",
-            value: "215 Lakhs",
-            description: "Specialized MEP solution for biotechnology research facility with precision environmental control and laboratory electrical systems."
-        },
-        {
-            name: "GVK Biosciences Research Facility",
-            client: "GVK Biosciences",
-            location: "Hyderabad",
-            value: "180 Lakhs",
-            description: "Turnkey MEP solution for research facility with specialized laboratory infrastructure and cleanroom environments."
-        },
-        {
-            name: "Rainbow Hospitals Expansion",
-            client: "Rainbow Hospitals",
-            location: "Hyderabad",
-            value: "125 Lakhs",
-            description: "Critical infrastructure for healthcare facility with specialized medical power systems and safety equipment."
-        }
-    ];
 
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -131,9 +68,17 @@ const Projects: React.FC = () => {
                     >
                         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Project Portfolio</h2>
                         <div className="w-24 h-1 bg-blue-800 mb-6"></div>
-                        <p className="text-lg text-gray-700 mb-6">
+                        <p className="text-lg text-gray-700 mb-8">
                             With 38+ major industrial and institutional projects delivered, Civic Techno Services has established a strong track record of successful project execution across India and internationally.
                         </p>
+                        <Button
+                            component={Link}
+                            to="/project-schedule"
+                            variant="outlined"
+                            className="border-blue-800 text-blue-800 hover:bg-blue-50 px-8 py-3 font-bold"
+                        >
+                            View Full Project Schedule
+                        </Button>
                     </motion.div>
                 </div>
             </section>
@@ -147,34 +92,64 @@ const Projects: React.FC = () => {
                         initial="hidden"
                         animate={inView ? "visible" : "hidden"}
                     >
-                        {projects.map((project, index) => (
+                        {projects.map((project) => (
                             <motion.div
-                                key={index}
-                                className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300"
+                                key={project.id}
+                                className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col h-full"
                                 variants={itemVariants}
                                 whileHover={{ y: -5 }}
                             >
-                                <div className="h-48 bg-gradient-to-br from-blue-700 to-indigo-800 flex items-center justify-center">
-                                    <div className="text-white text-center px-4">
-                                        <h3 className="text-xl font-bold">{project.name}</h3>
-                                    </div>
-                                </div>
-                                <div className="p-6">
-                                    <div className="mb-4">
-                                        <p className="text-sm text-gray-600 mb-1">Client: <span className="font-medium text-gray-900">{project.client}</span></p>
-                                        <p className="text-sm text-gray-600 mb-1">Location: <span className="font-medium text-gray-900">{project.location}</span></p>
-                                        <p className="text-lg font-bold text-blue-800">Value: {project.value}</p>
-                                    </div>
-                                    <p className="text-gray-700 text-sm">{project.description}</p>
+                                <Link to={`/projects/${project.id}`} className="block relative group overflow-hidden h-56">
+                                    <motion.img
+                                        src={project.image}
+                                        alt={project.name}
+                                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                        layoutId={`project-image-${project.id}`}
+                                    />
+                                    {/* <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                                        <div className="opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-0 transition-all duration-300">
+                                            <Button variant="contained" className="bg-white text-blue-900 hover:bg-gray-100">
+                                                View Details
+                                            </Button>
+                                        </div>
+                                    </div> */}
+                                </Link>
+                                <div className="p-6 flex flex-col flex-grow">
+                                    <h3 className="text-xl font-bold mb-3 text-gray-900">
+                                        <Link to={`/projects/${project.id}`} className="hover:text-blue-800 transition-colors">
+                                            {project.name}
+                                        </Link>
+                                    </h3>
+                                    {/* <div className="mb-4 space-y-2">
+                                        <div className="flex justify-between text-sm">
+                                            <span className="text-gray-500">Client:</span>
+                                            <span className="font-medium text-gray-900">{project.client}</span>
+                                        </div>
+                                        <div className="flex justify-between text-sm">
+                                            <span className="text-gray-500">Location:</span>
+                                            <span className="font-medium text-gray-900">{project.location}</span>
+                                        </div>
+                                        <div className="flex justify-between text-sm">
+                                            <span className="text-gray-500">Value:</span>
+                                            <span className="font-bold text-blue-800">{project.value}</span>
+                                        </div>
+                                    </div> */}
+                                    {/* <p className="text-gray-700 text-sm line-clamp-3 mb-4 flex-grow">{project.description}</p> */}
+                                    {/* <Button
+                                        component={Link}
+                                        to={`/projects/${project.id}`}
+                                        variant="outlined"
+                                        className="w-full border-blue-800 text-blue-800 hover:bg-blue-50 mt-auto"
+                                    >
+                                        View Project
+                                    </Button> */}
                                 </div>
                             </motion.div>
                         ))}
                     </motion.div>
-                </div>
-            </section>
-
-
-        </div>
+                </div >
+            </section >
+        </div >
     );
 };
 

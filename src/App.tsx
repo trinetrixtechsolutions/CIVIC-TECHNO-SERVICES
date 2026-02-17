@@ -6,13 +6,17 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Services from './pages/Services';
 import Projects from './pages/Projects';
+import ProjectDetails from './pages/ProjectDetails';
+import ProjectSchedule from './pages/ProjectSchedule';
 import Industries from './pages/Industries';
 import Contact from './pages/Contact';
 import { motion } from 'framer-motion';
+import ScrollToTop from './components/common/ScrollToTop';
 
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <div className="App">
         <Navbar />
         <motion.div
@@ -25,6 +29,8 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
             <Route path="/projects" element={<Projects />} />
+            <Route path="/projects/:id" element={<ProjectDetails />} />
+            <Route path="/project-schedule" element={<ProjectSchedule />} />
             <Route path="/industries" element={<Industries />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
