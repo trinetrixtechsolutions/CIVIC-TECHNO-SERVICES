@@ -1,0 +1,38 @@
+// src/App.tsx
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/layout/Navbar';
+import Footer from './components/layout/Footer';
+import Home from './pages/Home';
+import About from './pages/About';
+import Services from './pages/Services';
+import Projects from './pages/Projects';
+import Industries from './pages/Industries';
+import Contact from './pages/Contact';
+import { motion } from 'framer-motion';
+
+function App() {
+  return (
+    <Router>
+      <div className="App">
+        <Navbar />
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/industries" element={<Industries />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </motion.div>
+        <Footer />
+      </div>
+    </Router>
+  );
+}
+
+export default App;
