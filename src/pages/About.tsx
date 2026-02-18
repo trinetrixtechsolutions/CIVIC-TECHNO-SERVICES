@@ -6,6 +6,7 @@ import Footer from '../components/layout/Footer';
 import ScrollToTopArrow from '../components/common/ScrollToTopArrow';
 import HeroBg from '../assets/clintlogos/hero_bg_img.png'; // Imported the Hero Image
 import DividerImg from '../assets/clintlogos/download.svg';
+import BannerImg from '../assets/clintlogos/baner_bg_image_1.png';
 
 const About: React.FC = () => {
     const [ref, inView] = useInView({
@@ -57,21 +58,16 @@ const About: React.FC = () => {
     ];
 
     return (
-        <div className="bg-white min-h-screen">
+        <div className="bg-white min-h-screen overflow-x-hidden">
 
-            {/* Hero Section with Background Image */}
-            <section className="relative min-h-[40vh] flex items-center justify-center">
-                {/* Background Image Layer */}
-                <div className="absolute inset-0 z-0">
-                    <img
-                        src={HeroBg}
-                        alt="Engineering Background"
-                        className="w-full h-full object-cover object-center"
-                    />
-                    {/* Gradient Overlays */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-blue-900/95 via-blue-900/80 to-transparent" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent opacity-50" />
-                </div>
+            {/* Hero Section with Parallax Background */}
+            <section
+                className="relative min-h-[60vh] flex items-center justify-center bg-fixed bg-center bg-cover"
+                style={{ backgroundImage: `url(${HeroBg})` }}
+            >
+
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent"></div>
 
                 {/* Hero Content */}
                 <div className="container mx-auto px-4 lg:px-8 relative z-10 text-center lg:text-left py-20">
@@ -81,25 +77,29 @@ const About: React.FC = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
                     >
-                        <motion.span
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: 0.2 }}
-                            className="inline-block px-4 py-1 mb-4 text-sm font-semibold text-blue-200 bg-white/10 backdrop-blur-sm rounded-full border border-white/20"
-                        >
-                            Corporate Identity
-                        </motion.span>
-                        <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight tracking-tight">
-                            About <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-indigo-200">Civic Techno</span>
-                        </h1>
-                        <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-2xl">
+
+                        <div className="text-center lg:text-left relative">
+                            <h2
+                                className="text-[110px] md:text-[130px] text-[#c59d5f] leading-none"
+                                style={{ fontFamily: 'Herr Von Muellerhoff, serif' }}
+                            >
+                                About
+                            </h2>
+
+                            <h1 className="font-primary font-black tracking-[0.08em] uppercase text-white text-[47px] md:text-[65px] leading-[0.5] -mt-6">
+                                Civic Techno
+                            </h1>
+                        </div>
+
+                        <p className="text-xl md:text-2xl text-blue-100 mb-8 mt-5 max-w-2xl">
                             A Legacy of Engineering Excellence & Turnkey Innovation.
                         </p>
+
                     </motion.div>
                 </div>
 
                 {/* Decorative Shape at Bottom */}
-                <div className="absolute bottom-0 left-0 w-full z-20 translate-y-1/2 pointer-events-none">
+                <div className="absolute bottom-0 left-0 w-full z-20 translate-y-1/2 pointer-events-none overflow-hidden">
                     <div className="flex w-max">
                         {Array.from({ length: 120 }).map((_, i) => (
                             <img
@@ -111,6 +111,7 @@ const About: React.FC = () => {
                         ))}
                     </div>
                 </div>
+
             </section>
 
 
@@ -134,15 +135,11 @@ const About: React.FC = () => {
                                 Our
                             </h2>
 
-                            <h1 className="font-primary mb-[30px] font-black tracking-[0.08em] uppercase text-[#111111] text-[47px] leading-[1.01] -mt-8">
-                                History
+                            <h1 className="font-primary mb-[30px] font-black tracking-[0.08em] uppercase text-[#111111] text-[47px] leading-[0.81] -mt-8">
+                                Story
                             </h1>
                         </div>
 
-
-
-                        {/* <div class="pixcode  pixcode--separator  separator separator--flower separator_color--color">✻</div> */}
-                        {/* <div className="w-24 h-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto mb-8 rounded-full"></div> */}
                         <p className="text-lg text-gray-600 leading-relaxed mb-8">
                             Established in <span className="font-bold text-blue-700">2010</span>, Civic Techno Services began as a specialized turnkey electrical solution provider for cleanroom environments. Over time, the organization expanded into a full-scale MEP turnkey engineering partner serving pharmaceuticals, healthcare, industrial manufacturing, commercial complexes, research facilities, and infrastructure projects.
                         </p>
@@ -154,7 +151,7 @@ const About: React.FC = () => {
             </section>
 
             {/* Timeline Section */}
-            <section ref={ref} className="py-20 lg:py-28 bg-slate-50 relative overflow-hidden">
+            <section ref={ref} className="py-20 lg:py-28 relative overflow-hidden">
                 {/* Decorative Background Elements */}
                 <div className="absolute top-0 right-0 w-96 h-96 bg-blue-100 rounded-full filter blur-3xl opacity-50 translate-x-1/2 -translate-y-1/2"></div>
                 <div className="absolute bottom-0 left-0 w-96 h-96 bg-indigo-100 rounded-full filter blur-3xl opacity-50 -translate-x-1/2 translate-y-1/2"></div>
@@ -166,11 +163,18 @@ const About: React.FC = () => {
                         animate={inView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.6 }}
                     >
-                        <span className="text-blue-600 font-semibold uppercase tracking-widest mb-4 block">History</span>
-                        <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                            Corporate Evolution
-                        </h2>
-                        <div className="w-24 h-1.5 bg-blue-600 mx-auto rounded-full"></div>
+                        <div className="text-center relative">
+                            <h2
+                                className="text-[120px] text-[#c59d5f] leading-none"
+                                style={{ fontFamily: 'Herr Von Muellerhoff, serif' }}
+                            >
+                                Our
+                            </h2>
+
+                            <h1 className="font-primary mb-[30px] font-black tracking-[0.08em] uppercase text-[#111111] text-[47px] leading-[0.81] -mt-8">
+                                History
+                            </h1>
+                        </div>
                     </motion.div>
 
                     <motion.div
@@ -180,7 +184,7 @@ const About: React.FC = () => {
                         animate={inView ? "visible" : "hidden"}
                     >
                         {/* Vertical Line for Timeline */}
-                        <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-blue-500 via-indigo-500 to-transparent hidden md:block rounded-full"></div>
+                        <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-[#c59d5f]/50 via-[#c59d5f]/100 to-[#c59d5f]/50 hidden md:block rounded-full"></div>
 
                         <div className="space-y-12">
                             {timeline.map((item, index) => (
@@ -195,7 +199,7 @@ const About: React.FC = () => {
                                             className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300 group"
                                             whileHover={{ y: -5 }}
                                         >
-                                            <span className="inline-block px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm font-bold mb-4 group-hover:bg-blue-100 transition-colors">
+                                            <span className="inline-block px-3 py-1 bg-[#c59d5f]/50 text-black rounded-full text-sm font-bold mb-4 group-hover:bg-[#C49D5F] transition-colors">
                                                 {item.year}
                                             </span>
                                             <h4 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h4>
@@ -206,7 +210,7 @@ const About: React.FC = () => {
                                     {/* Center Dot */}
                                     <div className="relative flex items-center justify-center order-first md:order-none mb-4 md:mb-0">
                                         <motion.div
-                                            className="w-5 h-5 bg-white border-4 border-blue-600 rounded-full z-10"
+                                            className="w-5 h-5 bg-black border-4 border-[#c59d5f] rounded-full z-10"
                                             initial={{ scale: 0 }}
                                             animate={inView ? { scale: 1 } : {}}
                                             transition={{ delay: 0.2 * index, type: "spring", stiffness: 300 }}
@@ -222,88 +226,220 @@ const About: React.FC = () => {
                 </div>
             </section>
 
+
+            {/* Professional Overview */}
+            <motion.div
+                className="text-center max-w-4xl mx-auto mt-2"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+            >
+
+                <h2
+                    className="text-[120px] text-[#c59d5f] leading-none"
+                    style={{ fontFamily: 'Herr Von Muellerhoff, serif' }}
+                >
+                    Our
+                </h2>
+
+                <h1 className="font-primary mb-[30px] font-black tracking-[0.08em] uppercase text-[#111111] text-[47px] leading-[0.51] -mt-6">
+                    Professional Overview
+                </h1>
+
+                <p className="text-gray-600 leading-relaxed text-lg">
+                    Civic Techno has built for itself an enviable reputation of being a one-stop turnkey provider
+                    for all industrial verticals. Its potent blend of technical and talented workforce, design
+                    expertise, exceptional project execution capabilities and global footprint makes it the most
+                    preferred choice for MEP projects.
+                </p>
+
+                <p className="text-gray-600 leading-relaxed text-lg mt-6">
+                    Civic Techno Services also undertakes operation and maintenance (MEP) services for all
+                    industrial verticals, ensuring long-term performance and reliability.
+                </p>
+
+            </motion.div>
+
+
+            {/* Our Team */}
+            <motion.div
+                className="text-center max-w-4xl mx-auto mt-28"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+            >
+
+                <h2
+                    className="text-[120px] text-[#c59d5f] leading-none"
+                    style={{ fontFamily: 'Herr Von Muellerhoff, serif' }}
+                >
+                    Our
+                </h2>
+
+                <h1 className="font-primary mb-[30px] font-black tracking-[0.08em] uppercase text-[#111111] text-[47px] leading-[0.51] -mt-6">
+                    Team
+                </h1>
+
+                <p className="text-gray-600 leading-relaxed text-lg">
+                    Our team believes in first understanding your goals and then providing customized solutions
+                    tailored to industry needs. We follow a human-centered engineering approach that delivers
+                    measurable business value.
+                </p>
+
+                <p className="text-gray-600 leading-relaxed text-lg mt-6">
+                    We understand that business success cannot be achieved through technology alone.
+                    It begins with people and experts working together to identify your core objectives
+                    and develop the most adapted solutions to meet those requirements.
+                </p>
+
+            </motion.div>
+
+
             {/* Mission, Vision & Values */}
-            <section className="py-20 lg:py-28 bg-white">
-                <div className="container mx-auto px-4 lg:px-8">
+            <section className="relative">
+
+                {/* Sticky Background Banner */}
+                <div
+                    className="relative h-[60vh] flex items-center justify-center bg-fixed bg-center bg-cover"
+                    style={{ backgroundImage: `url(${BannerImg})` }}
+                >
+
+                    {/* Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-black/40 to-black/30"></div>
+
+                    {/* Centered Heading */}
                     <motion.div
-                        className="text-center mb-16"
-                        initial={{ opacity: 0, y: 20 }}
+                        className="relative text-center text-white px-4 z-10"
+                        initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
+                        transition={{ duration: 0.8 }}
                     >
-                        <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                            What Drives Us
+                        <h2
+                            className="text-[90px] md:text-[120px] text-[#c59d5f] leading-none"
+                            style={{ fontFamily: 'Herr Von Muellerhoff, serif' }}
+                        >
+                            Epitome of
                         </h2>
-                        <div className="w-24 h-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto rounded-full"></div>
+
+                        <h1 className="font-primary font-black tracking-[0.08em] uppercase text-white text-[40px] md:text-[50px] leading-[0.9] -mt-6">
+                            SUCCESS
+                        </h1>
                     </motion.div>
 
-                    <motion.div
-                        className="grid grid-cols-1 md:grid-cols-3 gap-10"
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true }}
-                        variants={containerVariants}
-                    >
-                        {/* Mission */}
-                        <motion.div
-                            className="group relative bg-white rounded-2xl p-8 shadow-lg border border-gray-100 overflow-hidden"
-                            variants={itemVariants}
-                            whileHover={{ y: -10, transition: { duration: 0.3 } }}
-                        >
-                            <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 to-blue-600"></div>
-                            <div className="p-4 bg-blue-50 rounded-xl inline-block mb-6 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
-                                <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                                </svg>
-                            </div>
-                            <h3 className="text-2xl font-bold text-gray-900 mb-4">Mission</h3>
-                            <p className="text-gray-600 leading-relaxed">
-                                To execute technically sound, ethically driven, high-quality turnkey MEP solutions delivered on time and within budget.
-                            </p>
-                        </motion.div>
+                    {/* Decorative Divider */}
+                    <div className="absolute bottom-0 left-0 w-full z-20 translate-y-1/2 pointer-events-none overflow-hidden">
+                        <div className="flex w-max">
+                            {Array.from({ length: 120 }).map((_, i) => (
+                                <img
+                                    key={i}
+                                    src={DividerImg}
+                                    className="h-6 shrink-0"
+                                    alt=""
+                                />
+                            ))}
+                        </div>
+                    </div>
 
-                        {/* Vision */}
-                        <motion.div
-                            className="group relative bg-white rounded-2xl p-8 shadow-lg border border-gray-100 overflow-hidden"
-                            variants={itemVariants}
-                            whileHover={{ y: -10, transition: { duration: 0.3 } }}
-                        >
-                            <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-indigo-500 to-indigo-600"></div>
-                            <div className="p-4 bg-indigo-50 rounded-xl inline-block mb-6 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300">
-                                <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                </svg>
-                            </div>
-                            <h3 className="text-2xl font-bold text-gray-900 mb-4">Vision</h3>
-                            <p className="text-gray-600 leading-relaxed">
-                                To become a nationally recognized leader in integrated MEP engineering with innovation-driven execution standards.
-                            </p>
-                        </motion.div>
-
-                        {/* Quality */}
-                        <motion.div
-                            className="group relative bg-white rounded-2xl p-8 shadow-lg border border-gray-100 overflow-hidden"
-                            variants={itemVariants}
-                            whileHover={{ y: -10, transition: { duration: 0.3 } }}
-                        >
-                            <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-green-500 to-teal-600"></div>
-                            <div className="p-4 bg-green-50 rounded-xl inline-block mb-6 text-green-600 group-hover:bg-green-600 group-hover:text-white transition-all duration-300">
-                                <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                                </svg>
-                            </div>
-                            <h3 className="text-2xl font-bold text-gray-900 mb-4">Quality Commitment</h3>
-                            <p className="text-gray-600 leading-relaxed">
-                                Adhering to national and international engineering standards, ensuring reliability, safety, and performance excellence.
-                            </p>
-                        </motion.div>
-                    </motion.div>
                 </div>
-            </section>
+
+
+
+                {/* Content Below Banner */}
+                <div className="py-20 lg:py-28 bg-white">
+                    <div className="container mx-auto px-4 lg:px-8">
+
+                        {/* Vision & Mission Side by Side */}
+                        <motion.div
+                            className="grid grid-cols-1 md:grid-cols-2 gap-16 mb-20"
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6 }}
+                        >
+
+                            {/* Vision */}
+                            <div className="text-center">
+                                <motion.div
+                                    className="mb-10"
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                >
+                                    <h2
+                                        className="text-[120px] text-[#c59d5f] leading-none"
+                                        style={{ fontFamily: 'Herr Von Muellerhoff, serif' }}
+                                    >
+                                        Our
+                                    </h2>
+
+                                    <h1 className="font-primary mb-[30px] font-black tracking-[0.08em] uppercase text-[#111111] text-[47px] leading-[0.51] -mt-6">
+                                        Vision
+                                    </h1>
+                                </motion.div>
+
+                                <p className="text-gray-600 leading-relaxed max-w-md mx-auto">
+                                    We aspire to be a leading organization with unique attributes characterized by quality products and services.
+                                </p>
+                            </div>
+
+
+                            {/* Mission */}
+                            <div className="text-center">
+                                <motion.div
+                                    className="mb-10"
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                >
+                                    <h2
+                                        className="text-[120px] text-[#c59d5f] leading-none"
+                                        style={{ fontFamily: 'Herr Von Muellerhoff, serif' }}
+                                    >
+                                        Our
+                                    </h2>
+
+                                    <h1 className="font-primary mb-[30px] font-black tracking-[0.08em] uppercase text-[#111111] text-[47px] leading-[0.51] -mt-6">
+                                        mission
+                                    </h1>
+                                </motion.div>
+
+                                <p className="text-gray-600 leading-relaxed max-w-md mx-auto">
+                                    We will always be responsible to keep the ethics of business with our esteemed customers and remain aligned with our core company policy.
+                                </p>
+                            </div>
+
+
+                        </motion.div>
+
+                        {/* Quality Commitment */}
+                        <motion.div
+                            className="text-center max-w-3xl mx-auto"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                        >
+                            <h2
+                                className="text-[120px] text-[#c59d5f] leading-none"
+                                style={{ fontFamily: 'Herr Von Muellerhoff, serif' }}
+                            >
+                                Our
+                            </h2>
+
+                            <h1 className="font-primary mb-[30px] font-black tracking-[0.08em] uppercase text-[#111111] text-[47px] leading-[0.51] -mt-6">
+                                Quality
+                            </h1>
+
+                            <p className="text-gray-600 leading-relaxed mt-6">
+                                We are committed to achieve and sustain a leading position of consistent quality in all activities as per national and international standards, meeting customer expectations with continual improvements on time and within budget.
+                            </p>
+                        </motion.div>
+                    </div>
+                </div>
+            </section >
 
             <ScrollToTopArrow />
-        </div>
+        </div >
     );
 };
 
