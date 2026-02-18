@@ -5,6 +5,7 @@ import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import ScrollToTopArrow from '../components/common/ScrollToTopArrow';
 import HeroBg from '../assets/clintlogos/hero_bg_img.png'; // Imported the Hero Image
+import DividerImg from '../assets/clintlogos/download.svg';
 
 const About: React.FC = () => {
     const [ref, inView] = useInView({
@@ -59,7 +60,7 @@ const About: React.FC = () => {
         <div className="bg-white min-h-screen">
 
             {/* Hero Section with Background Image */}
-            <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
+            <section className="relative min-h-[40vh] flex items-center justify-center">
                 {/* Background Image Layer */}
                 <div className="absolute inset-0 z-0">
                     <img
@@ -98,15 +99,23 @@ const About: React.FC = () => {
                 </div>
 
                 {/* Decorative Shape at Bottom */}
-                <div className="absolute bottom-0 left-0 right-0">
-                    <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="white" />
-                    </svg>
+                <div className="absolute bottom-0 left-0 w-full z-20 translate-y-1/2 pointer-events-none">
+                    <div className="flex w-max">
+                        {Array.from({ length: 120 }).map((_, i) => (
+                            <img
+                                key={i}
+                                src={DividerImg}
+                                className="h-6 shrink-0"
+                                alt=""
+                            />
+                        ))}
+                    </div>
                 </div>
             </section>
 
+
             {/* Company Introduction */}
-            <section className="py-20 lg:py-2 bg-white relative">
+            <section className="py-20 lg:py-10 bg-white relative">
                 <div className="container mx-auto px-4 lg:px-8">
                     <motion.div
                         className="max-w-4xl mx-auto text-center"
@@ -115,10 +124,25 @@ const About: React.FC = () => {
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
                     >
-                        <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                            Our Story
-                        </h2>
-                        <div className="w-24 h-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto mb-8 rounded-full"></div>
+
+
+                        <div className="text-center relative">
+                            <h2
+                                className="text-[120px] text-[#c59d5f] leading-none"
+                                style={{ fontFamily: 'Herr Von Muellerhoff, serif' }}
+                            >
+                                Our
+                            </h2>
+
+                            <h1 className="font-primary mb-[30px] font-black tracking-[0.08em] uppercase text-[#111111] text-[47px] leading-[1.01] -mt-8">
+                                History
+                            </h1>
+                        </div>
+
+
+
+                        {/* <div class="pixcode  pixcode--separator  separator separator--flower separator_color--color">✻</div> */}
+                        {/* <div className="w-24 h-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto mb-8 rounded-full"></div> */}
                         <p className="text-lg text-gray-600 leading-relaxed mb-8">
                             Established in <span className="font-bold text-blue-700">2010</span>, Civic Techno Services began as a specialized turnkey electrical solution provider for cleanroom environments. Over time, the organization expanded into a full-scale MEP turnkey engineering partner serving pharmaceuticals, healthcare, industrial manufacturing, commercial complexes, research facilities, and infrastructure projects.
                         </p>

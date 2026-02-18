@@ -5,7 +5,12 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        script: ['"Herr Von Muellerhoff"', 'serif'],
+        primary: ['"Source Sans 3"', 'Georgia', 'serif'],
+      },
+    },
   },
   plugins: [],
 };
