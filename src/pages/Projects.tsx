@@ -38,7 +38,7 @@ const Projects: React.FC = () => {
         <div className="bg-white min-h-screen">
 
             {/* Hero Section with Background Image */}
-            <section className="relative min-h-[55vh] flex items-center justify-center overflow-hidden">
+            <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
                 {/* Background Image Layer */}
                 <div className="absolute inset-0 z-0">
                     <img
@@ -78,15 +78,7 @@ const Projects: React.FC = () => {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.5 }}
                         >
-                            <Button
-                                component={Link}
-                                to="/project-schedule"
-                                variant="contained"
-                                size="large"
-                                className="bg-white text-blue-900 hover:bg-blue-50 font-bold px-8 py-3 shadow-2xl rounded-full transform hover:scale-105 transition-transform duration-300"
-                            >
-                                View Full Schedule
-                            </Button>
+                            
                         </motion.div>
                     </motion.div>
                 </div>
@@ -101,7 +93,7 @@ const Projects: React.FC = () => {
             </section>
 
             {/* Projects Introduction */}
-            <section className="py-20 lg:py-28 bg-white relative">
+            <section className="py-20 lg:py-2 bg-white relative">
                 <div className="container mx-auto px-4 lg:px-8">
                     <motion.div
                         className="max-w-4xl mx-auto text-center"

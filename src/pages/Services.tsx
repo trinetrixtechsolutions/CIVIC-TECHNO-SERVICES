@@ -110,7 +110,7 @@ const Services: React.FC = () => {
         <div className="bg-white min-h-screen">
 
             {/* Hero Section with Background Image */}
-            <section className="relative min-h-[55vh] flex items-center justify-center overflow-hidden">
+            <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
                 {/* Background Image Layer */}
                 <div className="absolute inset-0 z-0">
                     <img
@@ -157,7 +157,7 @@ const Services: React.FC = () => {
             </section>
 
             {/* Services Introduction */}
-            <section className="py-20 lg:py-28 bg-white relative">
+            <section className="py-20 lg:py-2 bg-white relative">
                 <div className="container mx-auto px-4 lg:px-8">
                     <motion.div
                         className="max-w-4xl mx-auto text-center"

@@ -84,7 +84,7 @@ const Contact: React.FC = () => {
         <div className="bg-white min-h-screen overflow-x-hidden">
 
             {/* 1. HERO SECTION - Updated Style */}
-            <section className="relative min-h-[55vh] flex items-center justify-center overflow-hidden">
+            <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
                 {/* Background Image Layer */}
                 <div className="absolute inset-0 z-0">
                     <img
@@ -131,7 +131,7 @@ const Contact: React.FC = () => {
             </section>
 
             {/* INFO STRIP SECTION */}
-            <section className="bg-white py-8 border-b border-gray-100">
+            <section className="bg-white py-2 border-b border-gray-100">
                 <div className="container mx-auto px-4 lg:px-8">
 
                     <motion.div
