@@ -24,7 +24,7 @@ const Clients: React.FC = () => {
     const marqueeRow2 = [...row2Logos, ...row2Logos, ...row2Logos, ...row2Logos, ...row2Logos, ...row2Logos];
 
     return (
-        <section ref={ref} className="py-16 lg:py-24 bg-white overflow-hidden">
+        <section ref={ref} className="py-16 lg:py-8 bg-white overflow-hidden">
             <style>{`
                 @keyframes scrollLeft {
                     0% { transform: translateX(0); }
@@ -54,7 +54,6 @@ const Clients: React.FC = () => {
                     <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                         Our Valued Clients
                     </h2>
-                    <div className="w-24 h-1 bg-blue-800 mx-auto mb-6"></div>
                     <p className="text-lg text-gray-700 max-w-3xl mx-auto">
                         Organizations that trust our engineering expertise and execution strength
                     </p>

@@ -1,16 +1,15 @@
 // src/pages/Services.tsx
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import Navbar from '../components/layout/Navbar';
-import Footer from '../components/layout/Footer';
 import ScrollToTopArrow from '../components/common/ScrollToTopArrow';
 import ElectricalServicesIcon from '@mui/icons-material/ElectricalServices';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import SettingsRemoteIcon from '@mui/icons-material/SettingsRemote';
 import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
 import EngineeringIcon from '@mui/icons-material/Engineering';
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
-import HeroBg from '../assets/clintlogos/hero_bg_img.png'; // Imported Hero Image
+import HeroBg from '../assets/clintlogos/hero_bg_img.png';
+import ServiceCard from '../components/Services/ServiceCard';
+import { Outlet } from 'react-router-dom';
 
 const Services: React.FC = () => {
     const { ref, inView } = useInView({
@@ -20,102 +19,52 @@ const Services: React.FC = () => {
 
     const services = [
         {
+            id: 1,
             icon: <ElectricalServicesIcon className="text-4xl" />,
             title: "Electrical Infrastructure",
-            description: "HT & LT Panels, Transformers, Cable Laying (up to 220 Kms+), Distribution Boards, Industrial Internal & External Wiring, DG & UPS Installations.",
-            features: [
-                "High Tension & Low Tension Panels",
-                "Power Transformers Installation",
-                "Extensive Cable Laying Solutions",
-                "Distribution Board Design & Installation",
-                "DG & UPS Power Systems"
-            ],
-            gradient: "from-blue-500 to-blue-600"
+            description: "HT & LT Panels, Transformers, Cable Laying (up to 220 Kms+), Distribution Boards, Industrial Internal & External Wiring, DG & UPS Installations."
         },
         {
+            id: 2,
             icon: <AcUnitIcon className="text-4xl" />,
             title: "HVAC & High-Side Engineering",
-            description: "Clean Room Installations, Chiller Yards, Humidification Systems, Air Handling Units (AHU), Industrial Ventilation Systems.",
-            features: [
-                "Clean Room HVAC Solutions",
-                "Chiller Plant Installation",
-                "Humidification & Dehumidification",
-                "Air Handling Units (AHU)",
-                "Industrial Ventilation Systems"
-            ],
-            gradient: "from-cyan-500 to-teal-500"
+            description: "Clean Room Installations, Chiller Yards, Humidification Systems, Air Handling Units (AHU), Industrial Ventilation Systems."
         },
         {
+            id: 3,
             icon: <SettingsRemoteIcon className="text-4xl" />,
             title: "Automation & Smart Systems",
-            description: "Building Management Systems (BMS), Energy Monitoring & Optimization.",
-            features: [
-                "Building Management Systems",
-                "Energy Monitoring Solutions",
-                "Smart Building Automation",
-                "Control System Integration",
-                "Energy Optimization Strategies"
-            ],
-            gradient: "from-indigo-500 to-purple-600"
+            description: "Building Management Systems (BMS), Energy Monitoring & Optimization."
         },
         {
+            id: 4,
             icon: <LocalFireDepartmentIcon className="text-4xl" />,
             title: "Fire & Safety Systems",
-            description: "Fire Alarm Systems (FASS), Access Control Systems (ACS), CCTV Surveillance.",
-            features: [
-                "Fire Alarm Systems (FASS)",
-                "Access Control Systems (ACS)",
-                "CCTV Surveillance",
-                "Emergency Response Systems",
-                "Safety Compliance Solutions"
-            ],
-            gradient: "from-red-500 to-orange-500"
+            description: "Fire Alarm Systems (FASS), Access Control Systems (ACS), CCTV Surveillance."
         },
         {
+            id: 5,
             icon: <EngineeringIcon className="text-4xl" />,
             title: "Consulting & Project Engineering",
-            description: "Electrical Design, Single Line Diagrams, BOQ Preparation, Cost Estimation, Testing & Commissioning, and O&M Contracts.",
-            features: [
-                "Electrical System Design",
-                "Single Line Diagrams",
-                "Bill of Quantities (BOQ)",
-                "Cost Estimation & Budgeting",
-                "Testing, Commissioning & O&M"
-            ],
-            gradient: "from-gray-600 to-gray-800"
+            description: "Electrical Design, Single Line Diagrams, BOQ Preparation, Cost Estimation, Testing & Commissioning, and O&M Contracts."
         }
     ];
 
     const containerVariants = {
         hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.15
-            }
-        }
-    };
-
-    const itemVariants = {
-        hidden: { y: 40, opacity: 0, scale: 0.95 },
-        visible: {
-            y: 0,
-            opacity: 1,
-            scale: 1,
-            transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }
-        }
+        visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
     };
 
     return (
         <div className="bg-white min-h-screen">
 
-            {/* Hero Section with Background Image */}
+            {/* Hero Section with Background Image - Updated */}
             <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
                 {/* Background Image Layer */}
                 <div className="absolute inset-0 z-0">
                     <img
                         src={HeroBg}
-                        alt="Engineering Background"
+                        alt="Services Background"
                         className="w-full h-full object-cover object-center"
                     />
                     {/* Gradient Overlays */}
@@ -137,13 +86,13 @@ const Services: React.FC = () => {
                             transition={{ delay: 0.2 }}
                             className="inline-block px-4 py-1 mb-4 text-sm font-semibold text-blue-200 bg-white/10 backdrop-blur-sm rounded-full border border-white/20"
                         >
-                            Civic Techno Services
+                            Professional Excellence
                         </motion.span>
                         <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight tracking-tight">
                             Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-indigo-200">Services</span>
                         </h1>
                         <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-2xl">
-                            Engineering Depth & Technical Scope for Modern Infrastructure.
+                            Comprehensive Solutions for Modern Infrastructure.
                         </p>
                     </motion.div>
                 </div>
@@ -182,57 +131,25 @@ const Services: React.FC = () => {
                 <div className="container mx-auto px-4 lg:px-8">
                     <motion.div
                         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-                        variants={containerVariants}
                         initial="hidden"
                         animate={inView ? "visible" : "hidden"}
+                        variants={containerVariants}
                     >
-                        {services.map((service, index) => (
-                            <motion.div
-                                key={index}
-                                className="group relative bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col border border-gray-100"
-                                variants={itemVariants}
-                                whileHover={{ y: -10, transition: { duration: 0.3 } }}
-                            >
-                                {/* Top Gradient Bar */}
-                                <div className={`h-2 w-full bg-gradient-to-r ${service.gradient}`}></div>
-
-                                <div className="p-8 flex flex-col flex-grow relative">
-                                    {/* Icon Container */}
-                                    <div className="mb-6 relative">
-                                        <div className="w-16 h-16 rounded-xl bg-blue-50 flex items-center justify-center text-blue-700 group-hover:bg-blue-700 group-hover:text-white transition-all duration-300 shadow-sm">
-                                            {service.icon}
-                                        </div>
-                                    </div>
-
-                                    <h3 className="text-xl font-bold text-gray-900 mb-3">
-                                        {service.title}
-                                    </h3>
-                                    <p className="text-gray-600 text-sm leading-relaxed mb-6">
-                                        {service.description}
-                                    </p>
-
-                                    <div className="mt-auto border-t border-gray-100 pt-6">
-                                        <h4 className="font-bold text-gray-800 text-xs uppercase tracking-wider mb-4 flex items-center gap-2">
-                                            <span className="w-2 h-2 rounded-full bg-blue-600"></span>
-                                            Key Features
-                                        </h4>
-                                        <ul className="space-y-3">
-                                            {service.features.map((feature, idx) => (
-                                                <li key={idx} className="flex items-start gap-3">
-                                                    <CheckCircleOutlineIcon className="text-blue-600 text-lg mt-0.5 flex-shrink-0" />
-                                                    <span className="text-gray-700 text-sm">{feature}</span>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                </div>
-                            </motion.div>
+                        {services.map((service) => (
+                            <ServiceCard
+                                key={service.id}
+                                id={service.id}
+                                icon={service.icon}
+                                title={service.title}
+                                description={service.description}
+                            />
                         ))}
                     </motion.div>
                 </div>
             </section>
 
             <ScrollToTopArrow />
+            <Outlet />
         </div>
     );
 };
