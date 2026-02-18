@@ -10,6 +10,7 @@ import ProjectDetails from './pages/ProjectDetails';
 import ProjectSchedule from './pages/ProjectSchedule';
 import Industries from './pages/Industries';
 import Contact from './pages/Contact';
+import Career from './pages/Career';
 import { motion } from 'framer-motion';
 import ScrollToTop from './components/common/ScrollToTop';
 
@@ -32,6 +33,7 @@ function App() {
             <Route path="/projects/:id" element={<ProjectDetails />} />
             <Route path="/project-schedule" element={<ProjectSchedule />} />
             <Route path="/industries" element={<Industries />} />
+            <Route path="/career" element={<Career />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </motion.div>
