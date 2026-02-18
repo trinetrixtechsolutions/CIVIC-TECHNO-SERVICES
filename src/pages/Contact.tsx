@@ -1,10 +1,12 @@
 // src/pages/Contact.tsx
 import React, { useState, useEffect } from 'react';
 import ScrollToTopArrow from '../components/common/ScrollToTopArrow';
+import Navbar from '../components/layout/Navbar';
+import Footer from '../components/layout/Footer';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import emailjs from '@emailjs/browser';
-import { Button, TextField, Snackbar, Alert, Box } from '@mui/material';
+import { Button, TextField, Snackbar, Alert } from '@mui/material';
 import { MapPin, Phone, Mail, Building2 } from 'lucide-react';
 import SendIcon from '@mui/icons-material/Send';
 
@@ -81,25 +83,50 @@ const Contact: React.FC = () => {
     return (
         <div className="bg-white min-h-screen overflow-x-hidden">
 
-            {/* 1. HERO SECTION */}
-            <section
-                className="relative h-[60vh] flex items-center justify-center bg-cover bg-fixed bg-center"
-                style={{ backgroundImage: `url(${HeroBg})` }}
-            >
-                <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/20"></div>
-                <div className="relative container mx-auto px-4 text-center">
+            {/* 1. HERO SECTION - Updated Style */}
+            <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
+                {/* Background Image Layer */}
+                <div className="absolute inset-0 z-0">
+                    <img 
+                        src={HeroBg} 
+                        alt="Contact Background" 
+                        className="w-full h-full object-cover object-center"
+                    />
+                    {/* Gradient Overlays */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-900/95 via-blue-900/80 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent opacity-50" />
+                </div>
+
+                {/* Hero Content */}
+                <div className="container mx-auto px-4 lg:px-8 relative z-10 text-center lg:text-left py-20">
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 1 }}
+                        className="max-w-3xl"
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
                     >
-                        <h1 className="text-6xl md:text-8xl font-black text-white mb-4 tracking-tighter">
-                            Contact <span className="text-blue-500">US</span>
+                        <motion.span 
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.2 }}
+                            className="inline-block px-4 py-1 mb-4 text-sm font-semibold text-blue-200 bg-white/10 backdrop-blur-sm rounded-full border border-white/20"
+                        >
+                            Get In Touch
+                        </motion.span>
+                        <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight tracking-tight">
+                            Contact <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-indigo-200">Us</span>
                         </h1>
-                        <p className="text-xl md:text-2xl text-gray-200 font-light tracking-wide max-w-2xl mx-auto">
-                            Transforming ideas into digital reality. Let's talk.
+                        <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-2xl">
+                            Have a project in mind? Let's discuss how we can help you achieve your goals.
                         </p>
                     </motion.div>
+                </div>
+                
+                {/* Decorative Shape at Bottom */}
+                <div className="absolute bottom-0 left-0 right-0">
+                    <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="white"/>
+                    </svg>
                 </div>
             </section>
 
@@ -309,13 +336,12 @@ const Contact: React.FC = () => {
                 </div>
             </section>
 
-
-
             <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleCloseSnackbar}>
                 <Alert onClose={handleCloseSnackbar} severity={formStatus.error ? "error" : "success"} variant="filled" sx={{ width: '100%', borderRadius: '12px' }}>
                     {formStatus.message}
                 </Alert>
             </Snackbar>
+            
             <ScrollToTopArrow />
         </div>
     );
