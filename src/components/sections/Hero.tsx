@@ -154,36 +154,40 @@ const Hero: React.FC = () => {
                         </motion.div>
                     </motion.div>
 
-                    {/* Highlights / Stats Section - Right Side - Frozen Glass Effect */}
+                    {/* Highlights / Stats Section - Right Side - Separate Cards */}
                     <motion.div
                         className="lg:w-2/5 w-full"
                         variants={containerVariants}
                         initial="hidden"
                         animate={inView ? "visible" : "hidden"}
                     >
-                        <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6 lg:p-8 shadow-2xl relative overflow-hidden">
-                            <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent pointer-events-none"></div>
+                        {/* Grid Container for 2x2 Cards */}
+                        <div className="grid grid-cols-2 gap-4 lg:gap-6">
+                            {highlights.map((highlight, index) => (
+                                <motion.div
+                                    key={index}
+                                    // Individual Glassmorphism Card Styling
+                                    className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-xl p-6 shadow-xl relative overflow-hidden group cursor-default"
+                                    variants={itemVariants}
+                                    whileHover={{ y: -5, scale: 1.02 }}
+                                    transition={{ type: "spring", stiffness: 300 }}
+                                >
+                                    {/* Subtle gradient overlay for each card */}
+                                    <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent pointer-events-none"></div>
 
-                            <div className="grid grid-cols-2 gap-6 relative z-10">
-                                {highlights.map((highlight, index) => (
-                                    <motion.div
-                                        key={index}
-                                        className="text-center group"
-                                        variants={itemVariants}
-                                        whileHover={{ y: -5 }}
-                                    >
-                                        <div className="flex justify-center mb-3 transition-transform duration-300 group-hover:scale-110">
+                                    <div className="relative z-10 flex flex-col items-center text-center h-full justify-center">
+                                        <div className="mb-3 transition-transform duration-300 group-hover:scale-110">
                                             {highlight.icon}
                                         </div>
-                                        <h3 className="text-3xl lg:text-4xl font-bold text-white mb-1 drop-shadow-lg">
+                                        <h3 className="text-2xl lg:text-3xl font-bold text-white mb-1 drop-shadow-lg">
                                             {highlight.value}
                                         </h3>
-                                        <p className="text-xs lg:text-sm font-medium text-blue-100 uppercase tracking-wider drop-shadow-md">
+                                        <p className="text-xs lg:text-sm font-medium text-blue-100 uppercase tracking-wider drop-shadow-md leading-snug">
                                             {highlight.label}
                                         </p>
-                                    </motion.div>
-                                ))}
-                            </div>
+                                    </div>
+                                </motion.div>
+                            ))}
                         </div>
                     </motion.div>
                 </div>
