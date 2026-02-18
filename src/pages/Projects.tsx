@@ -38,12 +38,12 @@ const Projects: React.FC = () => {
         <div className="bg-white min-h-screen">
 
             {/* Hero Section with Background Image */}
-            <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
+            <section className="relative min-h-[40vh] flex items-center justify-center overflow-hidden">
                 {/* Background Image Layer */}
                 <div className="absolute inset-0 z-0">
-                    <img 
-                        src={HeroBg} 
-                        alt="Construction Background" 
+                    <img
+                        src={HeroBg}
+                        alt="Construction Background"
                         className="w-full h-full object-cover object-center"
                     />
                     {/* Gradient Overlays for readability */}
@@ -59,7 +59,7 @@ const Projects: React.FC = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
                     >
-                        <motion.span 
+                        <motion.span
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: 0.2 }}
@@ -90,11 +90,11 @@ const Projects: React.FC = () => {
                         </motion.div>
                     </motion.div>
                 </div>
-                
+
                 {/* Decorative Shape at Bottom */}
                 <div className="absolute bottom-0 left-0 right-0">
                     <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="white"/>
+                        <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="white" />
                     </svg>
                 </div>
                 <ScrollToTopArrow />
@@ -146,7 +146,7 @@ const Projects: React.FC = () => {
                                     />
                                     {/* Overlay Gradient */}
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300" />
-                                    
+
                                     {/* Top Tag */}
                                     <div className="absolute top-4 left-4 bg-blue-600/90 backdrop-blur-sm text-white text-xs font-bold px-3 py-1 rounded-full">
                                         {project.location}
@@ -159,7 +159,7 @@ const Projects: React.FC = () => {
                                         </div>
                                     </div>
                                 </Link>
-                                
+
                                 <div className="p-6 flex flex-col flex-grow relative">
                                     {/* Decorative line */}
                                     <div className="absolute top-0 left-8 right-8 h-1 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-b-full transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -169,17 +169,17 @@ const Projects: React.FC = () => {
                                             {project.name}
                                         </Link>
                                     </h3>
-                                    
+
                                     <div className="flex justify-between items-center text-sm mb-4 border-t border-gray-100 pt-4 mt-auto">
                                         <span className="text-gray-500">Project Value</span>
                                         <span className="font-bold text-blue-800 text-lg">{project.value}</span>
                                     </div>
 
-                                    <Link 
-                                        to={`/projects/${project.id}`} 
+                                    <Link
+                                        to={`/projects/${project.id}`}
                                         className="inline-flex items-center text-blue-600 font-semibold text-sm hover:text-blue-800 transition-colors group/link"
                                     >
-                                        View Details 
+                                        View Details
                                         <svg className="w-4 h-4 ml-2 transform group-hover/link:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                         </svg>

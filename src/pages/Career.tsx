@@ -103,12 +103,12 @@ const Career: React.FC = () => {
         <div className="bg-white min-h-screen">
 
             {/* Hero Section with Background Image */}
-            <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
+            <section className="relative min-h-[40vh] flex items-center justify-center overflow-hidden">
                 {/* Background Image Layer */}
                 <div className="absolute inset-0 z-0">
-                    <img 
-                        src={HeroBg} 
-                        alt="Engineering Background" 
+                    <img
+                        src={HeroBg}
+                        alt="Engineering Background"
                         className="w-full h-full object-cover object-center"
                     />
                     {/* Gradient Overlays */}
@@ -124,7 +124,7 @@ const Career: React.FC = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
                     >
-                        <motion.span 
+                        <motion.span
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: 0.2 }}
@@ -140,11 +140,11 @@ const Career: React.FC = () => {
                         </p>
                     </motion.div>
                 </div>
-                
+
                 {/* Decorative Shape at Bottom */}
                 <div className="absolute bottom-0 left-0 right-0">
                     <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="white"/>
+                        <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="white" />
                     </svg>
                 </div>
             </section>
@@ -168,7 +168,7 @@ const Career: React.FC = () => {
                         </p>
                     </motion.div>
 
-                    <motion.div 
+                    <motion.div
                         className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12"
                         initial="hidden"
                         whileInView="visible"
@@ -239,7 +239,7 @@ const Career: React.FC = () => {
                                                 </span>
                                             </div>
                                             <p className="text-gray-600 text-sm leading-relaxed mb-4">{job.description}</p>
-                                            
+
                                             {/* Tags for requirements */}
                                             <div className="flex flex-wrap gap-2">
                                                 {job.requirements.map((req, idx) => (

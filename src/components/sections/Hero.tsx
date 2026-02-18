@@ -8,8 +8,8 @@ import EngineeringIcon from '@mui/icons-material/Engineering';
 import BusinessIcon from '@mui/icons-material/Business';
 import PublicIcon from '@mui/icons-material/Public';
 import HandshakeIcon from '@mui/icons-material/Handshake';
-// Import the background image
-import HeroBg from '../../assets/clintlogos/Hero_bg_image.png';
+// Import the background video
+import HeroBgVideo from '../../assets/clintlogos/hero_bg_video_4.mp4';
 
 const Hero: React.FC = () => {
     const { ref, inView } = useInView({
@@ -87,14 +87,19 @@ const Hero: React.FC = () => {
 
     return (
         <section ref={ref} className="relative min-h-screen flex flex-col justify-center overflow-hidden">
-            {/* Background Image with Overlay */}
+            {/* Background Video with Overlay */}
             <div className="absolute inset-0 z-0">
-                <img
-                    src={HeroBg}
-                    alt="Industrial Background"
+                <video
+                    autoPlay
+                    muted
                     className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-black/40"></div>
+                >
+                    <source src={HeroBgVideo} type="video/mp4" />
+                    Your browser does not support the video tag.
+                </video>
+                <div className="absolute inset-0 bg-black/10"></div>
+                {/* Left Side Shadow Gradient */}
+                <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent pointer-events-none"></div>
             </div>
 
             <div className="container mx-auto px-4 py-12 lg:py-20 relative z-10">
@@ -107,30 +112,34 @@ const Hero: React.FC = () => {
                         initial="hidden"
                         animate="visible"
                     >
+                        {/* Main Heading */}
                         <motion.h1
-                            className="text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-lg"
+                            className="text-4xl md:text-5xl lg:text-7xl font-extrabold text-white leading-tight tracking-tight mb-8"
                             variants={itemVariants}
                         >
-                            Powering Industries with
-                            <span className="block text-blue-300 mt-2">Precision Engineering</span>
+                            <span className="block">Empowering Industrial</span>
+                            <span className="block text-blue-300">
+                                Infrastructure
+                            </span>
+                            <span className="block">
+                                with Turnkey MEP &
+                            </span>
+                            <span className="block">
+                                Electrical Solutions
+                            </span>
                         </motion.h1>
 
+                        {/* Tagline */}
                         <motion.h2
-                            className="text-xl md:text-2xl text-gray-100 font-medium mb-8 drop-shadow-md"
+                            className="text-lg md:text-xl text-blue-200 font-medium tracking-wider mb-8"
                             variants={itemVariants}
                         >
-                            Complete Turnkey MEP & Electrical Infrastructure Solutions Since 2010
+                            Precision Design • Reliable Execution • End-to-end Delivery
                         </motion.h2>
 
-                        <motion.p
-                            className="text-lg text-gray-200 mb-10 max-w-2xl mx-auto lg:mx-0 drop-shadow-sm"
-                            variants={itemVariants}
-                        >
-                            From initial concept and design to commissioning and long-term maintenance, Civic Techno Services ensures seamless execution and measurable performance outcomes.
-                        </motion.p>
-
+                        {/* CTA Buttons */}
                         <motion.div
-                            className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-16 lg:mb-0"
+                            className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
                             variants={itemVariants}
                         >
                             <Button
@@ -138,16 +147,17 @@ const Hero: React.FC = () => {
                                 to="/contact"
                                 variant="contained"
                                 size="large"
-                                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 text-lg font-bold rounded-full shadow-lg transform transition-all duration-300 hover:scale-105"
+                                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 text-base font-semibold rounded-full shadow-lg transition-all duration-300 hover:scale-105"
                             >
-                                Get In Touch
+                                Contact Us
                             </Button>
+
                             <Button
                                 component={Link}
                                 to="/projects"
                                 variant="outlined"
                                 size="large"
-                                className="border-white text-white hover:bg-white/10 px-8 py-3 text-lg font-medium rounded-full transform transition-all duration-300 hover:scale-105 backdrop-blur-sm"
+                                className="border-white text-white hover:bg-white/10 px-8 py-3 text-base font-medium rounded-full transition-all duration-300 hover:scale-105"
                             >
                                 View Projects
                             </Button>

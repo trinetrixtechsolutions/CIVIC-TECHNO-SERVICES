@@ -59,12 +59,12 @@ const About: React.FC = () => {
         <div className="bg-white min-h-screen">
 
             {/* Hero Section with Background Image */}
-            <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
+            <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden">
                 {/* Background Image Layer */}
                 <div className="absolute inset-0 z-0">
-                    <img 
-                        src={HeroBg} 
-                        alt="Engineering Background" 
+                    <img
+                        src={HeroBg}
+                        alt="Engineering Background"
                         className="w-full h-full object-cover object-center"
                     />
                     {/* Gradient Overlays */}
@@ -80,7 +80,7 @@ const About: React.FC = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
                     >
-                        <motion.span 
+                        <motion.span
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: 0.2 }}
@@ -96,11 +96,11 @@ const About: React.FC = () => {
                         </p>
                     </motion.div>
                 </div>
-                
+
                 {/* Decorative Shape at Bottom */}
                 <div className="absolute bottom-0 left-0 right-0">
                     <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="white"/>
+                        <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="white" />
                     </svg>
                 </div>
             </section>
@@ -167,7 +167,7 @@ const About: React.FC = () => {
                                 >
                                     {/* Content Card */}
                                     <div className={`w-full md:w-1/2 ${index % 2 === 0 ? 'md:text-right md:pr-12' : 'md:pl-12'}`}>
-                                        <motion.div 
+                                        <motion.div
                                             className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300 group"
                                             whileHover={{ y: -5 }}
                                         >
@@ -181,7 +181,7 @@ const About: React.FC = () => {
 
                                     {/* Center Dot */}
                                     <div className="relative flex items-center justify-center order-first md:order-none mb-4 md:mb-0">
-                                        <motion.div 
+                                        <motion.div
                                             className="w-5 h-5 bg-white border-4 border-blue-600 rounded-full z-10"
                                             initial={{ scale: 0 }}
                                             animate={inView ? { scale: 1 } : {}}
@@ -221,7 +221,7 @@ const About: React.FC = () => {
                         variants={containerVariants}
                     >
                         {/* Mission */}
-                        <motion.div 
+                        <motion.div
                             className="group relative bg-white rounded-2xl p-8 shadow-lg border border-gray-100 overflow-hidden"
                             variants={itemVariants}
                             whileHover={{ y: -10, transition: { duration: 0.3 } }}
@@ -239,7 +239,7 @@ const About: React.FC = () => {
                         </motion.div>
 
                         {/* Vision */}
-                        <motion.div 
+                        <motion.div
                             className="group relative bg-white rounded-2xl p-8 shadow-lg border border-gray-100 overflow-hidden"
                             variants={itemVariants}
                             whileHover={{ y: -10, transition: { duration: 0.3 } }}
@@ -258,7 +258,7 @@ const About: React.FC = () => {
                         </motion.div>
 
                         {/* Quality */}
-                        <motion.div 
+                        <motion.div
                             className="group relative bg-white rounded-2xl p-8 shadow-lg border border-gray-100 overflow-hidden"
                             variants={itemVariants}
                             whileHover={{ y: -10, transition: { duration: 0.3 } }}
