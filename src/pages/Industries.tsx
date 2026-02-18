@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
+import ScrollToTopArrow from '../components/common/ScrollToTopArrow';
 import ScienceIcon from '@mui/icons-material/Science';
 import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
 import BiotechIcon from '@mui/icons-material/Biotech';
@@ -139,11 +140,10 @@ const Industries: React.FC = () => {
 
     return (
         <div className="bg-white min-h-screen">
-            <Navbar />
 
             {/* Hero Section */}
-            <section className="bg-gradient-to-br from-blue-50 to-indigo-100 py-20 lg:py-32">
-                <div className="container mx-auto px-4">
+            <section className="bg-gradient-to-br from-blue-50 to-indigo-100 pt-4 lg:pt-8">
+                <div className="container mx-auto px-4 lg:px-8">
                     <motion.div
                         className="max-w-4xl mx-auto text-center"
                         initial={{ opacity: 0, y: 20 }}
@@ -162,7 +162,7 @@ const Industries: React.FC = () => {
 
             {/* Industries Introduction */}
             <section className="py-16 lg:py-24">
-                <div className="container mx-auto px-4">
+                <div className="container mx-auto px-4 lg:px-8">
                     <motion.div
                         className="max-w-4xl mx-auto"
                         initial={{ opacity: 0, y: 20 }}
@@ -184,7 +184,7 @@ const Industries: React.FC = () => {
 
             {/* Industries Grid */}
             <section ref={ref} className="py-16 lg:py-24 bg-gray-50">
-                <div className="container mx-auto px-4">
+                <div className="container mx-auto px-4 lg:px-8">
                     <motion.div
                         className="grid grid-cols-1 md:grid-cols-2 gap-8"
                         variants={containerVariants}
@@ -227,6 +227,7 @@ const Industries: React.FC = () => {
             </section>
 
 
+            <ScrollToTopArrow />
         </div>
     );
 };

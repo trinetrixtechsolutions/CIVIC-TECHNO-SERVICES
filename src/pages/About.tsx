@@ -4,6 +4,7 @@ import { useInView } from 'react-intersection-observer';
 import { useEffect, useState } from 'react';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
+import ScrollToTopArrow from '../components/common/ScrollToTopArrow';
 
 const About: React.FC = () => {
     const [ref, inView] = useInView({
@@ -56,11 +57,10 @@ const About: React.FC = () => {
 
     return (
         <div className="bg-white min-h-screen">
-            <Navbar />
-
             {/* Hero Section */}
-            <section className="bg-gradient-to-br from-blue-50 to-indigo-100 py-20 lg:py-32">
-                <div className="container mx-auto px-4">
+           <section className="bg-gradient-to-br from-blue-50 to-indigo-100">
+
+                <div className="container mx-auto px-4 lg:px-8">
                     <motion.div
                         className="max-w-4xl mx-auto text-center"
                         initial={{ opacity: 0, y: 20 }}
@@ -79,7 +79,7 @@ const About: React.FC = () => {
 
             {/* Company Introduction */}
             <section className="py-16 lg:py-24">
-                <div className="container mx-auto px-4">
+                <div className="container mx-auto px-4 lg:px-8">
                     <motion.div
                         className="max-w-4xl mx-auto"
                         initial={{ opacity: 0, y: 20 }}
@@ -101,7 +101,7 @@ const About: React.FC = () => {
 
             {/* Timeline */}
             <section ref={ref} className="py-16 lg:py-24 bg-gray-50">
-                <div className="container mx-auto px-4">
+                <div className="container mx-auto px-4 lg:px-8">
                     <motion.div
                         className="text-center mb-12"
                         initial={{ opacity: 0, y: 20 }}
@@ -177,6 +177,7 @@ const About: React.FC = () => {
             </section>
 
 
+            <ScrollToTopArrow />
         </div>
     );
 };

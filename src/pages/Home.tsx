@@ -7,6 +7,7 @@ import Highlights from '../components/sections/Highlights';
 import Clients from '../components/sections/Clients';
 import CTASection from '../components/sections/CTASection';
 import ProjectsShowcase from '../components/sections/ProjectsShowcase';
+import ScrollToTopArrow from '../components/common/ScrollToTopArrow';
 
 const Home: React.FC = () => {
     const [ref, inView] = useInView({
@@ -31,6 +32,7 @@ const Home: React.FC = () => {
                     <CTASection />
                 </>
             )}
+            <ScrollToTopArrow />
         </div>
     );
 };

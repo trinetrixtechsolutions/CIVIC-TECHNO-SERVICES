@@ -90,7 +90,8 @@ const Navbar: React.FC = () => {
         if (isHome) {
             return isScrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4';
         }
-        return 'bg-white shadow-md py-2';
+        // Remove shadow for all non-home pages
+        return 'bg-white py-2';
     };
 
     const getLinkColor = (path: string) => {
