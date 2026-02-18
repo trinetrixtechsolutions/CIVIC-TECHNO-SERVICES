@@ -59,7 +59,7 @@ const About: React.FC = () => {
         <div className="bg-white min-h-screen">
 
             {/* Hero Section with Background Image */}
-            <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden">
+            <section className="relative min-h-[55vh] flex items-center justify-center overflow-hidden">
                 {/* Background Image Layer */}
                 <div className="absolute inset-0 z-0">
                     <img
