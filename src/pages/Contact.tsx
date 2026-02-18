@@ -104,11 +104,11 @@ const Contact: React.FC = () => {
             </section>
 
             {/* INFO STRIP SECTION */}
-            <section className="bg-white py-16 border-b border-gray-100">
+            <section className="bg-white py-8 border-b border-gray-100">
                 <div className="container mx-auto px-4 lg:px-8">
 
                     <motion.div
-                        className="text-center mb-20"
+                        className="text-center mb-8"
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
@@ -117,104 +117,48 @@ const Contact: React.FC = () => {
                         <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
                             Get In Touch With Us
                         </h2>
-                        <div className="w-24 h-1 bg-blue-600 mx-auto mb-6"></div>
+                        <div className="w-24 h-1 bg-blue-600 mx-auto mb-4"></div>
                         <p className="text-gray-600 max-w-3xl mx-auto text-lg">
                             Please contact us using the information below. To locate contacts in the business office closest to you, visit our office websites.
                         </p>
                     </motion.div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
-
-                        {/* Branch Office */}
-                        <motion.div
-                            className="flex items-center space-x-6"
-                            initial={{ opacity: 0, x: -20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: 0.1 }}
-                        >
-                            <div className="text-blue-600 flex-shrink-0 mt-2">
-                                <MapPin size={64} strokeWidth={1.2} />
-                            </div>
-                            <div>
-                                <h3 className="text-xl font-bold text-gray-900 mb-3">Branch Office</h3>
-                                <p className="text-gray-600 leading-relaxed">
-                                    Gokul Plots, 9th Phase <br />
-                                    KPHB Colony, <br />
-                                    Hyderabad – 500072.
-                                </p>
-                            </div>
-                        </motion.div>
-
-                        {/* Call Us */}
-                        <motion.div
-                            className="flex items-center space-x-6"
-                            initial={{ opacity: 0, x: -20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: 0.2 }}
-                        >
-                            <div className="text-blue-600 flex-shrink-0 mt-2">
-                                <Phone size={64} strokeWidth={1.2} />
-                            </div>
-                            <div>
-                                <h3 className="text-xl font-bold text-gray-900 mb-3">Call Us</h3>
-                                <p className="text-gray-600 leading-relaxed">
-                                    040-40213345 <br />
-                                    7893799699 <br />
-                                    9949699699
-                                </p>
-                            </div>
-                        </motion.div>
-
-                        {/* Send Us */}
-                        <motion.div
-                            className="flex items-center space-x-6"
-                            initial={{ opacity: 0, x: -20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: 0.3 }}
-                        >
-                            <div className="text-blue-600 flex-shrink-0 mt-2">
-                                <Mail size={64} strokeWidth={1.2} />
-                            </div>
-                            <div>
-                                <h3 className="text-xl font-bold text-gray-900 mb-3">Send Us</h3>
-                                <p className="text-gray-600 leading-relaxed">
-                                    info@civictechno.com <br />
-                                    vamsi@civictechno.com
-                                </p>
-                            </div>
-                        </motion.div>
-
-                        {/* Registered Office */}
-                        <motion.div
-                            className="flex items-center space-x-6"
-                            initial={{ opacity: 0, x: -20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: 0.4 }}
-                        >
-                            <div className="text-blue-600 flex-shrink-0 mt-2">
-                                <Building2 size={64} strokeWidth={1.2} />
-                            </div>
-                            <div>
-                                <h3 className="text-xl font-bold text-gray-900 mb-3">Registered Office</h3>
-                                <p className="text-gray-600 leading-relaxed">
-                                    At, Baluara, Post, Ninga, <br />
-                                    Ps, Barauni, Dist, <br />
-                                    Begusarai Bihar – 851112 India
-                                </p>
-                            </div>
-                        </motion.div>
-
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 items-start">
+                        <div className="flex flex-col items-center">
+                            <div className="text-blue-600 flex-shrink-0 mb-2"><MapPin size={48} strokeWidth={1.2} /></div>
+                            <h3 className="text-base font-bold text-gray-900 mb-1 whitespace-nowrap">Branch Office</h3>
+                            <p className="text-gray-600 leading-relaxed text-center text-sm">
+                                Gokul Plots, 9th Phase <br />KPHB Colony, <br />Hyderabad – 500072.
+                            </p>
+                        </div>
+                        <div className="flex flex-col items-center">
+                            <div className="text-blue-600 flex-shrink-0 mb-2"><Phone size={48} strokeWidth={1.2} /></div>
+                            <h3 className="text-base font-bold text-gray-900 mb-1 whitespace-nowrap">Call Us</h3>
+                            <p className="text-gray-600 leading-relaxed text-center text-sm">
+                                040-40213345 <br />7893799699 <br />9949699699
+                            </p>
+                        </div>
+                        <div className="flex flex-col items-center">
+                            <div className="text-blue-600 flex-shrink-0 mb-2"><Mail size={48} strokeWidth={1.2} /></div>
+                            <h3 className="text-base font-bold text-gray-900 mb-1 whitespace-nowrap">Send Us</h3>
+                            <p className="text-gray-600 leading-relaxed text-center text-sm">
+                                info@civictechno.com <br />vamsi@civictechno.com
+                            </p>
+                        </div>
+                        <div className="flex flex-col items-center">
+                            <div className="text-blue-600 flex-shrink-0 mb-2"><Building2 size={48} strokeWidth={1.2} /></div>
+                            <h3 className="text-base font-bold text-gray-900 mb-1 whitespace-nowrap">Registered Office</h3>
+                            <p className="text-gray-600 leading-relaxed text-center text-sm">
+                                At, Baluara, Post, Ninga, <br />Ps, Barauni, Dist, <br />Begusarai Bihar – 851112 India
+                            </p>
+                        </div>
                     </div>
                 </div>
             </section>
 
 
             {/* 3. FORM & MAP SECTION */}
-            <section ref={ref} className="py-24 bg-white">
+            <section ref={ref} className="py-10 bg-white">
                 <div className="container mx-auto px-4 lg:px-16">
 
                     {/* SECTION HEADING */}
@@ -236,7 +180,7 @@ const Contact: React.FC = () => {
                             initial={{ opacity: 0, x: -40 }}
                             animate={inView ? { opacity: 1, x: 0 } : {}}
                             transition={{ duration: 0.7 }}
-                            className="flex flex-col justify-center"
+                            className="flex flex-col justify-center md:ml-8 lg:ml-16 xl:ml-24 w-full md:w-[420px] lg:w-[480px]"
                         >
                             <h3 className="text-2xl font-semibold text-gray-900 mb-2">
                                 Send a Message
