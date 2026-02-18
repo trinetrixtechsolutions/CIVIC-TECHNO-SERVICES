@@ -65,7 +65,7 @@ const Footer: React.FC = () => {
                 >
                     <svg
                         viewBox="0 0 160.7 61.5"
-                        className="w-30 h-14 text-gray-900"
+                        className="w-30 h-14 text-[#252525]"
                         preserveAspectRatio="none"
                     >
                         <path
@@ -82,8 +82,8 @@ const Footer: React.FC = () => {
             </div>
 
             {/* Footer */}
-            <footer className="relative bg-gray-900 text-white pt-16">
-                <div className="container mx-auto px-4 py-12">
+            <footer className="relative bg-[#252525] text-white pt-1">
+                <div className="container mx-auto px-4 py-10">
                     <motion.div
                         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
                         variants={containerVariants}

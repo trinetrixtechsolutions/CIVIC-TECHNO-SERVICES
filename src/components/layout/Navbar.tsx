@@ -7,7 +7,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
 
-import Logo from '../../assets/clintlogos/Logo.png';
+import Logo from '../../assets/clintlogos/Logo_02.svg';
 
 const Navbar: React.FC = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -55,14 +55,22 @@ const Navbar: React.FC = () => {
         }
     };
 
-    const itemVariants = {
-        hidden: { y: -20, opacity: 0 },
+    const dropdownVariants = {
+        hidden: { height: 0, opacity: 0 },
         visible: {
-            y: 0,
+            height: 'auto',
             opacity: 1,
             transition: {
-                type: 'spring',
-                stiffness: 100
+                duration: 0.3,
+                ease: 'easeInOut'
+            }
+        },
+        exit: {
+            height: 0,
+            opacity: 0,
+            transition: {
+                duration: 0.2,
+                ease: 'easeInOut'
             }
         }
     };
@@ -89,16 +97,14 @@ const Navbar: React.FC = () => {
 
     const getNavbarBg = () => {
         if (isHome) {
-            return isScrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4';
+            return isScrolled ? 'bg-[#252525] shadow-md py-2' : 'bg-transparent py-4';
         }
-        // Remove shadow for all non-home pages
-        return 'bg-white py-2';
+        return 'bg-[#252525] py-2';
     };
 
     const getLinkColor = (path: string) => {
-        if (activeLink === path) return 'text-orange-500';
-        if (isHome && !isScrolled) return 'text-white hover:text-orange-400';
-        return 'text-gray-700 hover:text-blue-800';
+        if (activeLink === path) return 'text-[#c59d5f]';
+        return 'text-white hover:text-[#c59d5f]';
     };
 
     return (
@@ -127,7 +133,7 @@ const Navbar: React.FC = () => {
                                 >
                                     {link.label}
                                     <span
-                                        className={`absolute bottom-0 left-0 h-0.5 bg-orange-500 ${activeLink === link.path ? 'w-full' : 'w-0'
+                                        className={`absolute bottom-0 left-0 h-0.5 bg-[#c59d5f] ${activeLink === link.path ? 'w-full' : 'w-0'
                                             } transition-all duration-300`}
                                     />
                                 </Link>
@@ -142,7 +148,7 @@ const Navbar: React.FC = () => {
                                 variant="contained"
                                 component={Link}
                                 to="/contact"
-                                className="bg-gradient-to-r from-blue-800 to-indigo-800 hover:from-blue-900 hover:to-indigo-900 text-white font-bold py-2 px-6 rounded-full transform transition-all duration-300 hover:scale-105"
+                                className="bg-gradient-to-r from-[#c59d5f] to-[#c59d5f] hover:from-[#c59d5f] hover:to-[#c59d5f] text-white font-bold py-2 px-6 rounded-full transform transition-all duration-300 hover:scale-105"
                             >
                                 Get in Touch
                             </Button>
@@ -152,49 +158,32 @@ const Navbar: React.FC = () => {
                         <div className="md:hidden">
                             <IconButton
                                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                                className={`transition-colors duration-300 ${isHome && !isScrolled ? 'text-white' : 'text-gray-700'}`}
+                                className="text-[#c59d5f] transition-colors duration-300"
                             >
                                 {mobileMenuOpen ? <CloseIcon /> : <MenuIcon />}
                             </IconButton>
                         </div>
                     </div>
                 </div>
-            </nav>
 
-            {/* Mobile Menu */}
-            <AnimatePresence>
-                {mobileMenuOpen && (
-                    <motion.div
-                        className="fixed inset-0 z-40 md:hidden"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                    >
-                        <div
-                            className="absolute inset-0 bg-black bg-opacity-50"
-                            onClick={() => setMobileMenuOpen(false)}
-                        />
+                {/* Mobile Menu Dropdown */}
+                <AnimatePresence>
+                    {mobileMenuOpen && (
                         <motion.div
-                            className="absolute right-0 top-0 h-full w-64 bg-white shadow-2xl"
-                            variants={mobileMenuVariants}
+                            className="md:hidden bg-[#252525] shadow-xl overflow-hidden border-t border-gray-700"
+                            variants={dropdownVariants}
                             initial="hidden"
                             animate="visible"
                             exit="exit"
                         >
-                            <div className="flex justify-between items-center p-4 border-b border-gray-200">
-                                <h2 className="text-gray-800 text-xl font-bold">Menu</h2>
-                                <IconButton onClick={() => setMobileMenuOpen(false)} className="text-gray-700">
-                                    <CloseIcon />
-                                </IconButton>
-                            </div>
-                            <ul className="p-4 space-y-3">
+                            <ul className="flex flex-col p-4 space-y-2">
                                 {navLinks.map((link) => (
                                     <li key={link.path}>
                                         <Link
                                             to={link.path}
-                                            className={`block py-2 px-4 rounded-lg text-gray-700 font-medium transition-all duration-300 ${activeLink === link.path
-                                                ? 'bg-gray-100 text-orange-500'
-                                                : 'hover:bg-gray-100 hover:text-blue-800'
+                                            className={`block py-2 px-4 rounded-lg text-[#c59d5f] font-medium transition-all duration-300 ${activeLink === link.path
+                                                ? 'bg-gray-800 text-[#c59d5f]'
+                                                : 'hover:bg-gray-800 hover:text-[#c59d5f]'
                                                 }`}
                                             onClick={() => setMobileMenuOpen(false)}
                                         >
@@ -202,12 +191,12 @@ const Navbar: React.FC = () => {
                                         </Link>
                                     </li>
                                 ))}
-                                <div className="pt-4">
+                                <div className="pt-2 px-4">
                                     <Button
                                         variant="contained"
                                         component={Link}
                                         to="/contact"
-                                        className="w-full bg-gradient-to-r from-blue-800 to-indigo-800 hover:from-blue-900 hover:to-indigo-900 text-white font-bold py-2 px-4 rounded-full"
+                                        className="w-full bg-gradient-to-r from-[#c59d5f] to-[#c59d5f] hover:from-[#c59d5f] hover:to-[#c59d5f] text-white font-bold py-2 px-4 rounded-full"
                                         onClick={() => setMobileMenuOpen(false)}
                                     >
                                         Get in Touch
@@ -215,9 +204,9 @@ const Navbar: React.FC = () => {
                                 </div>
                             </ul>
                         </motion.div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
+                    )}
+                </AnimatePresence>
+            </nav>
 
             {/* Add padding to account for fixed navbar only when NOT on home page */}
             {!isHome && <div className="h-16 md:h-20"></div>}
