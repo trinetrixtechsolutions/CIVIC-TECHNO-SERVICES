@@ -13,17 +13,26 @@ import MemoryIcon from '@mui/icons-material/Memory';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import HeroBg from '../assets/clintlogos/hero_bg_img.png';
 import DividerImg from '../assets/clintlogos/download.svg';
+import IndustrialDemoBg from '../assets/industry_images/industrial_deno_img.png';
+import GvkBiosciencesImg from '../assets/projects_images/GVK_Biosciences_Research_Facility.png';
+import NimsHospitalImg from '../assets/projects_images/Nizams_Institute_of_Medical_Sciences.png';
+import NiabBiotechImg from '../assets/projects_images/National_Institute_of_Animal_Biotechnology.png';
+import NddbFoodImg from '../assets/projects_images/National_Dairy_Development_Board.png';
+import MarutiSuzukiImg from '../assets/projects_images/Maruti_Suzuki_Battery_Plant.png';
+import IitGuwahatiImg from '../assets/projects_images/IIT_Guwahati_Testing_Lab.png';
+import LodhaTowersImg from '../assets/projects_images/Lodha_Bellezza_Towers.png';
 
 const Industries: React.FC = () => {
 
-    const { ref, inView } = useInView({
+    const { ref } = useInView({
         triggerOnce: true,
         threshold: 0.1
     });
 
     const industries = [
         {
-            icon: <ScienceIcon className="text-3xl" />,
+            icon: <ScienceIcon sx={{ fontSize: 85 }} />,
+            image: GvkBiosciencesImg,
             title: "Pharmaceuticals & Cleanroom",
             description: "Specialized MEP solutions for pharmaceutical facilities with strict regulatory compliance, cleanroom environments, and precision environmental control systems.",
             requirements: [
@@ -33,10 +42,10 @@ const Industries: React.FC = () => {
                 "Specialized Electrical Infrastructure",
                 "Regulatory Compliance (GMP, WHO)"
             ],
-            color: "blue"
         },
         {
-            icon: <LocalHospitalIcon className="text-3xl" />,
+            icon: <LocalHospitalIcon sx={{ fontSize: 85 }} />,
+            image: NimsHospitalImg,
             title: "Healthcare & Hospitals",
             description: "Critical infrastructure solutions for healthcare facilities including operation theatres, ICU areas, and specialized medical equipment power systems.",
             requirements: [
@@ -46,10 +55,10 @@ const Industries: React.FC = () => {
                 "Hospital Information Systems",
                 "Patient Safety Systems"
             ],
-            color: "red"
         },
         {
-            icon: <BiotechIcon className="text-3xl" />,
+            icon: <BiotechIcon sx={{ fontSize: 85 }} />,
+            image: NiabBiotechImg,
             title: "Biotechnology & Research",
             description: "Advanced MEP solutions for research facilities with specialized laboratory environments, precision equipment support, and safety systems.",
             requirements: [
@@ -59,10 +68,10 @@ const Industries: React.FC = () => {
                 "Research Equipment Power",
                 "Safety & Emergency Response"
             ],
-            color: "green"
         },
         {
-            icon: <RestaurantIcon className="text-3xl" />,
+            icon: <RestaurantIcon sx={{ fontSize: 85 }} />,
+            image: NddbFoodImg,
             title: "Food & Beverage Processing",
             description: "Hygienic and compliant MEP solutions for food processing facilities with specialized requirements for safety, sanitation, and production efficiency.",
             requirements: [
@@ -72,10 +81,10 @@ const Industries: React.FC = () => {
                 "Waste Management Systems",
                 "HACCP Compliance Infrastructure"
             ],
-            color: "orange"
         },
         {
-            icon: <ElectricCarIcon className="text-3xl" />,
+            icon: <ElectricCarIcon sx={{ fontSize: 85 }} />,
+            image: MarutiSuzukiImg,
             title: "Automotive & Battery Production",
             description: "Specialized infrastructure for automotive and battery manufacturing facilities with high-power requirements and precision environmental control.",
             requirements: [
@@ -85,10 +94,10 @@ const Industries: React.FC = () => {
                 "Testing & Quality Control Systems",
                 "Fire Suppression Systems"
             ],
-            color: "slate"
         },
         {
-            icon: <FactoryIcon className="text-3xl" />,
+            icon: <FactoryIcon sx={{ fontSize: 85 }} />,
+            image: IitGuwahatiImg,
             title: "Electronics & Industrial",
             description: "Comprehensive MEP solutions for electronics and industrial manufacturing with emphasis on precision, reliability, and operational efficiency.",
             requirements: [
@@ -98,10 +107,10 @@ const Industries: React.FC = () => {
                 "Industrial Automation Support",
                 "Process-Specific Environmental"
             ],
-            color: "purple"
         },
         {
-            icon: <ApartmentIcon className="text-3xl" />,
+            icon: <ApartmentIcon sx={{ fontSize: 85 }} />,
+            image: LodhaTowersImg,
             title: "Commercial & High-Rise",
             description: "Integrated MEP solutions for commercial and residential high-rise projects focusing on energy efficiency, comfort, and safety.",
             requirements: [
@@ -111,10 +120,10 @@ const Industries: React.FC = () => {
                 "Fire Safety & Evacuation",
                 "Energy Efficiency Solutions"
             ],
-            color: "indigo"
         },
         {
-            icon: <MemoryIcon className="text-3xl" />,
+            icon: <MemoryIcon sx={{ fontSize: 85 }} />,
+            image: IndustrialDemoBg,
             title: "Data Centers & IT Infrastructure",
             description: "Critical infrastructure solutions for data centers and IT facilities with emphasis on reliability, redundancy, and precision environmental control.",
             requirements: [
@@ -124,35 +133,13 @@ const Industries: React.FC = () => {
                 "Fire Detection & Suppression",
                 "Monitoring & Management"
             ],
-            color: "cyan"
         }
     ];
-
-    const colorMap: any = {
-        blue: { bg: "bg-blue-50", text: "text-blue-600", gradient: "from-blue-500 to-blue-600" },
-        red: { bg: "bg-red-50", text: "text-red-500", gradient: "from-red-500 to-rose-600" },
-        green: { bg: "bg-green-50", text: "text-green-600", gradient: "from-green-500 to-emerald-600" },
-        orange: { bg: "bg-orange-50", text: "text-orange-500", gradient: "from-orange-500 to-amber-500" },
-        slate: { bg: "bg-slate-100", text: "text-slate-600", gradient: "from-slate-500 to-gray-700" },
-        purple: { bg: "bg-purple-50", text: "text-purple-600", gradient: "from-purple-500 to-indigo-600" },
-        indigo: { bg: "bg-indigo-50", text: "text-indigo-600", gradient: "from-indigo-500 to-blue-600" },
-        cyan: { bg: "bg-cyan-50", text: "text-cyan-600", gradient: "from-cyan-500 to-teal-500" }
-    };
-
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
-    };
-
-    const itemVariants = {
-        hidden: { y: 40, opacity: 0 },
-        visible: { y: 0, opacity: 1, transition: { duration: 0.6 } }
-    };
 
     return (
         <div className="bg-white min-h-screen overflow-x-hidden">
 
-            {/* HERO — MATCHING ABOUT */}
+            {/* HERO — UNCHANGED */}
             <section
                 className="relative min-h-[60vh] flex items-center justify-center bg-fixed bg-center bg-cover"
                 style={{ backgroundImage: `url(${HeroBg})` }}
@@ -166,7 +153,7 @@ const Industries: React.FC = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
                     >
-                        <div className="text-center lg:text-left relative">
+                        <div>
                             <h2
                                 className="text-[110px] md:text-[130px] text-[#c59d5f] leading-none"
                                 style={{ fontFamily: 'Herr Von Muellerhoff, serif' }}
@@ -185,7 +172,6 @@ const Industries: React.FC = () => {
                     </motion.div>
                 </div>
 
-                {/* Divider Strip */}
                 <div className="absolute bottom-0 left-0 w-full z-20 translate-y-1/2 pointer-events-none overflow-hidden">
                     <div className="flex w-max">
                         {Array.from({ length: 120 }).map((_, i) => (
@@ -195,8 +181,7 @@ const Industries: React.FC = () => {
                 </div>
             </section>
 
-
-            {/* INTRO — MATCHING HEADING STYLE */}
+            {/* INTRO — UNCHANGED */}
             <section className="py-20 bg-white">
                 <div className="container mx-auto px-4 lg:px-8">
                     <motion.div
@@ -206,7 +191,7 @@ const Industries: React.FC = () => {
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
                     >
-                        <div className="text-center relative">
+                        <div>
                             <h2
                                 className="text-[120px] text-[#c59d5f] leading-none"
                                 style={{ fontFamily: 'Herr Von Muellerhoff, serif' }}
@@ -226,62 +211,89 @@ const Industries: React.FC = () => {
                 </div>
             </section>
 
+            {/* INDUSTRY SECTION */}
+            <section ref={ref} className="pb-24 lg:pb-32 bg-white overflow-hidden">
+                <div className="container mx-auto px-4 lg:px-8 space-y-32">
 
-            {/* INDUSTRY GRID — NOTHING REMOVED */}
-            <section ref={ref} className="pb-24 lg:pb-32 bg-white">
-                <div className="container mx-auto px-4 lg:px-8">
-                    <motion.div
-                        className="grid grid-cols-1 md:grid-cols-2 gap-8"
-                        variants={containerVariants}
-                        initial="hidden"
-                        animate={inView ? "visible" : "hidden"}
-                    >
-                        {industries.map((industry, index) => {
-                            const colors = colorMap[industry.color] || colorMap.blue;
+                    {industries.map((industry, index) => {
 
-                            return (
-                                <motion.div
-                                    key={index}
-                                    className="group relative bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-2xl transition-all duration-300"
-                                    variants={itemVariants}
-                                    whileHover={{ y: -6 }}
-                                >
-                                    <div className={`h-2 w-full bg-gradient-to-r ${colors.gradient}`}></div>
+                        const isEven = index % 2 === 0;
 
-                                    <div className="p-8">
-                                        <div className="flex items-start gap-5 mb-5">
-                                            <div className={`flex-shrink-0 w-14 h-14 rounded-xl ${colors.bg} flex items-center justify-center ${colors.text}`}>
-                                                {industry.icon}
-                                            </div>
+                        return (
+                            <motion.div
+                                key={index}
+                                className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
+                                initial={{ opacity: 0, y: 60 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.8 }}
+                            >
+
+                                {/* IMAGE SIDE */}
+                                <div className={`${isEven ? 'order-1' : 'order-2'} relative h-[500px] overflow-hidden`}>
+                                    <div className="sticky top-24 h-full w-full">
+                                        <div
+                                            className="absolute inset-0 bg-cover bg-center bg-fixed rounded-xl"
+                                            style={{
+                                                backgroundImage: `url(${industry.image})`
+                                            }}
+                                        />
+                                        <div className="absolute inset-0 bg-black/60 rounded-xl" />
+
+                                        <div className="absolute inset-0 flex items-center justify-center text-center px-6">
                                             <div>
-                                                <h3 className="text-xl font-bold text-gray-900 mb-2">
-                                                    {industry.title}
-                                                </h3>
-                                                <p className="text-gray-600 text-sm leading-relaxed">
-                                                    {industry.description}
-                                                </p>
-                                            </div>
-                                        </div>
+                                                <h2
+                                                    className="text-[110px] text-[#c59d5f] leading-none"
+                                                    style={{ fontFamily: 'Herr Von Muellerhoff, serif' }}
+                                                >
+                                                    {industry.title.split('&')[0]}
+                                                </h2>
 
-                                        <div className="mt-6 pt-5 border-t border-gray-100">
-                                            <h4 className="font-bold text-gray-800 text-xs uppercase tracking-wider mb-3 flex items-center gap-2">
-                                                <span className={`w-2 h-2 rounded-full bg-gradient-to-r ${colors.gradient}`}></span>
-                                                Key Requirements
-                                            </h4>
-                                            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2">
-                                                {industry.requirements.map((req, idx) => (
-                                                    <li key={idx} className="flex items-start gap-2">
-                                                        <CheckCircleOutlineIcon className={`${colors.text} text-base mt-0.5`} />
-                                                        <span className="text-gray-600 text-sm">{req}</span>
-                                                    </li>
-                                                ))}
-                                            </ul>
+                                                <h1 className="font-primary font-black tracking-[0.08em] uppercase text-white text-[45px] -mt-6">
+                                                    {industry.title.split('&')[1] || ''}
+                                                </h1>
+                                            </div>
                                         </div>
                                     </div>
-                                </motion.div>
-                            );
-                        })}
-                    </motion.div>
+                                </div>
+
+                                {/* CONTENT SIDE */}
+                                <div className={`${isEven ? 'order-2' : 'order-1'}`}>
+
+                                    {/* ICON — LARGE, NO BACKGROUND */}
+                                    <div className="mb-8 flex items-center gap-6">
+                                        <div className="text-[#c59d5f] text-10xl flex items-center">
+                                            {industry.icon}
+                                        </div>
+                                        <div className="h-1 flex-1 bg-gradient-to-r from-[#c59d5f] to-[#e6c88e]"></div>
+                                    </div>
+
+                                    <p className="text-lg text-gray-600 leading-relaxed mb-10">
+                                        {industry.description}
+                                    </p>
+
+                                    <div>
+                                        <h4 className="font-primary font-black uppercase tracking-wider text-[#111111] mb-6 text-sm">
+                                            Key Requirements
+                                        </h4>
+
+                                        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3">
+                                            {industry.requirements.map((req, idx) => (
+                                                <li key={idx} className="flex items-start gap-3">
+                                                    <CheckCircleOutlineIcon className="text-[#c59d5f] mt-1" />
+                                                    <span className="text-gray-600 text-sm">
+                                                        {req}
+                                                    </span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </motion.div>
+                        );
+                    })}
+
                 </div>
             </section>
 
