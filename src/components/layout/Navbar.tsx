@@ -7,7 +7,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
 
-import Logo from '../../assets/clintlogos/Logo_02.svg';
+import Logo from '../../assets/clintlogos/Logo_6.svg';
 
 const Navbar: React.FC = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -96,17 +96,17 @@ const Navbar: React.FC = () => {
     };
 
     const getNavbarBg = () => {
-    if (isHome) {
-        return isScrolled ? 'bg-white shadow-md py-2' : 'bg-white py-4';
-    }
-    return 'bg-white py-2';
-};
+        if (isHome) {
+            return isScrolled ? 'bg-white shadow-md py-2' : 'bg-white py-4';
+        }
+        return 'bg-white py-2';
+    };
 
 
     const getLinkColor = (path: string) => {
-    if (activeLink === path) return 'text-[#c59d5f]';
-    return 'text-black hover:text-[#c59d5f]';
-};
+        if (activeLink === path) return 'text-[#c59d5f]';
+        return 'text-black hover:text-[#c59d5f]';
+    };
 
 
     return (
