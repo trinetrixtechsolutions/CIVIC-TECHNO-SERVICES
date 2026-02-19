@@ -1,8 +1,8 @@
 // src/components/sections/CTASection.tsx
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
+import DividerImg from '../../assets/clintlogos/download.svg';
 
 const CTASection: React.FC = () => {
     const { ref, inView } = useInView({
@@ -11,36 +11,67 @@ const CTASection: React.FC = () => {
     });
 
     return (
-        <section ref={ref} className="py-16 lg:py-24 bg-gradient-to-r from-blue-800 to-indigo-900">
-            <div className="container mx-auto px-4">
+        <section ref={ref} className="relative bg-[#c59d5f] overflow-hidden">
+
+            {/* Decorative Divider Moved To Top */}
+            <div className="absolute top-0 left-0 w-full z-20 -translate-y-1/2 pointer-events-none overflow-hidden">
+                <div className="flex w-max">
+                    {Array.from({ length: 120 }).map((_, i) => (
+                        <img
+                            key={i}
+                            src={DividerImg}
+                            className="h-6 shrink-0"
+                            alt=""
+                        />
+                    ))}
+                </div>
+            </div>
+
+            {/* Content */}
+            <div className="container mx-auto px-4 lg:px-8 py-24 lg:py-32 relative z-10">
                 <motion.div
-                    className="max-w-3xl mx-auto text-center"
-                    initial={{ opacity: 0, y: 20 }}
+                    className="max-w-4xl mx-auto text-center"
+                    initial={{ opacity: 0, y: 40 }}
                     animate={inView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.6 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
                 >
-                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                        Ready to Engineer Your Next Milestone?
+
+                    {/* Script Heading (Now Black) */}
+                    <h2
+                        className="text-[60px] md:text-[100px] lg:text-[120px] text-black leading-none"
+                        style={{ fontFamily: 'Herr Von Muellerhoff, serif' }}
+                    >
+                        Let’s Build
                     </h2>
-                    <p className="text-xl text-blue-100 mb-8">
-                        Let's discuss how our turnkey MEP solutions can power your infrastructure needs
+
+                    {/* Main Heading */}
+                    <h1 className="font-primary font-black tracking-[0.08em] uppercase text-black text-[28px] md:text-[40px] lg:text-[55px] leading-[0.8] -mt-2 md:-mt-4 lg:-mt-6 mb-6">
+                        YOUR NEXT LANDMARK PROJECT
+                    </h1>
+
+                    {/* Description */}
+                    <p className="text-lg md:text-xl text-black/80 mb-10 max-w-2xl mx-auto leading-relaxed">
+                        Partner with Civic Techno Services for turnkey MEP excellence,
+                        precision-driven execution, and engineering solutions that
+                        power industries forward.
                     </p>
+
+                    {/* Button */}
                     <motion.div
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                     >
-                        <Button
-                            component={Link}
+                        <Link
                             to="/contact"
-                            variant="contained"
-                            size="large"
-                            className="bg-white text-blue-800 hover:bg-blue-50 px-8 py-3 text-lg font-medium rounded-full shadow-xl"
+                            className="inline-block px-10 py-4 bg-black text-white font-bold uppercase tracking-wider rounded-full shadow-xl hover:bg-gray-900 transition-all duration-300"
                         >
                             Get In Touch
-                        </Button>
+                        </Link>
                     </motion.div>
+
                 </motion.div>
             </div>
+
         </section>
     );
 };

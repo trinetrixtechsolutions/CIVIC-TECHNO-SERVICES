@@ -1,6 +1,5 @@
 // src/components/sections/Hero.tsx
 import { motion } from 'framer-motion';
-import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useInView } from 'react-intersection-observer';
 import { useEffect, useState } from 'react';
@@ -8,7 +7,6 @@ import EngineeringIcon from '@mui/icons-material/Engineering';
 import BusinessIcon from '@mui/icons-material/Business';
 import PublicIcon from '@mui/icons-material/Public';
 import HandshakeIcon from '@mui/icons-material/Handshake';
-// Import the background video
 import HeroBgVideo from '../../assets/clintlogos/hero_bg_video_4.mp4';
 
 const Hero: React.FC = () => {
@@ -26,19 +24,16 @@ const Hero: React.FC = () => {
 
     useEffect(() => {
         if (inView) {
-            const timer = setTimeout(() => {
-                const interval = setInterval(() => {
-                    setCounters(prev => ({
-                        years: prev.years < 14 ? prev.years + 1 : 14,
-                        projects: prev.projects < 38 ? prev.projects + 1 : 38,
-                        countries: prev.countries < 2 ? prev.countries + 1 : 2,
-                        clients: prev.clients < 50 ? prev.clients + 1 : 50
-                    }));
-                }, 100);
+            const interval = setInterval(() => {
+                setCounters(prev => ({
+                    years: prev.years < 14 ? prev.years + 1 : 14,
+                    projects: prev.projects < 38 ? prev.projects + 1 : 38,
+                    countries: prev.countries < 2 ? prev.countries + 1 : 2,
+                    clients: prev.clients < 50 ? prev.clients + 1 : 50
+                }));
+            }, 80);
 
-                return () => clearInterval(interval);
-            }, 300);
-            return () => clearTimeout(timer);
+            return () => clearInterval(interval);
         }
     }, [inView]);
 
@@ -47,159 +42,152 @@ const Hero: React.FC = () => {
         visible: {
             opacity: 1,
             transition: {
-                duration: 0.6,
+                duration: 0.8,
                 staggerChildren: 0.2
             }
         }
     };
 
     const itemVariants = {
-        hidden: { y: 30, opacity: 0 },
+        hidden: { y: 40, opacity: 0 },
         visible: {
             y: 0,
             opacity: 1,
-            transition: { duration: 0.6 }
+            transition: { duration: 0.7, ease: "easeOut" }
         }
     };
 
     const highlights = [
         {
-            icon: <EngineeringIcon className="text-4xl text-blue-300" />,
+            icon: <EngineeringIcon className="text-4xl text-[#c59d5f]" />,
             value: `${counters.years}+`,
-            label: "Years of Engineering Excellence"
+            label: "Years of Excellence"
         },
         {
-            icon: <BusinessIcon className="text-4xl text-blue-300" />,
+            icon: <BusinessIcon className="text-4xl text-[#c59d5f]" />,
             value: `${counters.projects}+`,
             label: "Major Projects Delivered"
         },
         {
-            icon: <PublicIcon className="text-4xl text-blue-300" />,
+            icon: <PublicIcon className="text-4xl text-[#c59d5f]" />,
             value: `${counters.countries}+`,
-            label: "Countries (India & Zambia)"
+            label: "Countries Served"
         },
         {
-            icon: <HandshakeIcon className="text-4xl text-blue-300" />,
+            icon: <HandshakeIcon className="text-4xl text-[#c59d5f]" />,
             value: `${counters.clients}+`,
-            label: "Trusted by Leading Organizations"
+            label: "Trusted Clients"
         }
     ];
 
     return (
-        <section ref={ref} className="relative min-h-screen flex flex-col justify-center overflow-hidden">
-            {/* Background Video with Overlay */}
+        <section ref={ref} className="relative min-h-screen flex items-center overflow-hidden">
+
+            {/* Background Video */}
             <div className="absolute inset-0 z-0">
                 <video
                     autoPlay
                     muted
+                    loop
+                    playsInline
                     className="w-full h-full object-cover"
                 >
                     <source src={HeroBgVideo} type="video/mp4" />
-                    Your browser does not support the video tag.
                 </video>
-                <div className="absolute inset-0 bg-black/10"></div>
-                {/* Left Side Shadow Gradient */}
-                <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent pointer-events-none"></div>
+
+                {/* Strong Cinematic Overlay */}
+                <div className="absolute inset-0 bg-black/70"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-transparent"></div>
             </div>
 
-            <div className="container mx-auto px-4 py-12 lg:py-20 relative z-10">
-                <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+            <div className="container mx-auto px-6 py-20 relative z-10">
+                <div className="flex flex-col lg:flex-row items-center gap-16">
 
-                    {/* Text Content - Left Side */}
+                    {/* Left Content */}
                     <motion.div
                         className="lg:w-3/5 text-center lg:text-left"
                         variants={containerVariants}
                         initial="hidden"
                         animate="visible"
                     >
-                        {/* Main Heading */}
-                        <motion.h1
-                            className="text-4xl md:text-5xl lg:text-7xl font-extrabold text-white leading-tight tracking-tight mb-8"
+                        {/* Script Heading */}
+                        <motion.h2
+                            className="text-[60px] md:text-[100px] lg:text-[120px] text-[#c59d5f] leading-none"
+                            style={{ fontFamily: 'Herr Von Muellerhoff, serif' }}
                             variants={itemVariants}
                         >
-                            <span className="block">Empowering Industrial</span>
-                            <span className="block text-blue-300">
-                                Infrastructure
-                            </span>
-                            <span className="block">
-                                with Turnkey MEP &
-                            </span>
-                            <span className="block">
-                                Electrical Solutions
-                            </span>
+                            Engineering
+                        </motion.h2>
+
+                        {/* Main Heading */}
+                        <motion.h1
+                            className="font-primary font-black uppercase text-white text-[28px] md:text-[42px] lg:text-[60px] leading-[0.9] -mt-4 mb-6 tracking-[0.05em]"
+                            variants={itemVariants}
+                        >
+                            INDUSTRIAL INFRASTRUCTURE
+                            <br />
+                            WITH TURNKEY MEP SOLUTIONS
                         </motion.h1>
 
                         {/* Tagline */}
-                        <motion.h2
-                            className="text-lg md:text-xl text-blue-200 font-medium tracking-wider mb-8"
+                        <motion.p
+                            className="text-gray-300 text-lg md:text-xl mb-10 max-w-2xl"
                             variants={itemVariants}
                         >
-                            Precision Design • Reliable Execution • End-to-end Delivery
-                        </motion.h2>
+                            Precision-driven design, disciplined execution,
+                            and accountable delivery across industrial sectors.
+                        </motion.p>
 
                         {/* CTA Buttons */}
                         <motion.div
-                            className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+                            className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start"
                             variants={itemVariants}
                         >
-                            <Button
-                                component={Link}
+                            <Link
                                 to="/contact"
-                                variant="contained"
-                                size="large"
-                                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 text-base font-semibold rounded-full shadow-lg transition-all duration-300 hover:scale-105"
+                                className="px-10 py-4 bg-[#c59d5f] text-black font-bold uppercase tracking-wider rounded-full shadow-xl hover:bg-[#b88c47] transition-all duration-300"
                             >
                                 Contact Us
-                            </Button>
+                            </Link>
 
-                            <Button
-                                component={Link}
+                            <Link
                                 to="/projects"
-                                variant="outlined"
-                                size="large"
-                                className="border-white text-white hover:bg-white/10 px-8 py-3 text-base font-medium rounded-full transition-all duration-300 hover:scale-105"
+                                className="px-10 py-4 border border-[#c59d5f] text-[#c59d5f] font-semibold uppercase tracking-wider rounded-full hover:bg-[#c59d5f] hover:text-black transition-all duration-300"
                             >
                                 View Projects
-                            </Button>
+                            </Link>
                         </motion.div>
                     </motion.div>
 
-                    {/* Highlights / Stats Section - Right Side - Separate Cards */}
+                    {/* Right Stats */}
                     <motion.div
                         className="lg:w-2/5 w-full"
                         variants={containerVariants}
                         initial="hidden"
                         animate={inView ? "visible" : "hidden"}
                     >
-                        {/* Grid Container for 2x2 Cards */}
-                        <div className="grid grid-cols-2 gap-4 lg:gap-6">
-                            {highlights.map((highlight, index) => (
+                        <div className="grid grid-cols-2 gap-6">
+                            {highlights.map((item, index) => (
                                 <motion.div
                                     key={index}
-                                    // Individual Glassmorphism Card Styling
-                                    className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-xl p-6 shadow-xl relative overflow-hidden group cursor-default"
                                     variants={itemVariants}
-                                    whileHover={{ y: -5, scale: 1.02 }}
-                                    transition={{ type: "spring", stiffness: 300 }}
+                                    whileHover={{ y: -6 }}
+                                    className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6 shadow-2xl text-center transition-all duration-300"
                                 >
-                                    {/* Subtle gradient overlay for each card */}
-                                    <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent pointer-events-none"></div>
-
-                                    <div className="relative z-10 flex flex-col items-center text-center h-full justify-center">
-                                        <div className="mb-3 transition-transform duration-300 group-hover:scale-110">
-                                            {highlight.icon}
-                                        </div>
-                                        <h3 className="text-2xl lg:text-3xl font-bold text-white mb-1 drop-shadow-lg">
-                                            {highlight.value}
-                                        </h3>
-                                        <p className="text-xs lg:text-sm font-medium text-blue-100 uppercase tracking-wider drop-shadow-md leading-snug">
-                                            {highlight.label}
-                                        </p>
+                                    <div className="mb-3 flex justify-center">
+                                        {item.icon}
                                     </div>
+                                    <h3 className="text-2xl lg:text-3xl font-bold text-white mb-1">
+                                        {item.value}
+                                    </h3>
+                                    <p className="text-xs lg:text-sm text-gray-300 uppercase tracking-wide">
+                                        {item.label}
+                                    </p>
                                 </motion.div>
                             ))}
                         </div>
                     </motion.div>
+
                 </div>
             </div>
         </section>

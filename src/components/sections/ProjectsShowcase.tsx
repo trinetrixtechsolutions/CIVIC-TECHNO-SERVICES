@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useNavigate } from 'react-router-dom';
 
-// ✅ Import Local Images
+// Images
 import MarutiImg from '../../assets/projects_images/Maruti_Suzuki_Battery_Plant.png';
 import NDDBImg from '../../assets/projects_images/National_Dairy_Development_Board.png';
 import IITImg from '../../assets/projects_images/IIT_Guwahati_Testing_Lab.png';
@@ -54,57 +54,78 @@ const ProjectsShowcase: React.FC = () => {
     };
 
     const cardVariants = {
-        hidden: { y: 50, opacity: 0, rotateX: -10 },
+        hidden: { y: 40, opacity: 0 },
         visible: {
             y: 0,
             opacity: 1,
-            rotateX: 0,
-            transition: { duration: 0.6, ease: "easeOut" }
+            transition: { duration: 0.7, ease: "easeOut" }
         }
     };
 
     return (
-        <section ref={ref} className="py-2 bg-white relative overflow-hidden">
+        <section ref={ref} className="py-24 lg:py-28 bg-white relative overflow-hidden">
 
-            {/* Decorative Background */}
-            <div className="absolute top-0 left-0 w-96 h-96 bg-blue-50 rounded-full blur-3xl opacity-60 -translate-x-1/2 -translate-y-1/2"></div>
-            <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-50 rounded-full blur-3xl opacity-60 translate-x-1/2 translate-y-1/2"></div>
+            {/* Subtle Gold Background Glow */}
+            <div className="absolute top-0 right-0 w-96 h-96 bg-[#c59d5f]/10 rounded-full blur-3xl opacity-40 translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
+            <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#c59d5f]/10 rounded-full blur-3xl opacity-40 -translate-x-1/2 translate-y-1/2 pointer-events-none"></div>
 
             <div className="container mx-auto px-4 relative z-10">
 
                 {/* Header */}
                 <motion.div
-                    className="relative mb-16"
-                    initial={{ opacity: 0, y: 20 }}
+                    className="relative mb-20"
+                    initial={{ opacity: 0, y: 30 }}
                     animate={inView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.6 }}
+                    transition={{ duration: 0.8 }}
                 >
                     {/* View All Button */}
-                    <div className="absolute right-0 top-16">
-                        <button
+                    <div className="absolute right-0 top-16 hidden md:block">
+                        <motion.button
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
                             onClick={() => navigate("/projects")}
-                            className="px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition"
+                            className="px-8 py-3 bg-[#c59d5f] text-black font-bold uppercase tracking-wider rounded-full shadow-lg hover:bg-[#b88c47] transition-all duration-300"
                         >
                             View All
-                        </button>
+                        </motion.button>
                     </div>
 
-                    <div className="text-center">
-                        <span className="text-blue-600 font-semibold uppercase tracking-widest mb-4 block">
-                            Our Work
-                        </span>
-                        <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                            Featured Projects
+                    <div className="text-center max-w-4xl mx-auto">
+                        {/* Script Heading */}
+                        <h2
+                            className="text-[60px] md:text-[100px] lg:text-[120px] text-[#c59d5f] leading-none"
+                            style={{ fontFamily: 'Herr Von Muellerhoff, serif' }}
+                        >
+                            Our
                         </h2>
-                        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                            A glimpse of our major executions across diverse industries.
+
+                        {/* Main Heading */}
+                        <h1 className="font-primary font-black tracking-[0.08em] uppercase text-[#111111] text-[28px] md:text-[40px] lg:text-[47px] leading-[0.8] -mt-2 md:-mt-6 lg:-mt-8 mb-6">
+                            Featured Projects
+                        </h1>
+
+                        <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                            A showcase of precision-driven engineering excellence
+                            across industrial and infrastructure sectors.
                         </p>
+
+                        {/* Mobile Button */}
+                        <div className="mt-8 md:hidden">
+                            <motion.button
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                onClick={() => navigate("/projects")}
+                                className="px-8 py-3 bg-[#c59d5f] text-black font-bold uppercase tracking-wider rounded-full shadow-lg hover:bg-[#b88c47] transition-all duration-300"
+                            >
+                                View All
+                            </motion.button>
+                        </div>
                     </div>
                 </motion.div>
 
                 {/* Projects Grid */}
                 <motion.div
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10"
                     variants={containerVariants}
                     initial="hidden"
                     animate={inView ? "visible" : "hidden"}
@@ -113,34 +134,34 @@ const ProjectsShowcase: React.FC = () => {
                         <motion.div
                             key={index}
                             variants={cardVariants}
-                            whileHover={{ y: -8 }}
+                            whileHover={{ y: -10 }}
                             onClick={() => navigate("/projects")}
-                            className="relative group rounded-2xl overflow-hidden shadow-lg cursor-pointer"
+                            className="relative group rounded-2xl overflow-hidden cursor-pointer shadow-md hover:shadow-2xl transition-all duration-500"
                         >
 
-                            {/* Project Image */}
+                            {/* Image */}
                             <img
                                 src={project.image}
                                 alt={project.name}
-                                className="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110"
+                                className="w-full h-72 object-cover transition-transform duration-700 group-hover:scale-110"
                             />
 
-                            {/* Dark Overlay */}
-                            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition duration-500"></div>
+                            {/* Gradient Overlay */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-80 group-hover:opacity-90 transition duration-500"></div>
 
-                            {/* Bottom Reveal Panel */}
-                            <div className="absolute bottom-0 left-0 w-full bg-white/95 backdrop-blur-md p-5 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                            {/* Bottom Info */}
+                            <div className="absolute bottom-0 left-0 w-full p-6 text-white translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
 
-                                <h3 className="text-lg font-bold text-gray-900 mb-2">
+                                <h3 className="text-lg font-bold mb-2">
                                     {project.name}
                                 </h3>
 
-                                <div className="text-sm text-gray-600 space-y-1">
+                                <div className="text-sm text-gray-200 space-y-1 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                                     <p>
-                                        <span className="font-semibold">Client:</span> {project.client}
+                                        <span className="font-semibold text-[#c59d5f]">Client:</span> {project.client}
                                     </p>
                                     <p>
-                                        <span className="font-semibold">Location:</span> {project.location}
+                                        <span className="font-semibold text-[#c59d5f]">Location:</span> {project.location}
                                     </p>
                                 </div>
 

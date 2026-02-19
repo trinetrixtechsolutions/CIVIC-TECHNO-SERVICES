@@ -146,15 +146,25 @@ const Navbar: React.FC = () => {
                     {/* Right side: Button and Mobile Menu */}
                     <div className="flex items-center space-x-4">
                         <div className="hidden md:block">
-                            <Button
-                                variant="contained"
-                                component={Link}
+                            <Link
                                 to="/contact"
-                                className="bg-gradient-to-r from-[#c59d5f] to-[#c59d5f] hover:from-[#c59d5f] hover:to-[#c59d5f] text-white font-bold py-2 px-6 rounded-full transform transition-all duration-300 hover:scale-105"
+                                className="inline-block 
+                 px-8 py-3 
+                 bg-white 
+                 text-black 
+                 font-semibold 
+                 uppercase tracking-wide
+                 rounded-full 
+                 border border-[#e5c78a] 
+                 transition-all duration-300
+                 hover:bg-[#c59d5f] 
+                 hover:text-black 
+                 hover:border-[#c59d5f]"
                             >
                                 Get in Touch
-                            </Button>
+                            </Link>
                         </div>
+
 
                         {/* Mobile Menu Button */}
                         <div className="md:hidden">

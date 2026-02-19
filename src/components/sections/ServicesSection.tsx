@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import { useNavigate } from "react-router-dom";
 
 const services = [
@@ -34,80 +36,132 @@ const services = [
 const ServicesSection = () => {
   const navigate = useNavigate();
 
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.15,
+  });
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.2 },
+    },
+  };
+
+  const cardVariants = {
+    hidden: { y: 40, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 0.7, ease: "easeOut" },
+    },
+  };
+
   return (
-    <section className="py-10 bg-slate-50">
-      <div className="container mx-auto px-6">
+    <section
+      ref={ref}
+      className="py-24 lg:py-28 bg-white relative overflow-hidden"
+    >
+      {/* Subtle Gold Glow */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-[#c59d5f]/10 rounded-full blur-3xl opacity-40 translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#c59d5f]/10 rounded-full blur-3xl opacity-40 -translate-x-1/2 translate-y-1/2 pointer-events-none"></div>
 
+      <div className="container mx-auto px-6 relative z-10">
         {/* Header */}
-        <div className="relative mb-14">
-
-          {/* View All Button - Right */}
-          <div className="absolute right-0 top-16">
-            <button
+        <motion.div
+          className="relative mb-20"
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8 }}
+        >
+          {/* Desktop View All */}
+          <div className="absolute right-0 top-16 hidden md:block">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               onClick={() => navigate("/services")}
-              className="px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition"
+              className="px-8 py-3 bg-[#c59d5f] text-black font-bold uppercase tracking-wider rounded-full shadow-lg hover:bg-[#b88c47] transition-all duration-300"
             >
               View All
-            </button>
+            </motion.button>
           </div>
 
-          {/* Centered Title + Subtitle */}
-          <div className="text-center">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Our Services
+          <div className="text-center max-w-4xl mx-auto">
+            {/* Script Heading */}
+            <h2
+              className="text-[60px] md:text-[100px] lg:text-[120px] text-[#c59d5f] leading-none"
+              style={{ fontFamily: "Herr Von Muellerhoff, serif" }}
+            >
+              Our
             </h2>
 
-            <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-              Delivering integrated electrical and smart engineering solutions for modern infrastructure.
+            {/* Main Heading */}
+            <h1 className="font-primary font-black tracking-[0.08em] uppercase text-[#111111] text-[28px] md:text-[40px] lg:text-[47px] leading-[0.8] -mt-2 md:-mt-6 lg:-mt-8 mb-6">
+              Services
+            </h1>
+
+            <p className="text-gray-600 max-w-2xl mx-auto text-lg leading-relaxed">
+              Delivering integrated engineering solutions built on precision,
+              accountability, and technical excellence.
             </p>
-          </div>
 
-        </div>
-
-        {/* Grid - 4 Columns */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-
-          {services.map((service, index) => (
-            <div
-              key={index}
-              onClick={() => navigate("/services")}
-              className="relative h-64 cursor-pointer group"
-              style={{ perspective: "1000px" }}
-            >
-              <div className="relative w-full h-full transition-transform duration-700 preserve-3d group-hover:rotate-y-180">
-
-                {/* Front */}
-                <div className="absolute w-full h-full backface-hidden rounded-2xl overflow-hidden shadow-lg">
-                  <img
-                    src={service.image}
-                    alt={service.title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                    <h3 className="text-white text-lg font-bold text-center px-4">
-                      {service.title}
-                    </h3>
-                  </div>
-                </div>
-
-                {/* Back */}
-                <div className="absolute w-full h-full bg-white rounded-2xl shadow-lg backface-hidden rotate-y-180 flex flex-col justify-center items-center p-6 text-center">
-                  <h3 className="text-base font-bold mb-3 text-gray-900">
-                    {service.title}
-                  </h3>
-                  <p className="text-gray-600 text-sm mb-5">
-                    {service.description}
-                  </p>
-                  <button className="px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition">
-                    Explore
-                  </button>
-                </div>
-
-              </div>
+            {/* Mobile View All */}
+            <div className="mt-8 md:hidden">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => navigate("/services")}
+                className="px-8 py-3 bg-[#c59d5f] text-black font-bold uppercase tracking-wider rounded-full shadow-lg hover:bg-[#b88c47] transition-all duration-300"
+              >
+                View All
+              </motion.button>
             </div>
-          ))}
+          </div>
+        </motion.div>
 
-        </div>
+        {/* Services Grid */}
+        <motion.div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10"
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+        >
+          {services.map((service, index) => (
+            <motion.div
+              key={index}
+              variants={cardVariants}
+              whileHover={{ y: -10 }}
+              onClick={() => navigate("/services")}
+              className="relative group rounded-2xl overflow-hidden cursor-pointer shadow-md hover:shadow-2xl transition-all duration-500"
+            >
+              {/* Image */}
+              <img
+                src={service.image}
+                alt={service.title}
+                className="w-full h-72 object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+
+              {/* Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent opacity-80 group-hover:opacity-90 transition duration-500"></div>
+
+              {/* Content */}
+              <div className="absolute bottom-0 left-0 w-full p-6 text-white translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                <h3 className="text-lg font-bold mb-3">
+                  {service.title}
+                </h3>
+
+                <p className="text-sm text-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-500 mb-4">
+                  {service.description}
+                </p>
+
+                <span className="inline-block text-[#c59d5f] font-semibold text-sm uppercase tracking-wide">
+                  Explore →
+                </span>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );
