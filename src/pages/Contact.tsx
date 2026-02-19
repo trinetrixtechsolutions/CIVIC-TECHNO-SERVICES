@@ -64,7 +64,7 @@ const Contact: React.FC = () => {
     return (
         <div className="bg-white min-h-screen overflow-x-hidden">
 
-            {/* HERO SECTION — BRAND CONSISTENT */}
+            {/* HERO SECTION */}
             <section
                 className="relative min-h-[60vh] flex items-center justify-center bg-fixed bg-center bg-cover"
                 style={{ backgroundImage: `url(${HeroBg})` }}
@@ -78,7 +78,7 @@ const Contact: React.FC = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
                     >
-                        <div className="text-center lg:text-left relative">
+                        <div>
                             <h2
                                 className="text-[110px] md:text-[130px] text-[#c59d5f] leading-none"
                                 style={{ fontFamily: 'Herr Von Muellerhoff, serif' }}
@@ -97,7 +97,6 @@ const Contact: React.FC = () => {
                     </motion.div>
                 </div>
 
-                {/* Divider */}
                 <div className="absolute bottom-0 left-0 w-full z-20 translate-y-1/2 pointer-events-none overflow-hidden">
                     <div className="flex w-max">
                         {Array.from({ length: 120 }).map((_, i) => (
@@ -107,42 +106,39 @@ const Contact: React.FC = () => {
                 </div>
             </section>
 
-
-            {/* INFO + FORM SAME ROW */}
+            {/* INFO + FORM */}
             <section ref={ref} className="py-20 bg-white">
                 <div className="container mx-auto px-4 lg:px-12">
 
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-stretch">
 
-                        {/* LEFT SIDE — CONTACT DETAILS */}
+                        {/* LEFT SIDE */}
                         <motion.div
+                            className="flex flex-col h-full"
                             initial={{ opacity: 0, x: -40 }}
                             animate={inView ? { opacity: 1, x: 0 } : {}}
                             transition={{ duration: 0.7 }}
                         >
                             <div className="text-left mb-12">
-                                <h2
-                                    className="text-[100px] text-[#c59d5f] leading-none"
-                                    style={{ fontFamily: 'Herr Von Muellerhoff, serif' }}
-                                >
+                                <h2 className="text-[100px] text-[#c59d5f] leading-none"
+                                    style={{ fontFamily: 'Herr Von Muellerhoff, serif' }}>
                                     Get In
                                 </h2>
-
                                 <h1 className="font-primary font-black uppercase text-[#111111] text-[45px] leading-[0.7] -mt-6">
                                     Touch With Us
                                 </h1>
                             </div>
 
-                            <div className="space-y-10 text-gray-600">
+                            <div className="space-y-10 text-gray-600 flex-1">
 
                                 <div className="flex gap-5">
                                     <MapPin size={40} className="text-[#c59d5f]" />
                                     <div>
                                         <h3 className="font-bold text-gray-900 mb-1">Branch Office</h3>
                                         <p>
-                                            Gokul Plots, 9th Phase<br />
-                                            KPHB Colony,<br />
-                                            Hyderabad – 500072.
+                                            CIVIC TECHNO SERVICES<br />
+                                            Main Road, near JNTU Metro Station<br />
+                                            Kukatpally, Hyderabad, Telangana, India
                                         </p>
                                     </div>
                                 </div>
@@ -175,9 +171,7 @@ const Contact: React.FC = () => {
                                     <div>
                                         <h3 className="font-bold text-gray-900 mb-1">Registered Office</h3>
                                         <p>
-                                            At, Baluara, Post, Ninga,<br />
-                                            Ps, Barauni, Dist,<br />
-                                            Begusarai Bihar – 851112 India
+                                            Begusarai, Bihar – 851112 India
                                         </p>
                                     </div>
                                 </div>
@@ -185,41 +179,78 @@ const Contact: React.FC = () => {
                             </div>
                         </motion.div>
 
-
-                        {/* RIGHT SIDE — FORM */}
+                        {/* RIGHT SIDE FORM */}
                         <motion.div
+                            className="flex flex-col h-full"
                             initial={{ opacity: 0, x: 40 }}
                             animate={inView ? { opacity: 1, x: 0 } : {}}
                             transition={{ duration: 0.7 }}
                         >
-                            <h3 className="text-2xl font-semibold text-gray-900 mb-6">
-                                Send a Message
-                            </h3>
+                            <div className="text-left mb-12">
+                                <h2 className="text-[100px] text-[#c59d5f] leading-none"
+                                    style={{ fontFamily: 'Herr Von Muellerhoff, serif' }}>
+                                    General
+                                </h2>
+                                <h1 className="font-primary font-black uppercase text-[#111111] text-[45px] leading-[0.7] -mt-6">
+                                    Inquiry
+                                </h1>
+                            </div>
 
-                            <form onSubmit={handleSubmit} className="space-y-6">
+                            <form onSubmit={handleSubmit} className="flex flex-col flex-1 justify-between">
 
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <TextField fullWidth label="Full Name" name="name" value={formData.name} onChange={handleChange} required variant="standard" />
-                                    <TextField fullWidth label="Email" name="email" type="email" value={formData.email} onChange={handleChange} required variant="standard" />
+                                <div className="space-y-6">
+
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <TextField fullWidth label="Full Name" name="name"
+                                            value={formData.name} onChange={handleChange}
+                                            required variant="outlined"
+                                            InputProps={{ sx: { borderRadius: "12px", height: 56 } }} />
+
+                                        <TextField fullWidth label="Email" name="email"
+                                            type="email" value={formData.email}
+                                            onChange={handleChange} required variant="outlined"
+                                            InputProps={{ sx: { borderRadius: "12px", height: 56 } }} />
+                                    </div>
+
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <TextField fullWidth label="Phone" name="phone"
+                                            value={formData.phone} onChange={handleChange}
+                                            variant="outlined"
+                                            InputProps={{ sx: { borderRadius: "12px", height: 56 } }} />
+
+                                        <TextField fullWidth label="Company" name="company"
+                                            value={formData.company} onChange={handleChange}
+                                            variant="outlined"
+                                            InputProps={{ sx: { borderRadius: "12px", height: 56 } }} />
+                                    </div>
+
+                                    <TextField fullWidth label="Subject" name="subject"
+                                        value={formData.subject} onChange={handleChange}
+                                        required variant="outlined"
+                                        InputProps={{ sx: { borderRadius: "12px", height: 56 } }} />
+
+                                    <TextField fullWidth label="Message" name="message"
+                                        value={formData.message} onChange={handleChange}
+                                        required multiline rows={4}
+                                        variant="outlined"
+                                        InputProps={{ sx: { borderRadius: "12px" } }} />
                                 </div>
 
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <TextField fullWidth label="Phone" name="phone" value={formData.phone} onChange={handleChange} variant="standard" />
-                                    <TextField fullWidth label="Company" name="company" value={formData.company} onChange={handleChange} variant="standard" />
+                                <div className="flex justify-end pt-6">
+                                    <Button
+                                        type="submit"
+                                        variant="contained"
+                                        endIcon={<SendIcon />}
+                                        sx={{
+                                            borderRadius: "50px",
+                                            padding: "12px 32px",
+                                            backgroundColor: "#c59d5f",
+                                            "&:hover": { backgroundColor: "#000" }
+                                        }}
+                                    >
+                                        Send Message
+                                    </Button>
                                 </div>
-
-                                <TextField fullWidth label="Subject" name="subject" value={formData.subject} onChange={handleChange} required variant="standard" />
-
-                                <TextField fullWidth label="Message" name="message" value={formData.message} onChange={handleChange} required multiline rows={4} variant="standard" />
-
-                                <Button
-                                    type="submit"
-                                    variant="contained"
-                                    endIcon={<SendIcon />}
-                                    className="bg-[#c59d5f] hover:bg-black text-white px-6 py-2 rounded-md normal-case"
-                                >
-                                    Send Message
-                                </Button>
                             </form>
                         </motion.div>
 
@@ -227,11 +258,8 @@ const Contact: React.FC = () => {
                 </div>
             </section>
 
-
-            {/* MAP FULL WIDTH */}
+            {/* MAP */}
             <section className="relative w-full">
-
-                {/* TOP Divider (like hero bottom) */}
                 <div className="absolute top-0 left-0 w-full z-20 -translate-y-1/2 pointer-events-none overflow-hidden">
                     <div className="flex w-max">
                         {Array.from({ length: 120 }).map((_, i) => (
@@ -240,21 +268,22 @@ const Contact: React.FC = () => {
                     </div>
                 </div>
 
-                <div className="w-full h-[500px]">
+                <div className="relative w-full h-[500px] pointer-events-none">
                     <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3805.301820419266!2d78.388839!3d17.493108!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb91f3f169607d%3A0x6e2f183c5006b5e0!2sK%20P%20H%20B%20Phase%209%2C%20Kukatpally%2C%20Hyderabad%2C%20Telangana%20500085!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                        src="https://www.google.com/maps?q=CIVIC+TECHNO+SERVICES,+Main+Road,+near+JNTU+Metro+Station,+Kukatpally,+Hyderabad,+Telangana,+India&output=embed"
                         width="100%"
                         height="100%"
                         style={{ border: 0 }}
-                        allowFullScreen
                         loading="lazy"
-                        title="Office Location"
+                        title="CIVIC TECHNO SERVICES Location"
                     ></iframe>
                 </div>
             </section>
 
             <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleCloseSnackbar}>
-                <Alert onClose={handleCloseSnackbar} severity={formStatus.error ? "error" : "success"} variant="filled">
+                <Alert onClose={handleCloseSnackbar}
+                    severity={formStatus.error ? "error" : "success"}
+                    variant="filled">
                     {formStatus.message}
                 </Alert>
             </Snackbar>
