@@ -96,16 +96,18 @@ const Navbar: React.FC = () => {
     };
 
     const getNavbarBg = () => {
-        if (isHome) {
-            return isScrolled ? 'bg-[#252525] shadow-md py-2' : 'bg-transparent py-4';
-        }
-        return 'bg-[#252525] py-2';
-    };
+    if (isHome) {
+        return isScrolled ? 'bg-white shadow-md py-2' : 'bg-white py-4';
+    }
+    return 'bg-white py-2';
+};
+
 
     const getLinkColor = (path: string) => {
-        if (activeLink === path) return 'text-[#c59d5f]';
-        return 'text-white hover:text-[#c59d5f]';
-    };
+    if (activeLink === path) return 'text-[#c59d5f]';
+    return 'text-black hover:text-[#c59d5f]';
+};
+
 
     return (
         <>

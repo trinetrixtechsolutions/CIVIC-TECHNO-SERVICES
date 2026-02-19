@@ -1,8 +1,6 @@
 // src/pages/Industries.tsx
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import Navbar from '../components/layout/Navbar';
-import Footer from '../components/layout/Footer';
 import ScrollToTopArrow from '../components/common/ScrollToTopArrow';
 import ScienceIcon from '@mui/icons-material/Science';
 import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
@@ -13,9 +11,11 @@ import FactoryIcon from '@mui/icons-material/Factory';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import MemoryIcon from '@mui/icons-material/Memory';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
-import HeroBg from '../assets/clintlogos/hero_bg_img.png'; // Imported Hero Image
+import HeroBg from '../assets/clintlogos/hero_bg_img.png';
+import DividerImg from '../assets/clintlogos/download.svg';
 
 const Industries: React.FC = () => {
+
     const { ref, inView } = useInView({
         triggerOnce: true,
         threshold: 0.1
@@ -128,8 +128,7 @@ const Industries: React.FC = () => {
         }
     ];
 
-    // Color mapping for dynamic styling
-    const colorMap: { [key: string]: { bg: string, text: string, gradient: string } } = {
+    const colorMap: any = {
         blue: { bg: "bg-blue-50", text: "text-blue-600", gradient: "from-blue-500 to-blue-600" },
         red: { bg: "bg-red-50", text: "text-red-500", gradient: "from-red-500 to-rose-600" },
         green: { bg: "bg-green-50", text: "text-green-600", gradient: "from-green-500 to-emerald-600" },
@@ -142,76 +141,63 @@ const Industries: React.FC = () => {
 
     const containerVariants = {
         hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.1
-            }
-        }
+        visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
     };
 
     const itemVariants = {
-        hidden: { y: 40, opacity: 0, scale: 0.95 },
-        visible: {
-            y: 0,
-            opacity: 1,
-            scale: 1,
-            transition: { duration: 0.5, ease: "easeOut" }
-        }
+        hidden: { y: 40, opacity: 0 },
+        visible: { y: 0, opacity: 1, transition: { duration: 0.6 } }
     };
 
     return (
-        <div className="bg-white min-h-screen">
+        <div className="bg-white min-h-screen overflow-x-hidden">
 
-            {/* Hero Section with Background Image */}
-            <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
-                {/* Background Image Layer */}
-                <div className="absolute inset-0 z-0">
-                    <img
-                        src={HeroBg}
-                        alt="Industrial Background"
-                        className="w-full h-full object-cover object-center"
-                    />
-                    {/* Gradient Overlays */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-blue-900/95 via-blue-900/80 to-transparent" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent opacity-50" />
-                </div>
+            {/* HERO — MATCHING ABOUT */}
+            <section
+                className="relative min-h-[60vh] flex items-center justify-center bg-fixed bg-center bg-cover"
+                style={{ backgroundImage: `url(${HeroBg})` }}
+            >
+                <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent"></div>
 
-                {/* Hero Content */}
                 <div className="container mx-auto px-4 lg:px-8 relative z-10 text-center lg:text-left py-20">
                     <motion.div
                         className="max-w-3xl"
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        transition={{ duration: 0.8 }}
                     >
-                        <motion.span
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: 0.2 }}
-                            className="inline-block px-4 py-1 mb-4 text-sm font-semibold text-blue-200 bg-white/10 backdrop-blur-sm rounded-full border border-white/20"
-                        >
-                            Sector Expertise
-                        </motion.span>
-                        <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight tracking-tight">
-                            Industries <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-indigo-200">Served</span>
-                        </h1>
-                        <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-2xl">
-                            Tailored Engineering Solutions for Every Sector.
+                        <div className="text-center lg:text-left relative">
+                            <h2
+                                className="text-[110px] md:text-[130px] text-[#c59d5f] leading-none"
+                                style={{ fontFamily: 'Herr Von Muellerhoff, serif' }}
+                            >
+                                Industries
+                            </h2>
+
+                            <h1 className="font-primary font-black tracking-[0.08em] uppercase text-white text-[47px] md:text-[65px] leading-[0.5] -mt-6">
+                                We Serve
+                            </h1>
+                        </div>
+
+                        <p className="text-xl md:text-2xl text-blue-100 mt-6 max-w-2xl">
+                            Sector-specific turnkey engineering solutions tailored for precision-driven industries.
                         </p>
                     </motion.div>
                 </div>
 
-                {/* Decorative Shape at Bottom */}
-                <div className="absolute bottom-0 left-0 right-0">
-                    <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="white" />
-                    </svg>
+                {/* Divider Strip */}
+                <div className="absolute bottom-0 left-0 w-full z-20 translate-y-1/2 pointer-events-none overflow-hidden">
+                    <div className="flex w-max">
+                        {Array.from({ length: 120 }).map((_, i) => (
+                            <img key={i} src={DividerImg} className="h-6 shrink-0" alt="" />
+                        ))}
+                    </div>
                 </div>
             </section>
 
-            {/* Industries Introduction */}
-            <section className="py-20 lg:py-2 bg-white relative">
+
+            {/* INTRO — MATCHING HEADING STYLE */}
+            <section className="py-20 bg-white">
                 <div className="container mx-auto px-4 lg:px-8">
                     <motion.div
                         className="max-w-4xl mx-auto text-center"
@@ -220,22 +206,29 @@ const Industries: React.FC = () => {
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
                     >
-                        <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                            Industry-Specific Expertise
-                        </h2>
-                        <div className="w-24 h-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto mb-8 rounded-full"></div>
-                        <p className="text-lg text-gray-600 leading-relaxed mb-6">
-                            Civic Techno Services delivers tailored engineering infrastructure solutions across diverse sectors. Each industry demands specific regulatory compliance, environmental control, and precision engineering.
-                        </p>
+                        <div className="text-center relative">
+                            <h2
+                                className="text-[120px] text-[#c59d5f] leading-none"
+                                style={{ fontFamily: 'Herr Von Muellerhoff, serif' }}
+                            >
+                                Our
+                            </h2>
+
+                            <h1 className="font-primary mb-[30px] font-black tracking-[0.08em] uppercase text-[#111111] text-[47px] leading-[0.81] -mt-8">
+                                Expertise
+                            </h1>
+                        </div>
+
                         <p className="text-lg text-gray-600 leading-relaxed">
-                            We integrate domain expertise with technical execution excellence to ensure industry-aligned infrastructure solutions.
+                            Civic Techno Services delivers tailored engineering infrastructure solutions across diverse sectors with regulatory precision and execution excellence.
                         </p>
                     </motion.div>
                 </div>
             </section>
 
-            {/* Industries Grid */}
-            <section ref={ref} className="pb-24 lg:pb-32 bg-slate-50">
+
+            {/* INDUSTRY GRID — NOTHING REMOVED */}
+            <section ref={ref} className="pb-24 lg:pb-32 bg-white">
                 <div className="container mx-auto px-4 lg:px-8">
                     <motion.div
                         className="grid grid-cols-1 md:grid-cols-2 gap-8"
@@ -251,18 +244,17 @@ const Industries: React.FC = () => {
                                     key={index}
                                     className="group relative bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-2xl transition-all duration-300"
                                     variants={itemVariants}
-                                    whileHover={{ y: -5 }}
+                                    whileHover={{ y: -6 }}
                                 >
-                                    {/* Top Gradient Line */}
                                     <div className={`h-2 w-full bg-gradient-to-r ${colors.gradient}`}></div>
 
                                     <div className="p-8">
                                         <div className="flex items-start gap-5 mb-5">
-                                            <div className={`flex-shrink-0 w-14 h-14 rounded-xl ${colors.bg} flex items-center justify-center ${colors.text} group-hover:scale-110 transition-transform duration-300`}>
+                                            <div className={`flex-shrink-0 w-14 h-14 rounded-xl ${colors.bg} flex items-center justify-center ${colors.text}`}>
                                                 {industry.icon}
                                             </div>
                                             <div>
-                                                <h3 className="text-xl font-bold text-gray-900 mb-2 leading-tight">
+                                                <h3 className="text-xl font-bold text-gray-900 mb-2">
                                                     {industry.title}
                                                 </h3>
                                                 <p className="text-gray-600 text-sm leading-relaxed">
@@ -277,10 +269,10 @@ const Industries: React.FC = () => {
                                                 Key Requirements
                                             </h4>
                                             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2">
-                                                {industry.requirements.map((requirement, idx) => (
+                                                {industry.requirements.map((req, idx) => (
                                                     <li key={idx} className="flex items-start gap-2">
-                                                        <CheckCircleOutlineIcon className={`${colors.text} text-base mt-0.5 flex-shrink-0`} />
-                                                        <span className="text-gray-600 text-sm">{requirement}</span>
+                                                        <CheckCircleOutlineIcon className={`${colors.text} text-base mt-0.5`} />
+                                                        <span className="text-gray-600 text-sm">{req}</span>
                                                     </li>
                                                 ))}
                                             </ul>
