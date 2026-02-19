@@ -238,7 +238,7 @@ const Industries: React.FC = () => {
                                                 backgroundImage: `url(${industry.image})`
                                             }}
                                         />
-                                        <div className="absolute inset-0 bg-black/60 rounded-xl" />
+                                        <div className="absolute inset-0  rounded-xl" />
 
                                         <div className="absolute inset-0 flex items-center justify-center text-center px-6">
                                             <div>
