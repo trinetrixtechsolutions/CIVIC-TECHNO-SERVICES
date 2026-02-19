@@ -1,8 +1,6 @@
 // src/pages/About.tsx
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import Navbar from '../components/layout/Navbar';
-import Footer from '../components/layout/Footer';
 import ScrollToTopArrow from '../components/common/ScrollToTopArrow';
 import HeroBg from '../assets/clintlogos/hero_bg_img.png'; // Imported the Hero Image
 import DividerImg from '../assets/clintlogos/download.svg';
@@ -153,8 +151,8 @@ const About: React.FC = () => {
             {/* Timeline Section */}
             <section ref={ref} className="py-20 lg:py-28 relative overflow-hidden">
                 {/* Decorative Background Elements */}
-                <div className="absolute top-0 right-0 w-96 h-96 bg-blue-100 rounded-full filter blur-3xl opacity-50 translate-x-1/2 -translate-y-1/2"></div>
-                <div className="absolute bottom-0 left-0 w-96 h-96 bg-indigo-100 rounded-full filter blur-3xl opacity-50 -translate-x-1/2 translate-y-1/2"></div>
+                <div className="absolute top-0 right-0 w-96 h-96 rounded-full filter blur-3xl opacity-50 translate-x-1/2 -translate-y-1/2"></div>
+                <div className="absolute bottom-0 left-0 w-96 h-96 rounded-full filter blur-3xl opacity-50 -translate-x-1/2 translate-y-1/2"></div>
 
                 <div className="container mx-auto px-4 lg:px-8 relative z-10">
                     <motion.div
@@ -263,7 +261,7 @@ const About: React.FC = () => {
 
             {/* Our Team */}
             <motion.div
-                className="text-center max-w-4xl mx-auto mt-28"
+                className="text-center max-w-4xl mx-auto mt-28 pb-20"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
