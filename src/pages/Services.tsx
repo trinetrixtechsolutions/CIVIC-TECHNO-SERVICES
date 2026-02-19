@@ -6,7 +6,10 @@ import ElectricalServicesIcon from '@mui/icons-material/ElectricalServices';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import SettingsRemoteIcon from '@mui/icons-material/SettingsRemote';
 import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
-import EngineeringIcon from '@mui/icons-material/Engineering';
+import VideocamIcon from '@mui/icons-material/Videocam';
+import SettingsPhoneIcon from '@mui/icons-material/SettingsPhone';
+import VpnKeyIcon from '@mui/icons-material/VpnKey';
+import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 import HeroBg from '../assets/clintlogos/hero_bg_img.png';
 import DividerImg from '../assets/clintlogos/download.svg';
 import ServiceCard from '../components/Services/ServiceCard';
@@ -21,38 +24,59 @@ const Services: React.FC = () => {
     const services = [
         {
             id: 1,
-            icon: <ElectricalServicesIcon className="text-4xl text-[#c59d5f]" />,
-            title: "Electrical Infrastructure",
+            icon: <ElectricalServicesIcon className="text-4xl" />,
+            title: "Electrical",
             description:
-                "HT & LT Panels, Transformers, Cable Laying (up to 220 Kms+), Distribution Boards, Industrial Internal & External Wiring, DG & UPS Installations."
+                "HT & LT Panels, Transformers, Cable Laying (up to 220 Kms+), Distribution Boards, Industrial Wiring, DG Sets, UPS Systems, and comprehensive Earthing Solutions."
         },
         {
             id: 2,
-            icon: <AcUnitIcon className="text-4xl text-[#c59d5f]" />,
-            title: "HVAC & High-Side Engineering",
+            icon: <AcUnitIcon className="text-4xl" />,
+            title: "HVAC",
             description:
-                "Clean Room Installations, Chiller Yards, Humidification Systems, Air Handling Units (AHU), Industrial Ventilation Systems."
+                "Design, supply, and installation of Air Conditioning systems, Ventilation, Exhaust Systems, DX & VRF Units, Ducting, and planned maintenance for commercial spaces."
         },
         {
             id: 3,
-            icon: <SettingsRemoteIcon className="text-4xl text-[#c59d5f]" />,
-            title: "Automation & Smart Systems",
+            icon: <SettingsRemoteIcon className="text-4xl" />,
+            title: "BMS",
             description:
-                "Building Management Systems (BMS), Energy Monitoring & Optimization."
+                "Centralized Building Management Systems for real-time monitoring, HVAC control, energy optimization, and intelligent automation of building services."
         },
         {
             id: 4,
-            icon: <LocalFireDepartmentIcon className="text-4xl text-[#c59d5f]" />,
-            title: "Fire & Safety Systems",
+            icon: <LocalFireDepartmentIcon className="text-4xl" />,
+            title: "FASS",
             description:
-                "Fire Alarm Systems (FASS), Access Control Systems (ACS), CCTV Surveillance."
+                "Fire Alarm & Safety Systems including Fire Detection, Hydrant Systems, Automatic Sprinklers, Gas Suppression Systems, and Safety Audits compliant with NBC norms."
         },
         {
             id: 5,
-            icon: <EngineeringIcon className="text-4xl text-[#c59d5f]" />,
-            title: "Consulting & Project Engineering",
+            icon: <VideocamIcon className="text-4xl" />,
+            title: "Surveillance",
             description:
-                "Electrical Design, Single Line Diagrams, BOQ Preparation, Cost Estimation, Testing & Commissioning, and O&M Contracts."
+                "Advanced IP CCTV solutions, Video Analytics, Perimeter Protection, and Command Center setups for round-the-clock security monitoring and threat detection."
+        },
+        {
+            id: 6,
+            icon: <SettingsPhoneIcon className="text-4xl" />,
+            title: "Unified Communications",
+            description:
+                "Structured Cabling (Copper & Fiber), EPABX Systems, Public Address Systems (PA), Intercoms, Networking Infrastructure, and Data Center connectivity."
+        },
+        {
+            id: 7,
+            icon: <VpnKeyIcon className="text-4xl" />,
+            title: "Access Control",
+            description:
+                "Biometric Systems, RFID Card Access, Smart Card Readers, Boom Barriers, Turnstiles, and Visitor Management Systems for secure facility management."
+        },
+        {
+            id: 8,
+            icon: <PrecisionManufacturingIcon className="text-4xl" />,
+            title: "HVAC - High Side",
+            description:
+                "Specialized High-Side Engineering including Chiller Plants (Air & Water Cooled), Cooling Towers, AHUs, Pumping Stations, and Industrial Ventilation Systems."
         }
     ];
 
@@ -67,7 +91,7 @@ const Services: React.FC = () => {
     return (
         <div className="bg-white min-h-screen overflow-x-hidden">
 
-            {/* HERO SECTION — MATCHING ABOUT */}
+            {/* HERO SECTION */}
             <section
                 className="relative min-h-[60vh] flex items-center justify-center bg-fixed bg-center bg-cover"
                 style={{ backgroundImage: `url(${HeroBg})` }}
@@ -119,7 +143,7 @@ const Services: React.FC = () => {
             </section>
 
 
-            {/* INTRO SECTION — MATCHING HEADING STYLE */}
+            {/* INTRO SECTION */}
             <section className="py-20 lg:py-10 bg-white">
                 <div className="container mx-auto px-4 lg:px-8">
                     <motion.div
