@@ -7,18 +7,15 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import EmailIcon from '@mui/icons-material/Email';
 import PhoneIcon from '@mui/icons-material/Phone';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import { useEffect, useState } from "react";
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import Logo from '../../assets/clintlogos/Logo_02.svg';
+import { useEffect, useState } from "react";
+import Logo from '../../assets/clintlogos/Logo_6.svg';
 
 const Footer: React.FC = () => {
     const currentYear = new Date().getFullYear();
 
     const scrollToTop = () => {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-        });
+        window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
     const containerVariants = {
@@ -54,7 +51,7 @@ const Footer: React.FC = () => {
 
     return (
         <>
-            {/* Top Curve + Arrow */}
+            {/* Top Curve + DOUBLE Arrow */}
             <div className="relative flex justify-center">
                 <div
                     onClick={scrollToTop}
@@ -78,7 +75,6 @@ const Footer: React.FC = () => {
                 </div>
             </div>
 
-            {/* Footer */}
             <footer className="relative bg-[#252525] text-white pt-1">
                 <div className="container mx-auto px-4 py-10">
 
@@ -116,6 +112,22 @@ const Footer: React.FC = () => {
                                 <a href="#" className="text-gray-400 hover:text-[#c59d5f] transition-colors">
                                     <LinkedInIcon />
                                 </a>
+
+                                {/* WhatsApp Icon */}
+                                <a
+                                    href="https://wa.me/918919004890"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-gray-400 hover:text-[#25D366] transition-colors"
+                                >
+                                    <svg
+                                        className="w-6 h-6"
+                                        fill="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path d="M20.52 3.48A11.82 11.82 0 0012.03 0C5.39 0 .02 5.36 0 12c0 2.12.55 4.19 1.6 6.02L0 24l6.14-1.6A11.94 11.94 0 0012.03 24c6.63 0 12-5.36 12-12 0-3.19-1.24-6.19-3.51-8.52zM12.03 21.8a9.8 9.8 0 01-4.98-1.36l-.36-.21-3.64.95.97-3.55-.23-.37a9.76 9.76 0 01-1.5-5.26c.02-5.42 4.45-9.83 9.9-9.83 2.64 0 5.11 1.03 6.98 2.9a9.8 9.8 0 012.9 6.97c-.02 5.43-4.45 9.84-9.9 9.84z" />
+                                    </svg>
+                                </a>
                             </div>
                         </motion.div>
 
@@ -123,12 +135,12 @@ const Footer: React.FC = () => {
                         <motion.div variants={itemVariants}>
                             <h4 className="text-xl font-semibold mb-4">Quick Links</h4>
                             <ul className="space-y-2">
-                                <li><Link to="/" className="text-gray-300 hover:text-[#c59d5f] transition-colors">Home</Link></li>
-                                <li><Link to="/about" className="text-gray-300 hover:text-[#c59d5f] transition-colors">About Us</Link></li>
-                                <li><Link to="/services" className="text-gray-300 hover:text-[#c59d5f] transition-colors">Services</Link></li>
-                                <li><Link to="/projects" className="text-gray-300 hover:text-[#c59d5f] transition-colors">Projects</Link></li>
-                                <li><Link to="/industries" className="text-gray-300 hover:text-[#c59d5f] transition-colors">Industries</Link></li>
-                                <li><Link to="/contact" className="text-gray-300 hover:text-[#c59d5f] transition-colors">Contact</Link></li>
+                                <li><Link to="/" className="text-gray-300 hover:text-[#c59d5f]">Home</Link></li>
+                                <li><Link to="/about" className="text-gray-300 hover:text-[#c59d5f]">About Us</Link></li>
+                                <li><Link to="/services" className="text-gray-300 hover:text-[#c59d5f]">Services</Link></li>
+                                <li><Link to="/projects" className="text-gray-300 hover:text-[#c59d5f]">Projects</Link></li>
+                                <li><Link to="/industries" className="text-gray-300 hover:text-[#c59d5f]">Industries</Link></li>
+                                <li><Link to="/contact" className="text-gray-300 hover:text-[#c59d5f]">Contact</Link></li>
                             </ul>
                         </motion.div>
 
@@ -147,47 +159,42 @@ const Footer: React.FC = () => {
                         {/* Contact Info */}
                         <motion.div variants={itemVariants}>
                             <h4 className="text-xl font-semibold mb-4">Contact Us</h4>
-                            <div className="space-y-3">
+                            <div className="space-y-3 text-gray-300">
                                 <div className="flex items-start">
                                     <LocationOnIcon className="text-[#c59d5f] mr-2 mt-1" />
-                                    <p className="text-gray-300">
-                                        #512, Gokul Plots, 9th Phase,
-                                        KPHP Colony, Hyderabad – 500072.
-                                    </p>
+                                    <p>Hyderabad – 500072.</p>
                                 </div>
-
                                 <div className="flex items-center">
                                     <PhoneIcon className="text-[#c59d5f] mr-2" />
-                                    <p className="text-gray-300">
-                                        040-40213345 | 7893799699 | 9949699699
-                                    </p>
+                                    <p>040-40213345</p>
                                 </div>
-
                                 <div className="flex items-center">
                                     <EmailIcon className="text-[#c59d5f] mr-2" />
-                                    <p className="text-gray-300">
-                                        info@civictechno.com
-                                    </p>
+                                    <p>info@civictechno.com</p>
                                 </div>
                             </div>
                         </motion.div>
 
                     </motion.div>
 
-                    {/* Bottom Bar */}
+                    {/* Bottom Bar - Single Row */}
                     <motion.div
-                        className="border-t border-gray-800 mt-8 pt-8 text-center"
+                        className="border-t border-gray-800 mt-8 pt-6 flex flex-col md:flex-row justify-center items-center gap-2 text-center"
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.3 }}
                     >
-                        <p className="text-gray-400 mb-2">
-                            &copy; {currentYear} Civic Techno Services. All Rights Reserved.
+                        <p className="text-gray-400 text-sm">
+                            Developed by <span className="text-[#c59d5f] font-semibold">
+                                Trinetrix Tech Solutions
+                            </span>
                         </p>
 
-                        <p className="text-gray-500 text-sm">
-                            Developed by <span className="text-[#c59d5f] font-semibold">Trinetrix Tech Solutions</span>
+                        <span className="hidden md:inline text-gray-500">|</span>
+
+                        <p className="text-gray-400 text-sm">
+                            © {currentYear} Civic Techno Services. All Rights Reserved.
                         </p>
                     </motion.div>
 
