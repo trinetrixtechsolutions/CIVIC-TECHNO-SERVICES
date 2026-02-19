@@ -28,7 +28,7 @@ const CTASection: React.FC = () => {
             </div>
 
             {/* Content */}
-            <div className="container mx-auto px-4 lg:px-8 py-24 lg:py-32 relative z-10">
+            <div className="container mx-auto px-4 lg:px-8 py-24 lg:py-12 relative z-10">
                 <motion.div
                     className="max-w-4xl mx-auto text-center"
                     initial={{ opacity: 0, y: 40 }}
@@ -63,7 +63,7 @@ const CTASection: React.FC = () => {
                     >
                         <Link
                             to="/contact"
-                            className="inline-block px-10 py-4 bg-black text-white font-bold uppercase tracking-wider rounded-full shadow-xl hover:bg-gray-900 transition-all duration-300"
+                            className="inline-block px-10 py-4 bg-[#252525] text-white font-bold uppercase tracking-wider rounded-full shadow-xl hover:bg-gray-900 transition-all duration-300"
                         >
                             Get In Touch
                         </Link>

@@ -21,7 +21,7 @@ const Clients: React.FC = () => {
     const marqueeRow2 = [...row2Logos, ...row2Logos, ...row2Logos, ...row2Logos];
 
     return (
-        <section ref={ref} className="py-24 lg:py-28 bg-white overflow-hidden relative">
+        <section ref={ref} className="py-24 lg:py-8 bg-white overflow-hidden relative">
 
             <style>{`
                 @keyframes scrollLeft {

@@ -63,9 +63,9 @@ const ProjectsShowcase: React.FC = () => {
     };
 
     return (
-        <section ref={ref} className="py-24 lg:py-28 bg-white relative overflow-hidden">
+        <section ref={ref} className="py-24 lg:py-6 bg-white relative overflow-hidden">
 
-            {/* Subtle Gold Background Glow */}
+            {/* Subtle Gold Glow */}
             <div className="absolute top-0 right-0 w-96 h-96 bg-[#c59d5f]/10 rounded-full blur-3xl opacity-40 translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
             <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#c59d5f]/10 rounded-full blur-3xl opacity-40 -translate-x-1/2 translate-y-1/2 pointer-events-none"></div>
 
@@ -73,13 +73,12 @@ const ProjectsShowcase: React.FC = () => {
 
                 {/* Header */}
                 <motion.div
-                    className="relative mb-20"
+                    className="relative mb-8"
                     initial={{ opacity: 0, y: 30 }}
                     animate={inView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.8 }}
                 >
-                    {/* View All Button */}
-                    <div className="absolute right-0 top-16 hidden md:block">
+                    <div className="absolute right-0 top-40 hidden md:block">
                         <motion.button
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
@@ -91,7 +90,6 @@ const ProjectsShowcase: React.FC = () => {
                     </div>
 
                     <div className="text-center max-w-4xl mx-auto">
-                        {/* Script Heading */}
                         <h2
                             className="text-[60px] md:text-[100px] lg:text-[120px] text-[#c59d5f] leading-none"
                             style={{ fontFamily: 'Herr Von Muellerhoff, serif' }}
@@ -99,7 +97,6 @@ const ProjectsShowcase: React.FC = () => {
                             Our
                         </h2>
 
-                        {/* Main Heading */}
                         <h1 className="font-primary font-black tracking-[0.08em] uppercase text-[#111111] text-[28px] md:text-[40px] lg:text-[47px] leading-[0.8] -mt-2 md:-mt-6 lg:-mt-8 mb-6">
                             Featured Projects
                         </h1>
@@ -109,7 +106,6 @@ const ProjectsShowcase: React.FC = () => {
                             across industrial and infrastructure sectors.
                         </p>
 
-                        {/* Mobile Button */}
                         <div className="mt-8 md:hidden">
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
@@ -123,9 +119,9 @@ const ProjectsShowcase: React.FC = () => {
                     </div>
                 </motion.div>
 
-                {/* Projects Grid */}
+                {/* FLEX Layout Instead of Grid */}
                 <motion.div
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10"
+                    className="flex flex-wrap justify-center gap-1.5"
                     variants={containerVariants}
                     initial="hidden"
                     animate={inView ? "visible" : "hidden"}
@@ -134,9 +130,8 @@ const ProjectsShowcase: React.FC = () => {
                         <motion.div
                             key={index}
                             variants={cardVariants}
-                            whileHover={{ y: -10 }}
                             onClick={() => navigate("/projects")}
-                            className="relative group rounded-2xl overflow-hidden cursor-pointer shadow-md hover:shadow-2xl transition-all duration-500"
+                            className="relative group rounded-2xl overflow-hidden cursor-pointer shadow-md hover:shadow-2xl transition-shadow duration-500 w-full sm:w-[48%] lg:w-[23%]"
                         >
 
                             {/* Image */}
@@ -151,7 +146,6 @@ const ProjectsShowcase: React.FC = () => {
 
                             {/* Bottom Info */}
                             <div className="absolute bottom-0 left-0 w-full p-6 text-white translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-
                                 <h3 className="text-lg font-bold mb-2">
                                     {project.name}
                                 </h3>
@@ -164,7 +158,6 @@ const ProjectsShowcase: React.FC = () => {
                                         <span className="font-semibold text-[#c59d5f]">Location:</span> {project.location}
                                     </p>
                                 </div>
-
                             </div>
 
                         </motion.div>
