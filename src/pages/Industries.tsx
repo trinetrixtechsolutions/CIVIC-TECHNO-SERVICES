@@ -223,33 +223,33 @@ const Industries: React.FC = () => {
                             <motion.div
                                 key={index}
                                 className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
-                                initial={{ opacity: 0, y: 60 }}
-                                whileInView={{ opacity: 1, y: 0 }}
+                                initial={{ opacity: 0 }}
+                                whileInView={{ opacity: 1 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.8 }}
                             >
 
                                 {/* IMAGE SIDE */}
-                                <div className={`${isEven ? 'order-1' : 'order-2'} relative h-[500px] overflow-hidden`}>
+                                <div className={`${isEven ? 'lg:order-1' : 'lg:order-2'} relative h-[250px] lg:h-[500px] overflow-hidden -mx-4 w-[calc(100%+2rem)] lg:w-full lg:mx-0`}>
                                     <div className="sticky top-24 h-full w-full">
                                         <div
-                                            className="absolute inset-0 bg-cover bg-center bg-fixed rounded-xl"
+                                            className="absolute inset-0 bg-cover bg-center bg-fixed rounded-none"
                                             style={{
                                                 backgroundImage: `url(${industry.image})`
                                             }}
                                         />
-                                        <div className="absolute inset-0  rounded-xl" />
+                                        <div className="absolute inset-0 rounded-none" />
 
                                         <div className="absolute inset-0 flex items-center justify-center text-center px-6">
                                             <div>
                                                 <h2
-                                                    className="text-[110px] text-[#c59d5f] leading-none"
+                                                    className="text-[60px] md:text-[90px] lg:text-[110px] text-[#c59d5f] leading-none"
                                                     style={{ fontFamily: 'Herr Von Muellerhoff, serif' }}
                                                 >
                                                     {industry.title.split('&')[0]}
                                                 </h2>
 
-                                                <h1 className="font-primary font-black tracking-[0.08em] uppercase text-white text-[45px] -mt-6">
+                                                <h1 className="font-primary font-black tracking-[0.08em] uppercase text-white text-[28px] md:text-[38px] lg:text-[45px] -mt-2 md:-mt-4 lg:-mt-6">
                                                     {industry.title.split('&')[1] || ''}
                                                 </h1>
                                             </div>
@@ -258,10 +258,16 @@ const Industries: React.FC = () => {
                                 </div>
 
                                 {/* CONTENT SIDE */}
-                                <div className={`${isEven ? 'order-2' : 'order-1'}`}>
+                                <motion.div
+                                    className={`${isEven ? 'lg:order-2' : 'lg:order-1'}`}
+                                    initial={{ y: 60, opacity: 0 }}
+                                    whileInView={{ y: 0, opacity: 1 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.8, delay: 0.2 }}
+                                >
 
                                     {/* ICON — LARGE, NO BACKGROUND */}
-                                    <div className="mb-8 flex items-center gap-6">
+                                    <div className="hidden lg:flex mb-8 items-center gap-6">
                                         <div className="text-[#c59d5f] text-10xl flex items-center">
                                             {industry.icon}
                                         </div>
@@ -288,7 +294,7 @@ const Industries: React.FC = () => {
                                             ))}
                                         </ul>
                                     </div>
-                                </div>
+                                </motion.div>
 
                             </motion.div>
                         );

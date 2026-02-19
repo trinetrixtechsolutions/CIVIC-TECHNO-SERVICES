@@ -80,13 +80,13 @@ const About: React.FC = () => {
 
                         <div className="text-center lg:text-left relative">
                             <h2
-                                className="text-[110px] md:text-[130px] text-[#c59d5f] leading-none"
+                                className="text-[60px] md:text-[110px] lg:text-[130px] text-[#c59d5f] leading-none"
                                 style={{ fontFamily: 'Herr Von Muellerhoff, serif' }}
                             >
                                 About
                             </h2>
 
-                            <h1 className="font-primary font-black tracking-[0.08em] uppercase text-white text-[47px] md:text-[65px] leading-[0.5] -mt-6">
+                            <h1 className="font-primary font-black tracking-[0.08em] uppercase text-white text-[28px] md:text-[47px] lg:text-[65px] leading-[0.5] -mt-2 md:-mt-4 lg:-mt-6">
                                 Civic Techno
                             </h1>
                         </div>
@@ -129,19 +129,19 @@ const About: React.FC = () => {
 
                         <div className="text-center relative">
                             <h2
-                                className="text-[120px] text-[#c59d5f] leading-none"
+                                className="text-[60px] md:text-[100px] lg:text-[120px] text-[#c59d5f] leading-none"
                                 style={{ fontFamily: 'Herr Von Muellerhoff, serif' }}
                             >
                                 Our
                             </h2>
 
-                            <h1 className="font-primary mb-[30px] font-black tracking-[0.08em] uppercase text-[#111111] text-[47px] leading-[0.81] -mt-8">
+                            <h1 className="font-primary mb-[30px] font-black tracking-[0.08em] uppercase text-[#111111] text-[28px] md:text-[40px] lg:text-[47px] leading-[0.81] -mt-2 md:-mt-6 lg:-mt-8">
                                 Story
                             </h1>
                         </div>
 
                         <p className="text-lg text-gray-600 leading-relaxed mb-8">
-                            Established in <span className="font-bold text-blue-700">2010</span>, Civic Techno Services began as a specialized turnkey electrical solution provider for cleanroom environments. Over time, the organization expanded into a full-scale MEP turnkey engineering partner serving pharmaceuticals, healthcare, industrial manufacturing, commercial complexes, research facilities, and infrastructure projects.
+                            Established in <span className="font-bold text-[#c59d5f]">2010</span>, Civic Techno Services began as a specialized turnkey electrical solution provider for cleanroom environments. Over time, the organization expanded into a full-scale MEP turnkey engineering partner serving pharmaceuticals, healthcare, industrial manufacturing, commercial complexes, research facilities, and infrastructure projects.
                         </p>
                         <p className="text-lg text-gray-600 leading-relaxed">
                             Today, we stand as a trusted engineering partner delivering turnkey MEP excellence with accountability, technical depth, and corporate integrity.
@@ -165,13 +165,13 @@ const About: React.FC = () => {
                     >
                         <div className="text-center relative">
                             <h2
-                                className="text-[120px] text-[#c59d5f] leading-none"
+                                className="text-[60px] md:text-[100px] lg:text-[120px] text-[#c59d5f] leading-none"
                                 style={{ fontFamily: 'Herr Von Muellerhoff, serif' }}
                             >
                                 Our
                             </h2>
 
-                            <h1 className="font-primary mb-[30px] font-black tracking-[0.08em] uppercase text-[#111111] text-[47px] leading-[0.81] -mt-8">
+                            <h1 className="font-primary mb-[30px] font-black tracking-[0.08em] uppercase text-[#111111] text-[28px] md:text-[40px] lg:text-[47px] leading-[0.81] -mt-2 md:-mt-6 lg:-mt-8">
                                 History
                             </h1>
                         </div>
@@ -236,14 +236,14 @@ const About: React.FC = () => {
             >
 
                 <h2
-                    className="text-[120px] text-[#c59d5f] leading-none"
+                    className="text-[60px] md:text-[100px] lg:text-[120px] text-[#c59d5f] leading-none"
                     style={{ fontFamily: 'Herr Von Muellerhoff, serif' }}
                 >
                     Our
                 </h2>
 
-                <h1 className="font-primary mb-[30px] font-black tracking-[0.08em] uppercase text-[#111111] text-[47px] leading-[0.51] -mt-6">
-                    Professional Overview
+                <h1 className="font-primary mb-[30px] font-black tracking-[0.08em] uppercase text-[#111111] text-[28px] md:text-[40px] lg:text-[47px] leading-[0.51] -mt-2 md:-mt-4 lg:-mt-6">
+                    Profile
                 </h1>
 
                 <p className="text-gray-600 leading-relaxed text-lg">
@@ -270,13 +270,13 @@ const About: React.FC = () => {
             >
 
                 <h2
-                    className="text-[120px] text-[#c59d5f] leading-none"
+                    className="text-[60px] md:text-[100px] lg:text-[120px] text-[#c59d5f] leading-none"
                     style={{ fontFamily: 'Herr Von Muellerhoff, serif' }}
                 >
                     Our
                 </h2>
 
-                <h1 className="font-primary mb-[30px] font-black tracking-[0.08em] uppercase text-[#111111] text-[47px] leading-[0.51] -mt-6">
+                <h1 className="font-primary mb-[30px] font-black tracking-[0.08em] uppercase text-[#111111] text-[28px] md:text-[40px] lg:text-[47px] leading-[0.51] -mt-2 md:-mt-4 lg:-mt-6">
                     Team
                 </h1>
 
@@ -316,13 +316,13 @@ const About: React.FC = () => {
                         transition={{ duration: 0.8 }}
                     >
                         <h2
-                            className="text-[90px] md:text-[120px] text-[#c59d5f] leading-none"
+                            className="text-[50px] md:text-[90px] lg:text-[120px] text-[#c59d5f] leading-none"
                             style={{ fontFamily: 'Herr Von Muellerhoff, serif' }}
                         >
                             Epitome of
                         </h2>
 
-                        <h1 className="font-primary font-black tracking-[0.08em] uppercase text-white text-[40px] md:text-[50px] leading-[0.9] -mt-6">
+                        <h1 className="font-primary font-black tracking-[0.08em] uppercase text-white text-[24px] md:text-[40px] lg:text-[50px] leading-[0.9] -mt-2 md:-mt-4 lg:-mt-6">
                             SUCCESS
                         </h1>
                     </motion.div>
@@ -367,13 +367,13 @@ const About: React.FC = () => {
                                     viewport={{ once: true }}
                                 >
                                     <h2
-                                        className="text-[120px] text-[#c59d5f] leading-none"
+                                        className="text-[60px] md:text-[100px] lg:text-[120px] text-[#c59d5f] leading-none"
                                         style={{ fontFamily: 'Herr Von Muellerhoff, serif' }}
                                     >
                                         Our
                                     </h2>
 
-                                    <h1 className="font-primary mb-[30px] font-black tracking-[0.08em] uppercase text-[#111111] text-[47px] leading-[0.51] -mt-6">
+                                    <h1 className="font-primary mb-[30px] font-black tracking-[0.08em] uppercase text-[#111111] text-[28px] md:text-[40px] lg:text-[47px] leading-[0.51] -mt-2 md:-mt-4 lg:-mt-6">
                                         Vision
                                     </h1>
                                 </motion.div>
@@ -393,13 +393,13 @@ const About: React.FC = () => {
                                     viewport={{ once: true }}
                                 >
                                     <h2
-                                        className="text-[120px] text-[#c59d5f] leading-none"
+                                        className="text-[60px] md:text-[100px] lg:text-[120px] text-[#c59d5f] leading-none"
                                         style={{ fontFamily: 'Herr Von Muellerhoff, serif' }}
                                     >
                                         Our
                                     </h2>
 
-                                    <h1 className="font-primary mb-[30px] font-black tracking-[0.08em] uppercase text-[#111111] text-[47px] leading-[0.51] -mt-6">
+                                    <h1 className="font-primary mb-[30px] font-black tracking-[0.08em] uppercase text-[#111111] text-[28px] md:text-[40px] lg:text-[47px] leading-[0.51] -mt-2 md:-mt-4 lg:-mt-6">
                                         mission
                                     </h1>
                                 </motion.div>
@@ -420,13 +420,13 @@ const About: React.FC = () => {
                             viewport={{ once: true }}
                         >
                             <h2
-                                className="text-[120px] text-[#c59d5f] leading-none"
+                                className="text-[60px] md:text-[100px] lg:text-[120px] text-[#c59d5f] leading-none"
                                 style={{ fontFamily: 'Herr Von Muellerhoff, serif' }}
                             >
                                 Our
                             </h2>
 
-                            <h1 className="font-primary mb-[30px] font-black tracking-[0.08em] uppercase text-[#111111] text-[47px] leading-[0.51] -mt-6">
+                            <h1 className="font-primary mb-[30px] font-black tracking-[0.08em] uppercase text-[#111111] text-[28px] md:text-[40px] lg:text-[47px] leading-[0.51] -mt-2 md:-mt-4 lg:-mt-6">
                                 Quality
                             </h1>
 

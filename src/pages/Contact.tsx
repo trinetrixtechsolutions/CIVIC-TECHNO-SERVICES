@@ -80,13 +80,13 @@ const Contact: React.FC = () => {
                     >
                         <div>
                             <h2
-                                className="text-[110px] md:text-[130px] text-[#c59d5f] leading-none"
+                                className="text-[60px] md:text-[110px] lg:text-[130px] text-[#c59d5f] leading-none"
                                 style={{ fontFamily: 'Herr Von Muellerhoff, serif' }}
                             >
                                 Contact
                             </h2>
 
-                            <h1 className="font-primary font-black tracking-[0.08em] uppercase text-white text-[47px] md:text-[65px] leading-[0.5] -mt-6">
+                            <h1 className="font-primary font-black tracking-[0.08em] uppercase text-white text-[28px] md:text-[47px] lg:text-[65px] leading-[0.5] -mt-2 md:-mt-4 lg:-mt-6">
                                 Us
                             </h1>
                         </div>
@@ -120,11 +120,11 @@ const Contact: React.FC = () => {
                             transition={{ duration: 0.7 }}
                         >
                             <div className="text-left mb-12">
-                                <h2 className="text-[100px] text-[#c59d5f] leading-none"
+                                <h2 className="text-[60px] md:text-[80px] lg:text-[100px] text-[#c59d5f] leading-none"
                                     style={{ fontFamily: 'Herr Von Muellerhoff, serif' }}>
                                     Get In
                                 </h2>
-                                <h1 className="font-primary font-black uppercase text-[#111111] text-[45px] leading-[0.7] -mt-6">
+                                <h1 className="font-primary font-black uppercase text-[#111111] text-[28px] md:text-[35px] lg:text-[45px] leading-[0.7] -mt-2 md:-mt-4 lg:-mt-6">
                                     Touch With Us
                                 </h1>
                             </div>
@@ -187,11 +187,11 @@ const Contact: React.FC = () => {
                             transition={{ duration: 0.7 }}
                         >
                             <div className="text-left mb-12">
-                                <h2 className="text-[100px] text-[#c59d5f] leading-none"
+                                <h2 className="text-[60px] md:text-[80px] lg:text-[100px] text-[#c59d5f] leading-none"
                                     style={{ fontFamily: 'Herr Von Muellerhoff, serif' }}>
                                     General
                                 </h2>
-                                <h1 className="font-primary font-black uppercase text-[#111111] text-[45px] leading-[0.7] -mt-6">
+                                <h1 className="font-primary font-black uppercase text-[#111111] text-[28px] md:text-[35px] lg:text-[45px] leading-[0.7] -mt-2 md:-mt-4 lg:-mt-6">
                                     Inquiry
                                 </h1>
                             </div>
@@ -244,8 +244,8 @@ const Contact: React.FC = () => {
                                         sx={{
                                             borderRadius: "50px",
                                             padding: "12px 32px",
-                                            backgroundColor: "#c59d5f",
-                                            "&:hover": { backgroundColor: "#000" }
+                                            backgroundColor: "#252525",
+                                            "&:hover": { backgroundColor: "#c59d5f" }
                                         }}
                                     >
                                         Send Message
