@@ -104,15 +104,15 @@ const Projects: React.FC = () => {
           </p>
 
           {/* FILTER BAR */}
-          <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-6 mb-12">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-12">
 
             {/* Category Filters */}
-            <div className="flex flex-wrap justify-center md:justify-start gap-3 md:gap-6 order-2 md:order-1">
+            <div className="grid grid-cols-3 md:flex md:flex-wrap justify-center md:justify-start gap-2 md:gap-6 order-2 md:order-1 w-full md:w-auto">
               {categories.map((cat) => (
                 <button
                   key={cat}
                   onClick={() => setActiveCategory(cat)}
-                  className={`px-6 py-2 rounded-full font-medium transition-all duration-300 text-sm ${activeCategory === cat
+                  className={`px-1 md:px-6 py-2 rounded-full font-medium transition-all duration-300 text-[10px] sm:text-xs md:text-sm w-full md:w-auto ${activeCategory === cat
                     ? "bg-[#c59d5f] text-white"
                     : "bg-gray-100 text-gray-700 hover:bg-[#c59d5f]/20"
                     }`}

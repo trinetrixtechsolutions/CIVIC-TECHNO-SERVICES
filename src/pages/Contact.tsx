@@ -136,7 +136,7 @@ const Contact: React.FC = () => {
                                     <div>
                                         <h3 className="font-bold text-gray-900 mb-1">Branch Office</h3>
                                         <p>
-                                            CIVIC TECHNO SERVICES<br />
+                                            <span className="font-bold text-[#c59d5f]">CIVIC TECHNO SERVICES</span><br />
                                             Main Road, near JNTU Metro Station<br />
                                             Kukatpally, Hyderabad, Telangana, India
                                         </p>
@@ -160,7 +160,7 @@ const Contact: React.FC = () => {
                                     <div>
                                         <h3 className="font-bold text-gray-900 mb-1">Send Us</h3>
                                         <p>
-                                            info@civictechno.com<br />
+                                            <span className="font-bold text-[#c59d5f]">info@civictechno.com</span><br />
                                             vamsi@civictechno.com
                                         </p>
                                     </div>
