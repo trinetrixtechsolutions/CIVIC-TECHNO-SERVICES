@@ -5,6 +5,7 @@ import HeroBg from "../assets/clintlogos/hero_bg_img.png";
 import DividerImg from "../assets/clintlogos/download.svg";
 import ProjectCard from "../components/projects/ProjectCard";
 import { projects } from "../components/projects/projects";
+import { motion } from 'framer-motion';
 
 const categories = [
   "All",
@@ -33,30 +34,52 @@ const Projects: React.FC = () => {
 
   return (
     <div className="bg-white min-h-screen overflow-x-hidden">
-      {/* HERO */}
+      {/* HERO SECTION — MATCHING ABOUT */}
       <section
         className="relative min-h-[60vh] flex items-center justify-center bg-fixed bg-center bg-cover"
         style={{ backgroundImage: `url(${HeroBg})` }}
       >
+        {/* Overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent"></div>
 
-        <div className="container mx-auto px-4 lg:px-8 relative z-10 text-center py-20">
-          <h2
-            className="text-[110px] md:text-[130px] text-[#c59d5f] leading-none"
-            style={{ fontFamily: "Herr Von Muellerhoff, serif" }}
+        {/* Content */}
+        <div className="container mx-auto px-4 lg:px-8 relative z-10 text-center lg:text-left py-20">
+          <motion.div
+            className="max-w-3xl"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            Our
-          </h2>
 
-          <h1 className="font-primary font-black tracking-[0.08em] uppercase text-white text-[47px] md:text-[65px] leading-[0.5] -mt-6">
-            Projects
-          </h1>
+            <div className="text-center lg:text-left relative">
+              <h2
+                className="text-[110px] md:text-[130px] text-[#c59d5f] leading-none"
+                style={{ fontFamily: 'Herr Von Muellerhoff, serif' }}
+              >
+                Our
+              </h2>
+
+              <h1 className="font-primary font-black tracking-[0.08em] uppercase text-white text-[47px] md:text-[65px] leading-[0.5] -mt-6">
+                Projects
+              </h1>
+            </div>
+
+            <p className="text-xl md:text-2xl text-blue-100 mb-8 mt-5 max-w-2xl">
+              Delivering engineering excellence across industries with precision and integrity.
+            </p>
+          </motion.div>
         </div>
 
-        <div className="absolute bottom-0 left-0 w-full translate-y-1/2 pointer-events-none overflow-hidden">
+        {/* Divider Strip */}
+        <div className="absolute bottom-0 left-0 w-full z-20 translate-y-1/2 pointer-events-none overflow-hidden">
           <div className="flex w-max">
             {Array.from({ length: 120 }).map((_, i) => (
-              <img key={i} src={DividerImg} className="h-6 shrink-0" alt="" />
+              <img
+                key={i}
+                src={DividerImg}
+                className="h-6 shrink-0"
+                alt=""
+              />
             ))}
           </div>
         </div>
@@ -90,8 +113,8 @@ const Projects: React.FC = () => {
                   key={cat}
                   onClick={() => setActiveCategory(cat)}
                   className={`px-6 py-2 rounded-full font-medium transition-all duration-300 text-sm ${activeCategory === cat
-                      ? "bg-[#c59d5f] text-white"
-                      : "bg-gray-100 text-gray-700 hover:bg-[#c59d5f]/20"
+                    ? "bg-[#c59d5f] text-white"
+                    : "bg-gray-100 text-gray-700 hover:bg-[#c59d5f]/20"
                     }`}
                 >
                   {cat}

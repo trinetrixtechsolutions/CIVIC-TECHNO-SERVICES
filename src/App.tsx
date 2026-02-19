@@ -6,8 +6,6 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Services from './pages/Services';
 import Projects from './pages/Projects';
-import ProjectDetails from './pages/ProjectDetails';
-import ProjectSchedule from './pages/ProjectSchedule';
 import ServiceDetail from './components/Services/ServiceDetail';
 import Industries from './pages/Industries';
 import Contact from './pages/Contact';
@@ -31,8 +29,6 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
             <Route path="/projects" element={<Projects />} />
-            <Route path="/projects/:id" element={<ProjectDetails />} />
-            <Route path="/project-schedule" element={<ProjectSchedule />} />
             <Route path="/services/:id" element={<ServiceDetail />} />
             <Route path="/industries" element={<Industries />} />
             <Route path="/career" element={<Career />} />
