@@ -1,5 +1,6 @@
 // src/pages/Contact.tsx
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import ScrollToTopArrow from '../components/common/ScrollToTopArrow';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -9,8 +10,22 @@ import { MapPin, Phone, Mail, Building2 } from 'lucide-react';
 import SendIcon from '@mui/icons-material/Send';
 import HeroBg from '../assets/clintlogos/hero_bg_img.png';
 import DividerImg from '../assets/clintlogos/download.svg';
+import Clients from '../components/sections/Clients';
 
 const Contact: React.FC = () => {
+    const location = useLocation();
+
+    useEffect(() => {
+        if (location.hash === '#general-inquiry') {
+            const element = document.getElementById('general-inquiry');
+            if (element) {
+                // Short timeout ensures the component has fully mounted and rendered before scrolling
+                setTimeout(() => {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+            }
+        }
+    }, [location]);
 
     useEffect(() => {
         emailjs.init("1QZhqTlnvbDzLoARv");
@@ -20,6 +35,16 @@ const Contact: React.FC = () => {
         triggerOnce: true,
         threshold: 0.1
     });
+
+    const [loadMap, setLoadMap] = useState(false);
+
+    useEffect(() => {
+        // Defer mapping loading after initial render speeds up page load
+        const timer = setTimeout(() => {
+            setLoadMap(true);
+        }, 500);
+        return () => clearTimeout(timer);
+    }, []);
 
     const [formData, setFormData] = useState({
         name: '', email: '', phone: '', company: '', subject: '', message: ''
@@ -110,7 +135,7 @@ const Contact: React.FC = () => {
             </section>
 
             {/* INFO + FORM */}
-            <section ref={ref} className="py-20 bg-white">
+            <section id="general-inquiry" ref={ref} className="py-20 lg:py-40 bg-white">
                 <div className="container mx-auto px-4 lg:px-12">
 
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-stretch">
@@ -261,6 +286,9 @@ const Contact: React.FC = () => {
                 </div>
             </section>
 
+            {/* CLIENTS SECTION */}
+            <Clients />
+
             {/* MAP */}
             <section className="relative w-full">
                 <div className="absolute top-0 left-0 w-full z-20 -translate-y-1/2 pointer-events-none overflow-hidden">
@@ -271,15 +299,22 @@ const Contact: React.FC = () => {
                     </div>
                 </div>
 
-                <div className="relative w-full h-[500px] pointer-events-none">
-                    <iframe
-                        src="https://www.google.com/maps?q=CIVIC+TECHNO+SERVICES,+Main+Road,+near+JNTU+Metro+Station,+Kukatpally,+Hyderabad,+Telangana,+India&output=embed"
-                        width="100%"
-                        height="100%"
-                        style={{ border: 0 }}
-                        loading="lazy"
-                        title="CIVIC TECHNO SERVICES Location"
-                    ></iframe>
+                <div className="relative w-full h-[500px] pointer-events-none flex items-center justify-center bg-gray-100">
+                    {loadMap ? (
+                        <motion.iframe
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 1 }}
+                            src="https://www.google.com/maps?q=CIVIC+TECHNO+SERVICES,+Main+Road,+near+JNTU+Metro+Station,+Kukatpally,+Hyderabad,+Telangana,+India&output=embed"
+                            width="100%"
+                            height="100%"
+                            style={{ border: 0 }}
+                            loading="lazy"
+                            title="CIVIC TECHNO SERVICES Location"
+                        />
+                    ) : (
+                        <div className="text-gray-400 font-medium tracking-widest uppercase text-sm">Loading Map...</div>
+                    )}
                 </div>
             </section>
 

@@ -70,7 +70,7 @@ const Clients: React.FC = () => {
             </div>
 
             {/* ===== Marquee Section (Updated UI) ===== */}
-            <div className="relative w-full overflow-hidden flex flex-col gap-14">
+            <div className="relative w-full overflow-hidden flex flex-col gap-14 mb-5">
 
                 {/* Edge Fade */}
                 <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>

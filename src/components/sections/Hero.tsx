@@ -439,7 +439,7 @@ const Hero: React.FC = () => {
                             <div className="pointer-events-auto">
                                 <Link
                                     to="/about"
-                                    className="inline-block bg-[#c59d5f] text-white px-8 py-3 rounded-full font-bold uppercase tracking-wide text-sm md:text-base hover:bg-gray-900 transition-colors duration-300 shadow-lg hover:shadow-xl"
+                                    className="inline-block bg-[#252525] text-white px-8 py-3 rounded-full font-bold uppercase tracking-wide text-sm md:text-base hover:bg-[#c59d5f] transition-colors duration-300 shadow-lg hover:shadow-xl"
                                 >
                                     Know More About Us
                                 </Link>

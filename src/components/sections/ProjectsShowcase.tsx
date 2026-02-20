@@ -11,6 +11,7 @@ import NDDBImg from '../../assets/projects_images/National_Dairy_Development_Boa
 import IITImg from '../../assets/projects_images/IIT_Guwahati_Testing_Lab.png';
 import NIABImg from '../../assets/projects_images/National_Institute_of_Animal_Biotechnology.png';
 
+
 const ProjectsShowcase: React.FC = () => {
     const navigate = useNavigate();
     const [activeIndex, setActiveIndex] = useState(0);
@@ -65,13 +66,13 @@ const ProjectsShowcase: React.FC = () => {
                 >
                     <div className="absolute right-0 top-1/2 -translate-y-1/2 hidden md:block z-20">
                         <motion.button
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
+                            // whileHover={{ scale: 1.05 }}
+                            // whileTap={{ scale: 0.95 }}
                             onClick={() => navigate("/projects")}
-                            className="px-8 py-3 bg-[#c59d5f] text-white font-bold uppercase tracking-wider rounded-full shadow-lg hover:bg-gray-900 transition-colors duration-300"
+                            className="px-8 py-3 bg-[#252525] text-white font-bold uppercase tracking-wider rounded-full shadow-lg hover:bg-[#c59d5f] transition-colors duration-300"
                         >
                             View All
-                        </motion.button>
+                        </motion.button> 
                     </div>
 
                     <div className="text-center max-w-4xl mx-auto">
@@ -91,7 +92,7 @@ const ProjectsShowcase: React.FC = () => {
                             across industrial and infrastructure sectors.
                         </p>
 
-                        <div className="mt-6 md:hidden">
+                        {/* <div className="mt-6 md:hidden">
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
@@ -100,7 +101,7 @@ const ProjectsShowcase: React.FC = () => {
                             >
                                 View All
                             </motion.button>
-                        </div>
+                        </div> */}
                     </div>
                 </motion.div>
 

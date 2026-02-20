@@ -95,7 +95,7 @@ const Navbar: React.FC = () => {
                         {/* Desktop Button - changed to text with arrow */}
                         <div className="hidden lg:flex">
                             <Link
-                                to="/contact"
+                                to="/contact#general-inquiry"
                                 className={`
                                     flex items-center gap-2
                                     font-semibold uppercase tracking-wide text-sm
@@ -146,7 +146,7 @@ const Navbar: React.FC = () => {
 
                                 <li className="pt-4 border-t border-gray-700">
                                     <Link
-                                        to="/contact"
+                                        to="/contact#general-inquiry"
                                         onClick={() => setMobileMenuOpen(false)}
                                         className="flex items-center gap-2 text-lg hover:text-[#c59d5f] transition-colors duration-300 w-fit"
                                     >

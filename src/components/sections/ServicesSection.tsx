@@ -80,10 +80,10 @@ const ServicesSection = () => {
             {/* Desktop View All */}
             <div className="absolute right-0 top-1/2 -translate-y-1/2 hidden md:block z-20">
               <motion.button
-                whileHover={{ scale: 1.05 }}
+                // whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => navigate("/services")}
-                className="px-8 py-3 bg-[#c59d5f] text-white font-bold uppercase tracking-wider rounded-full shadow-lg hover:bg-gray-900 transition-colors duration-300"
+                className="px-8 py-3 bg-[#252525] text-white font-bold uppercase tracking-wider rounded-full shadow-lg hover:bg-[#c59d5f] transition-colors duration-300"
               >
                 View All
               </motion.button>
@@ -109,8 +109,8 @@ const ServicesSection = () => {
               {/* Mobile View All */}
               <div className="mt-4 md:hidden">
                 <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                  // whileHover={{ scale: 1.05 }}
+                  // whileTap={{ scale: 0.95 }}
                   onClick={() => navigate("/services")}
                   className="px-6 py-2 text-sm bg-[#c59d5f] text-white font-bold uppercase tracking-wider rounded-full shadow-lg hover:bg-gray-900 transition-colors duration-300"
                 >

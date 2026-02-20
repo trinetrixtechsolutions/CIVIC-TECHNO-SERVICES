@@ -6,6 +6,7 @@ import DividerImg from "../assets/clintlogos/download.svg";
 import ProjectCard from "../components/projects/ProjectCard";
 import { projects } from "../components/projects/projects";
 import { motion } from 'framer-motion';
+import Clients from "../components/sections/Clients";
 
 const categories = [
   "All",
@@ -185,6 +186,7 @@ const Projects: React.FC = () => {
         </div>
       </section>
 
+      <Clients />
       <ScrollToTopArrow />
     </div>
   );

@@ -226,22 +226,22 @@ const Services: React.FC = () => {
             </section>
 
             {/* SERVICES SECTION */}
-            <section ref={ref} className="pb-24 lg:pb-32 bg-white overflow-hidden">
-                <div className="container mx-auto px-4 lg:px-8 flex flex-col gap-16 lg:gap-20">
+            <section ref={ref} className="pb-0 lg:pb-0 bg-white overflow-hidden flex flex-col gap-24 lg:gap-32 w-full">
 
-                    {services.map((service, index) => {
-                        return (
-                            <React.Fragment key={index}>
-                                <motion.div
-                                    className="flex flex-col gap-10"
-                                    initial={{ opacity: 0 }}
-                                    whileInView={{ opacity: 1 }}
-                                    viewport={{ once: true }}
-                                    transition={{ duration: 0.8 }}
-                                >
+                {services.map((service, index) => {
+                    return (
+                        <React.Fragment key={index}>
+                            <motion.div
+                                className="flex flex-col gap-10 lg:gap-16 w-full"
+                                initial={{ opacity: 0 }}
+                                whileInView={{ opacity: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.8 }}
+                            >
 
+                                <div className="container mx-auto px-4 lg:px-8">
                                     {/* ICON & LINE */}
-                                    <div className="mt-8 flex items-center gap-6 justify-center lg:justify-start">
+                                    <div className="flex items-center gap-6 justify-center lg:justify-start">
                                         <div className="text-[#c59d5f] flex items-center">
                                             {service.icon}
                                         </div>
@@ -249,7 +249,7 @@ const Services: React.FC = () => {
                                     </div>
 
                                     {/* TEXT SECTION: Heading and Data in same row */}
-                                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+                                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center mt-10">
 
                                         {/* Heading Side (Left) */}
                                         <motion.div
@@ -310,31 +310,25 @@ const Services: React.FC = () => {
                                             </div>
                                         </motion.div>
                                     </div>
+                                </div>
 
-                                    {/* IMAGE SECTION */}
-                                    <motion.div
-                                        className="w-full h-[220px] md:h-[280px] lg:h-[320px] relative overflow-hidden"
-                                        initial={{ opacity: 0, scale: 0.95 }}
-                                        whileInView={{ opacity: 1, scale: 1 }}
-                                        viewport={{ once: true }}
-                                        transition={{ duration: 0.8, delay: 0.2 }}
-                                    >
-                                        <div
-                                            className="absolute inset-0 bg-cover bg-center bg-fixed"
-                                            style={{
-                                                backgroundImage: `url(${service.image})`
-                                            }}
-                                        />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
-                                    </motion.div>
+                                {/* IMAGE SECTION */}
+                                <div className="w-full h-[250px] md:h-[350px] lg:h-[450px] relative overflow-hidden">
+                                    <div
+                                        className="absolute inset-0 bg-cover bg-center bg-fixed"
+                                        style={{
+                                            backgroundImage: `url(${service.image})`
+                                        }}
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                                </div>
 
-                                </motion.div>
+                            </motion.div>
 
-                            </React.Fragment>
-                        );
-                    })}
+                        </React.Fragment>
+                    );
+                })}
 
-                </div>
             </section>
 
             <ScrollToTopArrow />
