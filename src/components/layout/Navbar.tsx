@@ -7,7 +7,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import IconButton from '@mui/material/IconButton';
 
-import Logo from '../../assets/clintlogos/Logo_6.svg';
+import Logo from '../../assets/clintlogos/Logo_00008.svg';
 
 const Navbar: React.FC = () => {
     const location = useLocation();
@@ -40,17 +40,15 @@ const Navbar: React.FC = () => {
         { path: '/contact', label: 'Contact' }
     ];
 
-    // Updated: Consistent background for all pages (White)
-    // Shadow and padding change on scroll for better UX
     const navbarBackground = () => {
-        if (isScrolled) {
-            return 'bg-white shadow-md py-3';
+        if (isHome) {
+            return isScrolled
+                ? 'bg-white shadow-md py-3'
+                : 'bg-transparent py-5 lg:py-6';
         }
-        // White background always, slightly larger padding at top
-        return 'bg-white py-5 lg:py-6';
+        return 'bg-white shadow-sm py-3 lg:py-4';
     };
 
-    // Updated: Consistent text color for all pages (Black)
     const linkColor = (path: string) => {
         return activeLink === path
             ? 'text-[#c59d5f]'
@@ -94,7 +92,7 @@ const Navbar: React.FC = () => {
                     {/* Right Side */}
                     <div className="flex items-center space-x-4 flex-shrink-0">
 
-                        {/* Desktop Button */}
+                        {/* Desktop Button - changed to text with arrow */}
                         <div className="hidden lg:flex">
                             <Link
                                 to="/contact"
@@ -113,7 +111,7 @@ const Navbar: React.FC = () => {
                         <div className="lg:hidden">
                             <IconButton
                                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                                className="text-black" // Always black icon
+                                className="text-[#c59d5f]"
                                 size="large"
                             >
                                 {mobileMenuOpen ? <CloseIcon /> : <MenuIcon />}
@@ -161,8 +159,8 @@ const Navbar: React.FC = () => {
                 </AnimatePresence>
             </nav>
 
-            {/* Spacer only for non-home pages */}
-            {!isHome && <div className="h-20 sm:h-24"></div>}
+            {/* Spacer only for non-home pages to exactly match the navbar height */}
+            {!isHome && <div className="h-[64px] sm:h-[72px] lg:h-[88px]"></div>}
         </>
     );
 };
