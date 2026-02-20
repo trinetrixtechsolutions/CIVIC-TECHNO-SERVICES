@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import IconButton from '@mui/material/IconButton';
 
 import Logo from '../../assets/clintlogos/Logo_6.svg';
@@ -43,7 +44,7 @@ const Navbar: React.FC = () => {
         if (isHome) {
             return isScrolled
                 ? 'bg-white shadow-md py-3'
-                : 'bg-transparent py-6';
+                : 'bg-transparent py-5 lg:py-6';
         }
         return 'bg-white shadow-sm py-3';
     };
@@ -65,19 +66,19 @@ const Navbar: React.FC = () => {
             <nav
                 className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${navbarBackground()}`}
             >
-                <div className="container mx-auto px-4 lg:px-8 flex justify-between items-center relative">
+                <div className="container mx-auto px-4 lg:px-8 flex justify-between items-center relative gap-4">
 
                     {/* Logo */}
-                    <Link to="/" className="flex items-center">
+                    <Link to="/" className="flex items-center flex-shrink-0">
                         <img
                             src={Logo}
                             alt="Civic Techno Services"
-                            className="h-12 lg:h-16 w-auto object-contain"
+                            className="h-10 sm:h-12 lg:h-16 w-auto object-contain transition-all duration-300"
                         />
                     </Link>
 
                     {/* Desktop Navigation */}
-                    <ul className="hidden md:flex space-x-6 absolute left-1/2 transform -translate-x-1/2">
+                    <ul className="hidden lg:flex space-x-6 xl:space-x-8 absolute left-1/2 transform -translate-x-1/2 whitespace-nowrap">
                         {navLinks.map((link) => (
                             <li key={link.path}>
                                 <Link
@@ -86,9 +87,8 @@ const Navbar: React.FC = () => {
                                 >
                                     {link.label}
                                     <span
-                                        className={`absolute bottom-0 left-0 h-0.5 bg-[#c59d5f] transition-all duration-300 ${
-                                            activeLink === link.path ? 'w-full' : 'w-0'
-                                        }`}
+                                        className={`absolute bottom-0 left-0 h-0.5 bg-[#c59d5f] transition-all duration-300 ${activeLink === link.path ? 'w-full' : 'w-0'
+                                            }`}
                                     />
                                 </Link>
                             </li>
@@ -96,38 +96,35 @@ const Navbar: React.FC = () => {
                     </ul>
 
                     {/* Right Side */}
-                    <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-4 flex-shrink-0">
 
-                        {/* Desktop Button */}
-                        <div className="hidden md:block">
+                        {/* Desktop Button - changed to text with arrow */}
+                        <div className="hidden lg:flex">
                             <Link
                                 to="/contact"
                                 className={`
-                                    px-8 py-3
-                                    rounded-full
-                                    font-semibold uppercase tracking-wide
-                                    border border-[#e5c78a]
-                                    transition-all duration-300
-                                    ${
-                                        isHome && !isScrolled
-                                            ? 'bg-transparent text-white hover:bg-[#c59d5f] hover:text-black'
-                                            : 'bg-white text-black hover:bg-[#c59d5f] hover:text-black'
+                                    flex items-center gap-2
+                                    font-semibold uppercase tracking-wide text-sm
+                                    transition-all duration-300 hover:text-[#c59d5f]
+                                    ${isHome && !isScrolled
+                                        ? 'text-white'
+                                        : 'text-black'
                                     }
                                 `}
                             >
-                                Get in Touch
+                                Get in Touch <ArrowForwardIcon fontSize="small" />
                             </Link>
                         </div>
 
                         {/* Mobile Toggle */}
-                        <div className="md:hidden">
+                        <div className="lg:hidden">
                             <IconButton
                                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                                className={`${
-                                    isHome && !isScrolled
+                                className={`${isHome && !isScrolled
                                         ? 'text-white'
                                         : 'text-[#c59d5f]'
-                                }`}
+                                    }`}
+                                size="large"
                             >
                                 {mobileMenuOpen ? <CloseIcon /> : <MenuIcon />}
                             </IconButton>
@@ -144,7 +141,7 @@ const Navbar: React.FC = () => {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -20 }}
                             transition={{ duration: 0.3 }}
-                            className="md:hidden bg-black text-white shadow-xl"
+                            className="lg:hidden absolute top-full left-0 right-0 bg-[#252525] text-white shadow-xl border-t border-gray-700"
                         >
                             <ul className="flex flex-col p-6 space-y-4">
                                 {navLinks.map((link) => (
@@ -159,13 +156,15 @@ const Navbar: React.FC = () => {
                                     </li>
                                 ))}
 
-                                <Link
-                                    to="/contact"
-                                    onClick={() => setMobileMenuOpen(false)}
-                                    className="mt-4 inline-block text-center px-6 py-3 bg-[#c59d5f] text-black rounded-full font-semibold"
-                                >
-                                    Get in Touch
-                                </Link>
+                                <li className="pt-4 border-t border-gray-700">
+                                    <Link
+                                        to="/contact"
+                                        onClick={() => setMobileMenuOpen(false)}
+                                        className="flex items-center gap-2 text-lg hover:text-[#c59d5f] transition-colors duration-300 w-fit"
+                                    >
+                                        Get in Touch <ArrowForwardIcon fontSize="small" />
+                                    </Link>
+                                </li>
                             </ul>
                         </motion.div>
                     )}
@@ -173,7 +172,7 @@ const Navbar: React.FC = () => {
             </nav>
 
             {/* Spacer only for non-home pages */}
-            {!isHome && <div className="h-20"></div>}
+            {!isHome && <div className="h-20 sm:h-24"></div>}
         </>
     );
 };
