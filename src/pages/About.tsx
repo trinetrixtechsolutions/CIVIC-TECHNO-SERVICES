@@ -59,10 +59,13 @@ const About: React.FC = () => {
         <div className="bg-white min-h-screen overflow-x-hidden">
 
             {/* Hero Section with Parallax Background */}
-            <section
-                className="relative min-h-[60vh] flex items-center justify-center bg-fixed bg-center bg-cover"
-                style={{ backgroundImage: `url(${HeroBg})` }}
-            >
+            <section className="relative min-h-[60vh] flex items-center justify-center">
+
+                {/* Background Image with Grayscale Filter */}
+                <div
+                    className="absolute inset-0 bg-fixed bg-center bg-cover grayscale"
+                    style={{ backgroundImage: `url(${HeroBg})` }}
+                ></div>
 
                 {/* Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent"></div>

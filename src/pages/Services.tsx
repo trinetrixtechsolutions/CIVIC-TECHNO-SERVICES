@@ -151,10 +151,13 @@ const Services: React.FC = () => {
         <div className="bg-white min-h-screen overflow-x-hidden">
 
             {/* HERO SECTION */}
-            <section
-                className="relative min-h-[60vh] flex items-center justify-center bg-fixed bg-center bg-cover"
-                style={{ backgroundImage: `url(${HeroBg})` }}
-            >
+            <section className="relative min-h-[60vh] flex items-center justify-center">
+
+                {/* Background Image with Grayscale Filter */}
+                <div
+                    className="absolute inset-0 bg-fixed bg-center bg-cover grayscale"
+                    style={{ backgroundImage: `url(${HeroBg})` }}
+                ></div>
                 <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent"></div>
 
                 <div className="container mx-auto px-4 lg:px-8 relative z-10 text-center lg:text-left py-20">
@@ -244,7 +247,7 @@ const Services: React.FC = () => {
                                         </div>
                                         <div className="h-1 flex-1 bg-gradient-to-r from-[#c59d5f] to-[#e6c88e]"></div>
                                     </div>
-                                    
+
                                     {/* TEXT SECTION: Heading and Data in same row */}
                                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 
