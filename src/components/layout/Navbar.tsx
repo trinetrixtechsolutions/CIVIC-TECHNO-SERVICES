@@ -40,22 +40,18 @@ const Navbar: React.FC = () => {
         { path: '/contact', label: 'Contact' }
     ];
 
+    // Updated: Consistent background for all pages (White)
+    // Shadow and padding change on scroll for better UX
     const navbarBackground = () => {
-        if (isHome) {
-            return isScrolled
-                ? 'bg-white shadow-md py-3'
-                : 'bg-transparent py-5 lg:py-6';
+        if (isScrolled) {
+            return 'bg-white shadow-md py-3';
         }
-        return 'bg-white shadow-sm py-3';
+        // White background always, slightly larger padding at top
+        return 'bg-white py-5 lg:py-6';
     };
 
+    // Updated: Consistent text color for all pages (Black)
     const linkColor = (path: string) => {
-        if (isHome && !isScrolled) {
-            return activeLink === path
-                ? 'text-[#c59d5f]'
-                : 'text-white hover:text-[#c59d5f]';
-        }
-
         return activeLink === path
             ? 'text-[#c59d5f]'
             : 'text-black hover:text-[#c59d5f]';
@@ -98,7 +94,7 @@ const Navbar: React.FC = () => {
                     {/* Right Side */}
                     <div className="flex items-center space-x-4 flex-shrink-0">
 
-                        {/* Desktop Button - changed to text with arrow */}
+                        {/* Desktop Button */}
                         <div className="hidden lg:flex">
                             <Link
                                 to="/contact"
@@ -106,10 +102,7 @@ const Navbar: React.FC = () => {
                                     flex items-center gap-2
                                     font-semibold uppercase tracking-wide text-sm
                                     transition-all duration-300 hover:text-[#c59d5f]
-                                    ${isHome && !isScrolled
-                                        ? 'text-white'
-                                        : 'text-black'
-                                    }
+                                    text-black
                                 `}
                             >
                                 Get in Touch <ArrowForwardIcon fontSize="small" />
@@ -120,10 +113,7 @@ const Navbar: React.FC = () => {
                         <div className="lg:hidden">
                             <IconButton
                                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                                className={`${isHome && !isScrolled
-                                        ? 'text-white'
-                                        : 'text-[#c59d5f]'
-                                    }`}
+                                className="text-black" // Always black icon
                                 size="large"
                             >
                                 {mobileMenuOpen ? <CloseIcon /> : <MenuIcon />}

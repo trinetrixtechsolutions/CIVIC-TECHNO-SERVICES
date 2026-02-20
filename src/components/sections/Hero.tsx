@@ -1,13 +1,18 @@
 // src/components/sections/Hero.tsx
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
 import { useInView } from 'react-intersection-observer';
 import { useEffect, useState } from 'react';
 import EngineeringIcon from '@mui/icons-material/Engineering';
 import BusinessIcon from '@mui/icons-material/Business';
 import PublicIcon from '@mui/icons-material/Public';
 import HandshakeIcon from '@mui/icons-material/Handshake';
-import Heroimg from '../../assets/industry_images/hero_home_img.webp';
+// Imported icons for electronic watermarks
+import ElectricalServicesIcon from '@mui/icons-material/ElectricalServices';
+import SettingsInputComponentIcon from '@mui/icons-material/SettingsInputComponent';
+import AcUnitIcon from '@mui/icons-material/AcUnit';
+import SettingsRemoteIcon from '@mui/icons-material/SettingsRemote';
+import PowerIcon from '@mui/icons-material/Power';
+import LightbulbIcon from '@mui/icons-material/Lightbulb';
 
 const Hero: React.FC = () => {
     const { ref, inView } = useInView({
@@ -80,21 +85,51 @@ const Hero: React.FC = () => {
         }
     ];
 
-    return (
-        <section ref={ref} className="relative min-h-screen flex items-center overflow-hidden">
+    // Configuration for moving watermarks
+    const watermarks = [
+        { Icon: ElectricalServicesIcon, top: '10%', left: '5%', size: 80, duration: 20 },
+        { Icon: SettingsInputComponentIcon, top: '60%', left: '85%', size: 60, duration: 25 },
+        { Icon: AcUnitIcon, top: '80%', left: '15%', size: 70, duration: 22 },
+        { Icon: SettingsRemoteIcon, top: '30%', left: '90%', size: 50, duration: 18 },
+        { Icon: PowerIcon, top: '50%', left: '50%', size: 90, duration: 30 },
+        { Icon: LightbulbIcon, top: '15%', left: '60%', size: 40, duration: 15 },
+        { Icon: ElectricalServicesIcon, top: '70%', left: '40%', size: 55, duration: 28 },
+        { Icon: SettingsInputComponentIcon, top: '40%', left: '10%', size: 65, duration: 24 },
+    ];
 
-            {/* Background Image */}
-            <div className="absolute inset-0 z-0">
-                <img
-                    src={Heroimg}
-                    alt="Hero Background"
-                    className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-black/20"></div>
-                <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-transparent"></div>
+    return (
+        <section ref={ref} className="relative min-h-screen flex items-center overflow-hidden bg-white">
+
+            {/* MOVING WATERMARK BACKGROUND - Changed to Gold Color */}
+            <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+                {watermarks.map((item, index) => (
+                    <motion.div
+                        key={index}
+                        className="absolute text-[#c59d5f]/20" // Gold color with 20% opacity
+                        style={{ 
+                            top: item.top, 
+                            left: item.left,
+                        }}
+                        animate={{
+                            x: [0, 30, -20, 0],
+                            y: [0, -40, 20, 0],
+                            rotate: [0, 10, -10, 0],
+                            scale: [1, 1.1, 0.9, 1],
+                        }}
+                        transition={{
+                            duration: item.duration,
+                            repeat: Infinity,
+                            ease: "linear",
+                            delay: index * 2,
+                        }}
+                    >
+                        <item.Icon sx={{ fontSize: item.size }} />
+                    </motion.div>
+                ))}
             </div>
 
-            <div className="container mx-auto px-6 py-20 relative z-10">
+            {/* Main Content Container */}
+            <div className="container mx-auto px-6 py-6 relative z-1">
 
                 <motion.div
                     className="flex flex-col items-center text-center"
@@ -114,7 +149,7 @@ const Hero: React.FC = () => {
 
                     {/* Main Heading */}
                     <motion.h4
-                        className="font-primary font-black uppercase text-white text-[16px] md:text-[24px] lg:text-[42px] leading-[1] -mt-3 mb-4 tracking-[0.05em]"
+                        className="font-primary font-black uppercase text-gray-900 text-[16px] md:text-[24px] lg:text-[42px] leading-[1] -mt-3 mb-4 tracking-[0.05em]"
                         variants={itemVariants}
                     >
                         Civic Technologies
@@ -122,13 +157,13 @@ const Hero: React.FC = () => {
 
                     {/* Tagline */}
                     <motion.p
-                        className="text-gray-300 text-base md:text-lg mb-8 max-w-2xl"
+                        className="text-gray-600 text-base md:text-lg mb-8 max-w-2xl font-medium"
                         variants={itemVariants}
                     >
                         INDUSTRIAL INFRASTRUCTURE WITH TURNKEY MEP SOLUTIONS
                     </motion.p>                   
 
-                    {/* Stats Cards BELOW Text */}
+                    {/* Stats Cards */}
                     <motion.div
                         className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl"
                         variants={containerVariants}
@@ -139,16 +174,16 @@ const Hero: React.FC = () => {
                             <motion.div
                                 key={index}
                                 variants={itemVariants}
-                                whileHover={{ y: -5 }}
-                                className="border border-[#c59d5f] rounded-2xl p-4 text-center transition-all duration-300 w-40 md:w-44"
+                                whileHover={{ y: -5, boxShadow: "0px 10px 20px rgba(0,0,0,0.1)" }}
+                                className="bg-white border border-gray-200 rounded-2xl p-4 text-center transition-all duration-300 w-40 md:w-44 shadow-sm"
                             >
                                 <div className="mb-2 flex justify-center">
                                     {item.icon}
                                 </div>
-                                <h3 className="text-lg font-bold text-white mb-1">
+                                <h3 className="text-lg font-bold text-gray-900 mb-1">
                                     {item.value}
                                 </h3>
-                                <p className="text-xs text-gray-300 uppercase tracking-wide">
+                                <p className="text-xs text-gray-500 uppercase tracking-wide">
                                     {item.label}
                                 </p>
                             </motion.div>

@@ -61,7 +61,7 @@ const ServicesSection = () => {
   return (
     <section
       ref={ref}
-      className="py-24 lg:py-16 bg-white relative overflow-hidden"
+      className="py-6 lg:py-6 bg-white relative overflow-hidden"
     >
       {/* Subtle Gold Glow */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-[#c59d5f]/10 rounded-full blur-3xl opacity-40 translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
