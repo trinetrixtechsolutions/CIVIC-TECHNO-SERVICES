@@ -1,5 +1,6 @@
 // src/components/sections/ProjectsShowcase.tsx
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useNavigate } from 'react-router-dom';
@@ -12,6 +13,7 @@ import NIABImg from '../../assets/projects_images/National_Institute_of_Animal_B
 
 const ProjectsShowcase: React.FC = () => {
     const navigate = useNavigate();
+    const [activeIndex, setActiveIndex] = useState(0);
 
     const { ref, inView } = useInView({
         triggerOnce: true,
@@ -45,45 +47,28 @@ const ProjectsShowcase: React.FC = () => {
         }
     ];
 
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: { staggerChildren: 0.2 }
-        }
-    };
-
-    const cardVariants = {
-        hidden: { y: 40, opacity: 0 },
-        visible: {
-            y: 0,
-            opacity: 1,
-            transition: { duration: 0.7, ease: "easeOut" }
-        }
-    };
-
     return (
-        <section ref={ref} className="py-24 lg:py-6 bg-white relative overflow-hidden">
+        <section ref={ref} className="py-24 lg:py-32 bg-white relative overflow-hidden">
 
             {/* Subtle Gold Glow */}
             <div className="absolute top-0 right-0 w-96 h-96 bg-[#c59d5f]/10 rounded-full blur-3xl opacity-40 translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
             <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#c59d5f]/10 rounded-full blur-3xl opacity-40 -translate-x-1/2 translate-y-1/2 pointer-events-none"></div>
 
-            <div className="container mx-auto px-4 relative z-10">
+            <div className="container mx-auto px-4 sm:px-6 relative z-10 w-full max-w-7xl">
 
                 {/* Header */}
                 <motion.div
-                    className="relative mb-8"
+                    className="relative mb-12 flex flex-col items-center"
                     initial={{ opacity: 0, y: 30 }}
                     animate={inView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.8 }}
                 >
-                    <div className="absolute right-0 top-40 hidden md:block">
+                    <div className="absolute right-0 top-1/2 -translate-y-1/2 hidden md:block z-20">
                         <motion.button
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             onClick={() => navigate("/projects")}
-                            className="px-8 py-3 bg-[#c59d5f] text-black font-bold uppercase tracking-wider rounded-full shadow-lg hover:bg-[#b88c47] transition-all duration-300"
+                            className="px-8 py-3 bg-[#c59d5f] text-white font-bold uppercase tracking-wider rounded-full shadow-lg hover:bg-gray-900 transition-colors duration-300"
                         >
                             View All
                         </motion.button>
@@ -91,27 +76,27 @@ const ProjectsShowcase: React.FC = () => {
 
                     <div className="text-center max-w-4xl mx-auto">
                         <h2
-                            className="text-[60px] md:text-[100px] lg:text-[120px] text-[#c59d5f] leading-none"
+                            className="text-[50px] md:text-[80px] lg:text-[100px] text-[#c59d5f] leading-none -mb-2 md:-mb-4"
                             style={{ fontFamily: 'Herr Von Muellerhoff, serif' }}
                         >
                             Our
                         </h2>
 
-                        <h1 className="font-primary font-black tracking-[0.08em] uppercase text-[#111111] text-[28px] md:text-[40px] lg:text-[47px] leading-[0.8] -mt-2 md:-mt-6 lg:-mt-8 mb-6">
+                        <h1 className="font-primary font-black tracking-[0.08em] uppercase text-[#111111] text-[24px] md:text-[36px] lg:text-[42px] leading-[0.8] mb-4">
                             Featured Projects
                         </h1>
 
-                        <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                        <p className="text-sm md:text-base text-gray-600 max-w-2xl mx-auto leading-relaxed hidden sm:block">
                             A showcase of precision-driven engineering excellence
                             across industrial and infrastructure sectors.
                         </p>
 
-                        <div className="mt-8 md:hidden">
+                        <div className="mt-6 md:hidden">
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 onClick={() => navigate("/projects")}
-                                className="px-8 py-3 bg-[#c59d5f] text-black font-bold uppercase tracking-wider rounded-full shadow-lg hover:bg-[#b88c47] transition-all duration-300"
+                                className="px-6 py-2 bg-[#c59d5f] text-white font-bold uppercase tracking-wider rounded-full shadow-lg hover:bg-gray-900 transition-colors duration-300"
                             >
                                 View All
                             </motion.button>
@@ -119,49 +104,101 @@ const ProjectsShowcase: React.FC = () => {
                     </div>
                 </motion.div>
 
-                {/* FLEX Layout Instead of Grid */}
+                {/* Interactive Expanding Accordion Gallery */}
                 <motion.div
-                    className="flex flex-wrap justify-center gap-1.5"
-                    variants={containerVariants}
-                    initial="hidden"
-                    animate={inView ? "visible" : "hidden"}
+                    className="flex flex-col lg:flex-row w-full h-[80vh] lg:h-[70vh] gap-3 md:gap-4"
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={inView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.8, delay: 0.2 }}
                 >
-                    {projects.map((project, index) => (
-                        <motion.div
-                            key={index}
-                            variants={cardVariants}
-                            onClick={() => navigate("/projects")}
-                            className="relative group rounded-2xl overflow-hidden cursor-pointer shadow-md hover:shadow-2xl transition-shadow duration-500 w-full sm:w-[48%] lg:w-[23%]"
-                        >
+                    {projects.map((project, index) => {
+                        const isActive = activeIndex === index;
 
-                            {/* Image */}
-                            <img
-                                src={project.image}
-                                alt={project.name}
-                                className="w-full h-72 object-cover transition-transform duration-700 group-hover:scale-110"
-                            />
+                        return (
+                            <motion.div
+                                key={index}
+                                layout
+                                onClick={() => setActiveIndex(index)}
+                                className={`relative rounded-[2rem] overflow-hidden cursor-pointer transition-[flex] duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]
+                                    ${isActive ? 'opacity-100' : 'opacity-80 hover:opacity-100'}
+                                `}
+                                style={{ flex: isActive ? 4 : 1 }}
+                            >
+                                {/* Background Image */}
+                                <img
+                                    src={project.image}
+                                    alt={project.name}
+                                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000"
+                                    style={{ transform: isActive ? 'scale(1)' : 'scale(1.05)' }}
+                                />
 
-                            {/* Gradient Overlay */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-80 group-hover:opacity-90 transition duration-500"></div>
+                                {/* Gradient Overlay */}
+                                <div className={`absolute inset-0 transition-opacity duration-700 ${isActive ? 'bg-gradient-to-t from-black/95 via-black/40 to-transparent' : 'bg-black/50'}`}></div>
 
-                            {/* Bottom Info */}
-                            <div className="absolute bottom-0 left-0 w-full p-6 text-white translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                                <h3 className="text-lg font-bold mb-2">
-                                    {project.name}
-                                </h3>
+                                {/* Content Container */}
+                                <div className="absolute inset-0 p-6 md:p-10 flex flex-col justify-end">
 
-                                <div className="text-sm text-gray-200 space-y-1 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                                    <p>
-                                        <span className="font-semibold text-[#c59d5f]">Client:</span> {project.client}
-                                    </p>
-                                    <p>
-                                        <span className="font-semibold text-[#c59d5f]">Location:</span> {project.location}
-                                    </p>
+                                    {/* Inactive State - Vertical Title (Desktop Only) */}
+                                    {!isActive && (
+                                        <div className="hidden lg:flex w-full h-full items-end justify-center pb-8 overflow-hidden">
+                                            <h3
+                                                className="text-white font-bold text-2xl whitespace-nowrap tracking-widest font-primary transition-opacity duration-300 overflow-hidden text-ellipsis"
+                                                style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)', maxHeight: '90%' }}
+                                            >
+                                                {project.name}
+                                            </h3>
+                                        </div>
+                                    )}
+
+                                    {/* Inactive State - Horizontal Title (Mobile Only) */}
+                                    {!isActive && (
+                                        <div className="flex lg:hidden w-full h-full items-center justify-start">
+                                            <h3 className="text-white font-bold text-lg max-w-[90%] line-clamp-1 shadow-black drop-shadow-lg transition-opacity duration-300">
+                                                {project.name}
+                                            </h3>
+                                        </div>
+                                    )}
+
+                                    {/* Active State Details */}
+                                    {isActive && (
+                                        <motion.div
+                                            initial={{ opacity: 0, y: 20 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            transition={{ duration: 0.5, delay: 0.3 }}
+                                            className="relative z-10 w-full"
+                                        >
+                                            <h3 className="text-3xl md:text-5xl font-black mb-4 font-primary uppercase tracking-tight text-white leading-tight">
+                                                {project.name}
+                                            </h3>
+
+                                            <div className="flex flex-col md:flex-row gap-4 md:gap-8 mb-8">
+                                                <div className="flex items-center gap-2">
+                                                    <span className="text-[#c59d5f] font-semibold text-sm uppercase tracking-wider">Client:</span>
+                                                    <span className="text-gray-200 text-lg md:text-xl">{project.client}</span>
+                                                </div>
+                                                <div className="flex items-center gap-2">
+                                                    <span className="text-[#c59d5f] font-semibold text-sm uppercase tracking-wider">Location:</span>
+                                                    <span className="text-gray-200 text-lg md:text-xl">{project.location}</span>
+                                                </div>
+                                            </div>
+
+                                            <button
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    navigate("/projects");
+                                                }}
+                                                className="flex items-center gap-2 text-[#c59d5f] font-bold text-sm md:text-base uppercase tracking-wider group hover:text-white transition-colors"
+                                            >
+                                                View Project Details
+                                                <span className="transform transition-transform duration-300 group-hover:translate-x-2">→</span>
+                                            </button>
+                                        </motion.div>
+                                    )}
                                 </div>
-                            </div>
 
-                        </motion.div>
-                    ))}
+                            </motion.div>
+                        );
+                    })}
                 </motion.div>
 
             </div>

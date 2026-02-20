@@ -1,5 +1,5 @@
-import { motion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
+import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const services = [
@@ -35,130 +35,161 @@ const services = [
 
 const ServicesSection = () => {
   const navigate = useNavigate();
+  const containerRef = useRef<HTMLElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.15,
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
   });
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.2 },
-    },
-  };
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    if (latest < 0.25) setActiveIndex(0);
+    else if (latest < 0.5) setActiveIndex(1);
+    else if (latest < 0.75) setActiveIndex(2);
+    else setActiveIndex(3);
+  });
 
-  const cardVariants = {
-    hidden: { y: 40, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.7, ease: "easeOut" },
-    },
-  };
+  // Smoothly slide each card up from below the screen (100vh) to its natural position (0vh)
+  const yCard2 = useTransform(scrollYProgress, [0.15, 0.35], ["100vh", "0vh"]);
+  const yCard3 = useTransform(scrollYProgress, [0.45, 0.65], ["100vh", "0vh"]);
+  const yCard4 = useTransform(scrollYProgress, [0.75, 0.95], ["100vh", "0vh"]);
+
+  const cardYs = [null, yCard2, yCard3, yCard4];
 
   return (
-    <section
-      ref={ref}
-      className="py-6 lg:py-6 bg-white relative overflow-hidden"
-    >
-      {/* Subtle Gold Glow */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-[#c59d5f]/10 rounded-full blur-3xl opacity-40 translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#c59d5f]/10 rounded-full blur-3xl opacity-40 -translate-x-1/2 translate-y-1/2 pointer-events-none"></div>
+    // 400vh gives us enough scroll distance to comfortably trigger 3 sequential parallax animations
+    <section ref={containerRef} className="bg-white relative w-full h-[400vh]">
 
-      <div className="container mx-auto px-6 relative z-10">
-        {/* Header */}
-        <motion.div
-          className="relative mb-8"
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-        >
-          {/* Desktop View All */}
-          <div className="absolute right-0 top-40 hidden md:block">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => navigate("/services")}
-              className="px-8 py-3 bg-[#c59d5f] text-black font-bold uppercase tracking-wider rounded-full shadow-lg hover:bg-[#b88c47] transition-all duration-300"
-            >
-              View All
-            </motion.button>
-          </div>
+      {/* 
+        This is the single overarching sticky container. 
+        It sticks slightly below the main navbar (top-[80px]) to prevent overlapping, 
+        and its height takes up exactly the rest of the screen. 
+        As long as the user scrolls within the 400vh parent, this ENTIRE block stays perfectly still.
+      */}
+      <div className="sticky top-[80px] h-[calc(100vh-80px)] w-full overflow-hidden flex flex-col pt-6 z-30">
 
-          <div className="text-center max-w-4xl mx-auto">
-            <h2
-              className="text-[60px] md:text-[100px] lg:text-[120px] text-[#c59d5f] leading-none"
-              style={{ fontFamily: "Herr Von Muellerhoff, serif" }}
-            >
-              Our
-            </h2>
+        {/* Subtle Gold Glow Background Layout */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#c59d5f]/10 rounded-full blur-3xl opacity-40 translate-x-1/2 -translate-y-1/2 pointer-events-none z-0"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#c59d5f]/10 rounded-full blur-3xl opacity-40 -translate-x-1/2 translate-y-1/2 pointer-events-none z-0"></div>
 
-            <h1 className="font-primary font-black tracking-[0.08em] uppercase text-[#111111] text-[28px] md:text-[40px] lg:text-[47px] leading-[0.8] -mt-2 md:-mt-6 lg:-mt-8 mb-6">
-              Services
-            </h1>
+        {/* Header Section remains totally fixed inside the sticky container */}
+        <div className="container mx-auto px-6 relative z-10 flex-shrink-0">
+          <div className="relative flex flex-col items-center">
 
-            <p className="text-gray-600 max-w-2xl mx-auto text-lg leading-relaxed">
-              Delivering integrated engineering solutions built on precision,
-              accountability, and technical excellence.
-            </p>
-
-            {/* Mobile View All */}
-            <div className="mt-8 md:hidden">
+            {/* Desktop View All */}
+            <div className="absolute right-0 top-1/2 -translate-y-1/2 hidden md:block z-20">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => navigate("/services")}
-                className="px-8 py-3 bg-[#c59d5f] text-black font-bold uppercase tracking-wider rounded-full shadow-lg hover:bg-[#b88c47] transition-all duration-300"
+                className="px-8 py-3 bg-[#c59d5f] text-white font-bold uppercase tracking-wider rounded-full shadow-lg hover:bg-gray-900 transition-colors duration-300"
               >
                 View All
               </motion.button>
             </div>
-          </div>
-        </motion.div>
 
-        {/* Services Grid */}
-        <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-1.5"
-          variants={containerVariants}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-        >
-          {services.map((service, index) => (
-            <motion.div
-              key={index}
-              variants={cardVariants}
-              onClick={() => navigate("/services")}
-              className="relative group rounded-2xl overflow-hidden cursor-pointer shadow-md hover:shadow-xl transition-shadow duration-500"
-            >
-              {/* Image */}
-              <img
-                src={service.image}
-                alt={service.title}
-                className="w-full h-72 object-cover transition-transform duration-700 group-hover:scale-110"
-              />
+            <div className="text-center max-w-4xl mx-auto">
+              <h2
+                className="text-[50px] md:text-[80px] lg:text-[100px] text-[#c59d5f] leading-none -mb-2 md:-mb-4"
+                style={{ fontFamily: "Herr Von Muellerhoff, serif" }}
+              >
+                Our
+              </h2>
 
-              {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent opacity-80 group-hover:opacity-90 transition duration-500"></div>
+              <h1 className="font-primary font-black tracking-[0.08em] uppercase text-[#111111] text-[24px] md:text-[36px] lg:text-[42px] leading-[0.8] mb-4">
+                Services
+              </h1>
 
-              {/* Content */}
-              <div className="absolute bottom-0 left-0 w-full p-6 text-white translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                <h3 className="text-lg font-bold mb-3">
-                  {service.title}
-                </h3>
+              <p className="text-gray-600 max-w-2xl mx-auto text-sm md:text-base leading-relaxed hidden sm:block">
+                Delivering integrated engineering solutions built on precision,
+                accountability, and technical excellence.
+              </p>
 
-                <p className="text-sm text-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-500 mb-4">
-                  {service.description}
-                </p>
-
-                <span className="inline-block text-[#c59d5f] font-semibold text-sm uppercase tracking-wide">
-                  Explore →
-                </span>
+              {/* Mobile View All */}
+              <div className="mt-4 md:hidden">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => navigate("/services")}
+                  className="px-6 py-2 text-sm bg-[#c59d5f] text-white font-bold uppercase tracking-wider rounded-full shadow-lg hover:bg-gray-900 transition-colors duration-300"
+                >
+                  View All
+                </motion.button>
               </div>
-            </motion.div>
-          ))}
-        </motion.div>
+            </div>
+          </div>
+        </div>
+
+        {/* Full Width Dynamic Banners Container */}
+        {/* We use flex-grow so it perfectly spans the remaining bottom height of the screen */}
+        <div className="relative w-full flex-grow z-10 mx-auto px-0 bg-white flex flex-col justify-end">
+
+          {/* Setting the height of the card block slightly larger to reduce the gap to the header */}
+          <div className="relative w-full h-[60vh] md:h-[65vh]">
+
+            {/* Pagination Dots Overlay - Centered at the top of the cards */}
+            <div className="absolute top-4 md:top-8 left-1/2 -translate-x-1/2 flex justify-center gap-3 z-50">
+              {services.map((_, idx) => (
+                <motion.div
+                  key={idx}
+                  className={`h-2 rounded-full transition-all duration-300 ${activeIndex === idx ? "w-8 bg-[#c59d5f]" : "w-2 bg-gray-300"
+                    }`}
+                />
+              ))}
+            </div>
+
+            {services.map((service, index) => {
+              const isFirst = index === 0;
+              return (
+                <motion.div
+                  key={index}
+                  // The first card stays pinned at 0. Subsequent cards use our scroll transforms to slide up!
+                  style={{ y: isFirst ? 0 : cardYs[index] || 0 }}
+                  className="absolute inset-x-0 bottom-0 w-full h-full cursor-pointer group bg-black"
+                  onClick={() => navigate("/services")}
+                >
+                  {/* Background Image */}
+                  <div className="absolute inset-0 w-full h-full">
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      // Removed hover scaling effect as requested
+                      className="w-full h-full object-cover transition-transform duration-1000"
+                    />
+                  </div>
+
+                  {/* Top Gradient for text readability since text is now at the top */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/40 to-transparent"></div>
+
+                  {/* Card Content Layout (Moved to Top) */}
+                  <div className="absolute inset-0 flex flex-col justify-start px-6 pt-16 md:px-12 md:pt-24 text-white container mx-auto">
+                    <div className="max-w-3xl">
+
+                      <h3 className="text-2xl md:text-4xl lg:text-5xl font-black mb-4 font-primary uppercase tracking-tight leading-tight">
+                        {service.title}
+                      </h3>
+
+                      <p className="text-sm md:text-xl text-gray-200 mb-6 max-w-2xl font-medium leading-relaxed hidden sm:block">
+                        {service.description}
+                      </p>
+
+                      <button className="flex items-center gap-2 text-[#c59d5f] font-bold text-xs md:text-sm uppercase tracking-wider relative overflow-hidden group/btn">
+                        <span className="relative z-10 flex items-center gap-2">
+                          Explore Service
+                          {/* Removed arrow translation hover effect as requested */}
+                          <span>→</span>
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+
       </div>
     </section>
   );
